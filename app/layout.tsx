@@ -1,6 +1,10 @@
+// library
 import type { Metadata } from 'next';
 
-// use the metadata API per below to manage <head> properties
+// components
+import Grid from './components/grid/grid.component';
+
+// head
 export const metadata: Metadata = {
   title: 'BB&S',
   description: 'BB&S: Lighting People',
@@ -11,12 +15,15 @@ import '@/app/styles/main.scss'
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: { children: React.ReactNode}
+) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Grid>
+          { children }
+        </Grid>
+      </body>
     </html>
   )
 }
