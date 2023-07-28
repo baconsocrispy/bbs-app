@@ -1,4 +1,8 @@
 .grid {
   display: grid;
-  grid-template-rows: $height-nav $height-main $height-footer;
+  grid-template-rows: 
+    $height-banner 
+    $height-nav 
+    $height-main 
+    $height-footer;
 }

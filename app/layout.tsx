@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 
 // components
+import Banner from './components/banner/banner.component';
 import Grid from './components/grid/grid.component';
 import Nav from './components/nav/nav.component';
 import Footer from './components/footer/footer.component';
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Grid>
+          <Banner />
           <Nav />
           { children }
           <Footer />
