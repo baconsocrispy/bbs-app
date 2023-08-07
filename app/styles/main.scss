@@ -11,3 +11,8 @@
 @import '@/app/components/grid/grid.styles';
 @import '@/app/components/footer/footer.styles';
 @import '@/app/components/nav/nav.styles';
+
+.home {
+  background-image: url('/ceiling.jpeg');
+  background-position: center;
+}
