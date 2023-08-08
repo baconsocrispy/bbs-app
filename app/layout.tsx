@@ -9,7 +9,7 @@ import Footer from './components/footer/footer.component';
 
 // head
 export const metadata: Metadata = {
-  title: 'BB&S',
+  title: 'BB&S America',
   description: 'BB&S: Lighting People',
 }
 
