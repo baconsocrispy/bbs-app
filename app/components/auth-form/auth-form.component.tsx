@@ -3,7 +3,9 @@ import { FC, useContext } from 'react';
 
 const AuthForm = () => {
   return (
-    <div>AuthForm</div>
+    <div className='auth-form'>
+      AuthForm
+    </div>
   )
 }
 

@@ -1,6 +1,11 @@
+// components
+import AuthForm from "../components/auth-form/auth-form.component";
+
 const SignIn = () => {
   return (
-    <main>SignIn</main>
+    <main>
+      <AuthForm />
+    </main>
   )
 }
 
