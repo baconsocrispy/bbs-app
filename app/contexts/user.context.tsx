@@ -1,29 +1,33 @@
 // library
 import { ReactNode, createContext, useEffect, useState } from "react";
 
+// api
+import { getCurrentUser, signInUser } from "../api/auth-api";
+import { AuthFormData } from "../components/auth-form/auth-form.component";
+
 // types
 export type User = {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
-}
+};
 
 type UserContextProps = {
   jwt: string | null;
   user: User | null;
-  getUser: Function;
-}
+  setCurrentUser: Function;
+};
 
 type UserProviderProps = {
   children: ReactNode;
-}
+};
 
-// user
+// context
 export const UserContext = createContext<UserContextProps>({
   jwt: null,
   user: null,
-  getUser: () => {}
+  setCurrentUser: () => {}
 });
 
 // provider
@@ -34,27 +38,32 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // set user when jwt updates
   useEffect(() => {
-    jwt && getUser();
+    jwt && setCurrentUser();
   }, [ jwt ]);
 
   // actions
-  const getUser = async () => {
+  const signIn = async (formData: AuthFormData) => {
+    const { jwt } = await signInUser(formData);
+    setJWT(jwt);
+  };
+
+  const setCurrentUser = async () => {
     if (jwt) {
       const currentUser: User = await getCurrentUser(jwt);
       setUser(currentUser);
     }
   };
 
-  // data export
+  // data
   const value = {
     jwt,
     user,
-    getUser
+    setCurrentUser
   };
 
   return (
-    <UserContext.Provider value= { value }>
+    <UserContext.Provider value={ value }>
       { children }
     </UserContext.Provider>
   )
-}
+};
