@@ -16,6 +16,7 @@ export type User = {
 type UserContextProps = {
   jwt: string | null;
   user: User | null;
+  signIn: Function;
   setCurrentUser: Function;
 };
 
@@ -27,6 +28,7 @@ type UserProviderProps = {
 export const UserContext = createContext<UserContextProps>({
   jwt: null,
   user: null,
+  signIn: () => {},
   setCurrentUser: () => {}
 });
 
@@ -58,6 +60,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const value = {
     jwt,
     user,
+    signIn,
     setCurrentUser
   };
 

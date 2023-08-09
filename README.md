@@ -4,8 +4,11 @@ No to src, Yes to App Router
 
 ## Configuration
 
-### SASS
+### Libraries
+Sass for styling
 `yarn add sass`
+React Hook Form for form submission
+`yarn add react-hook-form`
 
 ###
 Active Storage setup
