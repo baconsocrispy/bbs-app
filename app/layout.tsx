@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 // styles
 import '@/app/styles/main.scss'
+import { UserProvider } from './contexts/user.context';
 
 export default function RootLayout({
   children,
@@ -25,8 +26,10 @@ export default function RootLayout({
       <body>
         <Grid>
           <Banner />
-          <Nav />
-          { children }
+          <UserProvider>
+            <Nav />
+            { children }
+          </UserProvider>
           <Footer />
         </Grid>
       </body>

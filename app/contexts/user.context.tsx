@@ -1,3 +1,5 @@
+'use client'
+
 // library
 import { ReactNode, createContext, useEffect, useState } from "react";
 
@@ -45,6 +47,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // actions
   const signIn = async (formData: AuthFormData) => {
+    console.log('test')
     const { jwt } = await signInUser(formData);
     setJWT(jwt);
   };

@@ -32,6 +32,7 @@ const AuthForm: FC = () => {
 
   // handlers
   const onSignIn: SubmitHandler<AuthFormData> = (formData: AuthFormData) => {
+    console.log('auth-form')
     signIn(formData);
     reset();
   };
