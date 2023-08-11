@@ -2,6 +2,7 @@
 
 // library
 import { ReactNode, createContext, useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 // api
 import { getCurrentUser, signInUser } from "../api/auth-api";
@@ -39,6 +40,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   // initial state
   const [ user, setUser ] = useState<User | null>(null);
   const [ jwt, setJWT ] = useState<string | null>(null);
+  const router = useRouter();
 
   // set user when jwt updates
   useEffect(() => {
@@ -47,7 +49,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // actions
   const signIn = async (formData: AuthFormData) => {
-    console.log('test')
     const { jwt } = await signInUser(formData);
     setJWT(jwt);
   };
@@ -56,6 +57,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     if (jwt) {
       const currentUser: User = await getCurrentUser(jwt);
       setUser(currentUser);
+      router.push('/admin');
     }
   };
 

@@ -16,7 +16,7 @@ type AuthAPIResponse = {
 // sign up a new user
 export const signUpUser = async (formData: AuthFormData) => {
   const response: AuthAPIResponse = await backendAuthRequest(
-    'POST', 'http://localhost:3001/signup', formData
+    'POST', 'http://localhost:3001/admin/signup', formData
   );
   return response;
 };
@@ -24,7 +24,7 @@ export const signUpUser = async (formData: AuthFormData) => {
 // sign in existing user
 export const signInUser = async (formData: AuthFormData) => {
   const response: AuthAPIResponse = await backendAuthRequest(
-    'POST', 'http://localhost:3001/signin', formData
+    'POST', 'http://localhost:3001/admin/signin', formData
   );
   return response;
 };
@@ -32,7 +32,7 @@ export const signInUser = async (formData: AuthFormData) => {
 // sign out current user
 export const signOutUser = async () => {
   const response = await backendAuthRequest(
-    'DELETE', 'http://localhost:3001/signout'
+    'DELETE', 'http://localhost:3001/admin/signout'
   );
   return response;
 };
