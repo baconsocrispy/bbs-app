@@ -1,5 +1,6 @@
 // components
 import Image from 'next/image';
+import Link from 'next/link';
 
 // assets
 import LogoImage from '@/public/logo_100x23.png';
@@ -7,10 +8,12 @@ import LogoImage from '@/public/logo_100x23.png';
 const Logo = () => {
   return (
     <div className="logo">
-      <Image 
-        src={ LogoImage }
-        alt='BB&S Logo'
-      />
+      <Link href='/'>
+        <Image 
+          src={ LogoImage }
+          alt='BB&S Logo'
+        />
+      </Link>
     </div>
   )
 }

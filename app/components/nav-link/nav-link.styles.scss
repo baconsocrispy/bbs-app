@@ -1,0 +1,21 @@
+.nav-links {
+  position: fixed;
+  top: calc($height-nav + $height-banner);
+  bottom: $height-footer;
+  left: 0;
+  right: 0;
+  padding: 3rem;
+  z-index: 20;
+
+  list-style: none;
+  background-color: rgb(255, 255, 255, .8);
+
+  font-family: $font-primary;
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+
+  &--closed {
+    display: none;
+  }
+}

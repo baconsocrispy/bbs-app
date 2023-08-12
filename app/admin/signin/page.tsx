@@ -1,5 +1,5 @@
 // components
-import AuthForm from "../components/auth-form/auth-form.component";
+import AuthForm from "../../components/auth-form/auth-form.component";
 
 const SignIn = () => {
   return (

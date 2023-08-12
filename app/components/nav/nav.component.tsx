@@ -4,8 +4,8 @@
 import { useContext } from "react";
 
 // components
-import Hamburger from "../hamburger/hamburger.component";
 import Logo from "../logo/logo.component";
+import NavMenu from "../nav-menu/nav-menu.component";
 
 // context
 import { UserContext } from "@/app/contexts/user.context";
@@ -20,7 +20,7 @@ const Nav = () => {
   return (
     <div className="nav">
       <Logo />
-      <Hamburger onClick={ handleHamburgerClick }/>
+      <NavMenu />
     </div>
   )
 }
