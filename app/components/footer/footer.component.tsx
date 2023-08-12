@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div className="footer">
-      Footer
+      &copy;&nbsp;2023 BB&S America
     </div>
   )
 }

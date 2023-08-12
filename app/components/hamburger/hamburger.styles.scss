@@ -2,6 +2,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  overflow: visible;
+  width: 3rem;
+  height: 2rem;
 
   &__lines {
     position: relative;
@@ -9,8 +12,8 @@
     height: 2px;
     background-color: currentColor;
 
-    &::after,
-    &::before {
+    &::before,
+    &::after {
       content: '';
       display: block;
       background-color: inherit;
