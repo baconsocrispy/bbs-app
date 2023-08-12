@@ -4,7 +4,7 @@
 import { useContext } from "react";
 
 // components
-import Link from "next/link";
+import Hamburger from "../hamburger/hamburger.component";
 import Logo from "../logo/logo.component";
 
 // context
@@ -14,10 +14,13 @@ const Nav = () => {
   // state
   const { user } = useContext(UserContext);
 
+  // handlers
+  const handleHamburgerClick = () => console.log('test');
+
   return (
     <div className="nav">
       <Logo />
-      { user ? 'Log Out' : <Link href='/signin'>Sign In</Link> }
+      <Hamburger onClick={ handleHamburgerClick }/>
     </div>
   )
 }

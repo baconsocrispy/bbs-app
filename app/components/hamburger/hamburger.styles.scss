@@ -1,0 +1,29 @@
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &__lines {
+    position: relative;
+    width: 3rem;
+    height: 2px;
+    background-color: currentColor;
+
+    &::after,
+    &::before {
+      content: '';
+      display: block;
+      background-color: inherit;
+      width: 100%;
+      height: 2px;
+    }
+
+    &::before {
+      transform: translateY(-.8rem);
+    }
+
+    &::after {
+      transform: translateY(.6rem);
+    }
+  }
+}
