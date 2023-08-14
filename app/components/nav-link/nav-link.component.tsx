@@ -13,8 +13,8 @@ type NavLinkProps = {
 
 const NavLink: FC<NavLinkProps> = ({ text, href, onClick }) => {
   return (
-    <li onClick={ onClick }>
-      <Link href={ href } className=''>
+    <li onClick={ onClick } className='nav-link'>
+      <Link href={ href }>
         { text }
       </Link>
     </li>

@@ -17,7 +17,7 @@ const NavMenu = () => {
   const handleLinkClick = () => setOpen(false);
 
   return (
-    <>
+    <nav className="nav-menu">
       <Hamburger onClick={ handleHamburgerClick } />
 
       <NavLinks open={ open }>
@@ -25,7 +25,7 @@ const NavMenu = () => {
         <NavLink text='Contact' href='/contact' onClick={ handleLinkClick } />
         <NavLink text='Sign In' href='/admin/signin' onClick={ handleLinkClick } />
       </NavLinks>
-    </>
+    </nav>
   )
 }
 
