@@ -12,12 +12,9 @@
 @import '@/app/components/grid/grid.styles';
 @import '@/app/components/footer/footer.styles';
 @import '@/app/components/hamburger/hamburger.styles';
+@import '@/app/components/hero/hero.styles';
 @import '@/app/components/logo/logo.styles';
 @import '@/app/components/nav/nav.styles';
 @import '@/app/components/nav-link/nav-link.styles';
 @import '@/app/components/nav-links/nav-links.styles';
 
-.home {
-  background-image: url('/ceiling.jpeg');
-  background-position: center;
-}
