@@ -9,9 +9,9 @@ import BlockMenu from '../block-menu/block-menu.component';
 
 // data
 export enum Categories {
-  Architecture = "Architecture",
-  Film = "Production",
-  Studio = "Studio"
+  Architecture = "architecture",
+  Film = "production",
+  Studio = "studio"
 }
 
 const Hero = () => {
