@@ -16,7 +16,7 @@
   &__text {
     text-align: center;
     text-transform: uppercase;
-    font-family: $font-primary;
+    
     font-size: 5rem;
     color: rgba(255, 255, 255, .9);
     background-color: rgba(0, 0, 0, .5);
@@ -28,6 +28,7 @@
     padding: 1rem;
     margin-top: 1rem;
     background: none;
+    font-family: $font-primary;
     border: 1px solid $color-white;
     color: $color-white;
     background-color: $color-black;

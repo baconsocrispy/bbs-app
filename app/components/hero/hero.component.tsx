@@ -1,3 +1,6 @@
+// components
+import CategoryMenu from "../category-menu/category-menu.component";
+
 const Hero = () => {
   return (
     <section className="hero">
@@ -6,6 +9,7 @@ const Hero = () => {
           Lighting People
         </h1>
         <button className="hero__button">View Catalog</button>
+        <CategoryMenu />
       </div>
     </section>
   )
