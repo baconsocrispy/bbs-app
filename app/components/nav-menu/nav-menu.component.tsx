@@ -21,6 +21,7 @@ const NavMenu = () => {
       <Hamburger onClick={ handleHamburgerClick } />
 
       <NavLinks open={ open }>
+        <NavLink text='Home' href='/' onClick={ handleLinkClick } />
         <NavLink text='Admin' href='/admin' onClick={ handleLinkClick } />
         <NavLink text='Contact' href='/contact' onClick={ handleLinkClick } />
         <NavLink text='Sign In' href='/admin/signin' onClick={ handleLinkClick } />

@@ -7,12 +7,8 @@ import { MouseEventHandler, useState } from 'react';
 import Button from '../button/button.component';
 import BlockMenu from '../block-menu/block-menu.component';
 
-// data
-export enum Categories {
-  Architecture = "architecture",
-  Film = "production",
-  Studio = "studio"
-}
+// api
+import { categories } from '@/app/api/categories';
 
 const Hero = () => {
   // state
@@ -29,7 +25,7 @@ const Hero = () => {
 
       <BlockMenu 
         open={ open } 
-        menuItems={ Categories } 
+        menuItems={ categories } 
         onClick={ handleButtonClick }
       />
 

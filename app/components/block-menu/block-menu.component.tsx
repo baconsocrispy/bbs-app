@@ -2,15 +2,15 @@
 import { FC, MouseEventHandler, ReactNode } from "react";
 
 // components
+import Image from "next/image";
 import Link from "next/link";
 
-// data
-import { Categories } from "../hero/hero.component";
-
 // types
+import { Category } from "@/app/api/categories";
+
 type BlockMenuProps = {
   open: boolean;
-  menuItems: typeof Categories;
+  menuItems: Category[];
   onClick: MouseEventHandler;
 }
 
@@ -24,15 +24,19 @@ const BlockMenu: FC<BlockMenuProps> = ({ open, menuItems, onClick }) => {
         X
       </button>
 
-      <ul className='block-menu__links'>
-        { Object.values(menuItems).map((item, index) => {
+      <ul className='block-menu__items'>
+        { menuItems.map(item => {
           return (
-            <li key={ index }>
+            <li 
+              key={ item.id } 
+              className="block-menu__item" 
+              style={{ backgroundImage: `url(${ item.image })` }}
+            >
               <Link 
                 className="block-menu__link" 
-                href={ `/categories/${ item }` }
+                href={ `/categories/${ item.name }` }
               >
-                { item }
+                { item.name }
               </Link>
             </li>
           )
