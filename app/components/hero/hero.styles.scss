@@ -7,18 +7,23 @@
   justify-content: center;
 
   &__content {
-    
+    position: absolute;
+    display: flex;
+    bottom: 40%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   &__text {
-    border: 1px solid red;
     color: $color-white;
+    text-align: center;
+    text-transform: uppercase;
     font-size: 5rem;
   }
 
   &__button {
-    position: absolute;
-    bottom: 30%;
+    margin-top: 1rem;
   }
 
   &--closed {
@@ -28,7 +33,7 @@
 
 .block-menu {
   position: absolute;
-  z-index: 20;
+  z-index: 1;
   color: $color-white;
   top: 0;
   left: 0;

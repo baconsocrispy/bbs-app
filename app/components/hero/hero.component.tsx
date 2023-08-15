@@ -24,7 +24,7 @@ const Hero = () => {
     <section className='hero'>
       <div className='carousel'></div>
 
-      <div className={ open ? 'block-menu' : 'block-menu--closed' }>
+      <nav className={ open ? 'block-menu' : 'block-menu--closed' }>
         <button 
           className='block-menu__close' 
           onClick={ handleButtonClick }
@@ -32,13 +32,13 @@ const Hero = () => {
           X
         </button>
 
-        <ul className='block__list'>
-          <li>{ Categories.Architecture }</li>
-          <li>{ Categories.Film }</li>
-          <li>{ Categories.Studio }</li>
+        <ul className='block-menu__links'>
+          <li className='block-menu__link'>{ Categories.Architecture }</li>
+          <li className='block-menu__link'>{ Categories.Film }</li>
+          <li className='block-menu__link'>{ Categories.Studio }</li>
         </ul>
-      </div>
-      
+      </nav>
+
       <div className='hero__content'>
         <h1 className='hero__text'>
           Lighting People
