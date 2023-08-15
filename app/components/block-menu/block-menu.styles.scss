@@ -1,0 +1,36 @@
+.block-menu {
+  position: absolute;
+  grid-template-rows: max-content 1fr;
+  z-index: 1;
+  color: $color-white;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-black;
+
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    color: $color-white;
+    font-size: 2rem;
+    border: none;
+  }
+
+  &__links {
+    height: 100%;
+    display: grid;
+    list-style: none;
+  }
+
+  &__link {
+    cursor: pointer;
+  }
+    
+  &--closed {
+    display: none;
+  }
+}
