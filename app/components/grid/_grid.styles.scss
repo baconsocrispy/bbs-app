@@ -1,7 +1,6 @@
 .grid {
-  position: fixed;
-  width: 100vw;
   display: grid;
+  height: 100%;
   grid-template-rows: 
     $height-banner 
     $height-nav 
