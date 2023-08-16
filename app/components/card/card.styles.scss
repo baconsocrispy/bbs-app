@@ -1,0 +1,10 @@
+.card {
+  height: 15rem;
+
+  &:nth-child(odd) {
+    background-color: green;
+  }
+  &:nth-child(even) {
+    background-color: gray;
+  }
+}

@@ -1,6 +1,24 @@
+import Card from "../card/card.component";
+
 const CardGrid = () => {
   return (
-    <section className="card-grid">CardGrid</section>
+    <section className="card-grid">
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+    </section>
   )
 }
 
