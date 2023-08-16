@@ -33,7 +33,7 @@ const BlockMenu: FC<BlockMenuProps> = ({ open, menuItems, onClick }) => {
             >
               <Link 
                 className="block-menu__link" 
-                href={ `/categories/${ item.name }` }
+                href={ `/category/${ item.name }` }
               >
                 { item.name }
               </Link>
