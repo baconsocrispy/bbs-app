@@ -1,7 +1,7 @@
 'use client'
 
 // library
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 
 // components
 import Button from '../button/button.component';
@@ -18,6 +18,10 @@ const Hero = () => {
   const handleButtonClick: MouseEventHandler = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 1);
+  }, [])
 
   return (
     <section className='hero'>
