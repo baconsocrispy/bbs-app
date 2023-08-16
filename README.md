@@ -24,4 +24,6 @@ I was getting weird behavior from elements on mobile Chrome and Safari. The UI t
 
 https://developer.chrome.com/blog/url-bar-resizing/
 
+To fix, I changed the $height-main variable calculation from 100vh to 100%, and set the Grid component to position: fixed 
+
 

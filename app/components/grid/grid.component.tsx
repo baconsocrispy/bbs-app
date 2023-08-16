@@ -1,3 +1,5 @@
+'use client'
+
 // library
 import { FC, ReactNode, useEffect } from 'react';
 
@@ -16,7 +18,7 @@ const Grid: FC<GridProps> = ({ children }) => {
 
     window.addEventListener('scroll', handleScroll)
   }, [])
-  
+
   return (
     <div className='grid'>
       { children }
