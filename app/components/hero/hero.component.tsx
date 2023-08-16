@@ -19,10 +19,6 @@ const Hero = () => {
     setOpen(!open);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 1);
-  }, [])
-
   return (
     <section className='hero'>
       <div className='carousel'></div>
