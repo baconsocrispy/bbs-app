@@ -1,12 +1,12 @@
 // components
 import Hero from "./components/hero/hero.component";
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <main className="home">
+    <main className="home-page">
       <Hero />
     </main>
   )
 }
 
-export default Home;
+export default HomePage;

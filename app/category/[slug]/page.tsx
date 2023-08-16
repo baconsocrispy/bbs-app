@@ -1,9 +1,9 @@
-const Category = ({ params }: { params: { slug: string }}) => {
+const CategoryPage = ({ params }: { params: { slug: string }}) => {
   return (
-    <main className='category'>
+    <main className='category-page'>
       { params.slug }
     </main>
   )
 }
 
-export default Category;
+export default CategoryPage;
