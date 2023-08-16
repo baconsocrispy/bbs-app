@@ -1,4 +1,9 @@
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-white;
+
   background-image: url('/architecture.jpeg');
   background-position: center;
   background-size: cover;

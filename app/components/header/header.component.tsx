@@ -1,7 +1,17 @@
-const Header = () => {
-  return (
-    <section className="header">Header</section>
-  )
-}
+// library
+import { FC } from "react";
 
-export default Header
+// types
+type HeaderProps = {
+  text: string;
+};
+
+const Header: FC<HeaderProps> = ({ text }) => {
+  return (
+    <section className="header">
+      { text }
+    </section>
+  )
+};
+
+export default Header;
