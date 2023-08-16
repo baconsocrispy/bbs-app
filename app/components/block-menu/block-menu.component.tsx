@@ -1,8 +1,7 @@
 // library
-import { FC, MouseEventHandler, ReactNode } from "react";
+import { FC, MouseEventHandler } from "react";
 
 // components
-import Image from "next/image";
 import Link from "next/link";
 
 // types

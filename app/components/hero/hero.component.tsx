@@ -1,7 +1,7 @@
 'use client'
 
 // library
-import { MouseEventHandler, useEffect, useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 
 // components
 import Button from '../button/button.component';

@@ -1,7 +1,9 @@
-const Page = ({ params }: { params: { slug: string }}) => {
+const Category = ({ params }: { params: { slug: string }}) => {
   return (
-    <div>{ params.slug }</div>
+    <main className={ `category-${ params.slug }`}>
+      { params.slug }
+    </main>
   )
 }
 
-export default Page;
+export default Category;
