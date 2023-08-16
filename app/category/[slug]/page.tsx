@@ -1,7 +1,9 @@
+import Header from "@/app/components/header/header.component";
+
 const CategoryPage = ({ params }: { params: { slug: string }}) => {
   return (
     <main className='category-page'>
-      { params.slug }
+      <Header />
     </main>
   )
 }
