@@ -1,7 +1,7 @@
 .nav-links {
   position: absolute;
   top: calc($height-nav + $height-banner);
-  bottom: $height-footer;
+  bottom: 0;
   left: 0;
   right: 0;
   padding: 3rem;
