@@ -16,3 +16,9 @@ body {
   font-family: $font-primary;
   color: $color-black;
 }
+
+a {
+  text-decoration: none;
+  color: currentColor;
+  outline: none;
+}

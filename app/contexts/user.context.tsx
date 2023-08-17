@@ -4,9 +4,11 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 
+// components
+import { AuthFormData } from "../components/auth-form/auth-form.component";
+
 // api
 import { getCurrentUser, signInUser } from "../api/auth-api";
-import { AuthFormData } from "../components/auth-form/auth-form.component";
 
 // types
 export type User = {
