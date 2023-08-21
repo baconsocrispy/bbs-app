@@ -9,6 +9,9 @@ import { UserContext } from '@/app/contexts/user.context';
 
 // types
 export type AuthFormData = {
+  grant_type: string,
+  client_secret: string,
+  client_id: string,
   user: {
     firstName?: string;
     lastName?: string;
@@ -70,6 +73,27 @@ const AuthForm: FC = () => {
           className='auth-form__input'
           { ...register('user.password', { required: 'Password is required'})}
           autoComplete='password'
+        />
+
+        <input
+          type='hidden'
+          className='auth_form__input'
+          { ...register('grant_type', { required: 'Grant type is required' })}
+          value='password'
+        />
+
+        <input
+          type='hidden'
+          className='auth_form__input'
+          { ...register('client_secret', { required: 'Client secret is required' })}
+          value='00ZzPf-afLUxeEtFRPeLYc78GWR3VFX3ZdT05OrhQdA'
+        />
+
+        <input
+          type='hidden'
+          className='auth_form__input'
+          { ...register('client_id', { required: 'Client id is required' })}
+          value='4tKNC7T2cu01Gy95qJbOas4rUL1xUfdV7-I1rM-5GSw'
         />
 
         {/* submit button */}

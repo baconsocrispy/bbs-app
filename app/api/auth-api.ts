@@ -6,7 +6,8 @@ import { User } from "../contexts/user.context";
 import { AuthFormData } from "../components/auth-form/auth-form.component";
 
 type AuthAPIResponse = {
-  jwt: string;
+  expires_in: number;
+  created_at: number;
   status: {
     code: number;
     message: string;
@@ -24,8 +25,10 @@ export const signUpUser = async (formData: AuthFormData) => {
 // sign in existing user
 export const signInUser = async (formData: AuthFormData) => {
   const response: AuthAPIResponse = await backendAuthRequest(
-    'POST', 'http://localhost:3001/admin/signin', formData
+    'POST', 'http://localhost:3001/oauth/token', formData
   );
+
+  console.log(response)
   return response;
 };
 
@@ -54,9 +57,38 @@ const backendAuthRequest = async (
   const response = await fetch(url, {
     method: method,
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     },
-    body: JSON.stringify(data)
+    body: formatFormData(data)
   });
   return response.json();  
+};
+
+const formatFormData = (data: AuthFormData | null) => {
+  if (!data) return;
+
+  const params = new URLSearchParams();
+
+  // doorkeeper config
+  params.append('grant_type', data.grant_type);
+  params.append('client_id', data.client_id);
+  params.append('client_secret', data.client_secret);
+
+  // user auth config
+  params.append('email', data.user.email);
+  params.append('password', data.user.password);
+
+  if (data.user.firstName) { 
+    params.append('firstName', data.user.firstName) 
+  }
+
+  if (data.user.lastName) { 
+    params.append('lastName', data.user.lastName) 
+  }
+
+  if (data.user.passwordConfirmation) { 
+    params.append('passwordConfirmation', data.user.passwordConfirmation) 
+  }
+
+  return params;
 };

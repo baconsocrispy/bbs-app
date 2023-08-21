@@ -51,8 +51,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // actions
   const signIn = async (formData: AuthFormData) => {
-    const { jwt } = await signInUser(formData);
-    setJWT(jwt);
+    const { expires_in } = await signInUser(formData);
+    console.log('test')
   };
 
   const setCurrentUser = async () => {
