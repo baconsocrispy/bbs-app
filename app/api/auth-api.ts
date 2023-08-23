@@ -1,20 +1,10 @@
 // types
-import { User } from "../contexts/user.context";
 import { AuthFormData } from "../components/auth-form/auth-form.component";
-
-type AuthAPIResponse = {
-  expires_in: number;
-  created_at: number;
-  status: {
-    code: number;
-    message: string;
-  };
-};
 
 // sign up a new user
 export const signUpUser = async (formData: AuthFormData) => {
-  const response: AuthAPIResponse = await backendAuthRequest(
-    'POST', 'http://localhost:3001/admin/signup', formData
+  const response= await backendAuthRequest(
+    'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/admin/signup`, formData
   );
   return response;
 };
@@ -22,7 +12,7 @@ export const signUpUser = async (formData: AuthFormData) => {
 // sign in existing user via doorkeeper oauth/token endpoint
 // response includes HttpOnly cookie with access_token
 export const signInUser = async (formData: AuthFormData) => {
-  const response: AuthAPIResponse = await backendAuthRequest(
+  const response = await backendAuthRequest(
     'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/oauth/token`, formData
   );
   return response;
@@ -38,11 +28,10 @@ export const signOutUser = async () => {
 
 // get currently signed-in user
 export const getCurrentUser = async () => {
-  const user: User = await backendAuthRequest(
-    'GET', 'http://localhost:3001/current_user',
+  const response = await backendAuthRequest(
+    'GET', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/current_user`,
   );
-  console.log(user);
-  return user;
+  return response.json();
 };
 
 // HELPERS
@@ -62,7 +51,8 @@ const backendAuthRequest = async (
     },
     body: formatFormData(data)
   });
-  return response.json();  
+
+  return response;
 };
 
 // convert form data into URLSearchParams format

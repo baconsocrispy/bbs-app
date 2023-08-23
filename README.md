@@ -1,4 +1,4 @@
-## Installation
+## Next Installation
 `npx create-next-app@latest bbs-app --typescript --eslint`
 No to src, Yes to App Router
 
@@ -27,3 +27,5 @@ https://developer.chrome.com/blog/url-bar-resizing/
 To fix, I changed the $height-main variable calculation from 100vh to 100%, and set the Grid component to position: fixed 
 
 
+## To DO
+* Try catch blocks in API using response.ok logic
