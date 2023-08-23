@@ -11,7 +11,6 @@ React Hook Form for form submission
 `yarn add react-hook-form`
 Dotenv for storing environment variables (next.js may support automatically)
 if not: `yarn add dotenv`, create `.env` in root folder, ensure it's added to gitignore
-add `import 'dotenv'` to `layout.tsx`
 
 ###
 Active Storage setup

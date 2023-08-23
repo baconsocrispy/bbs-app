@@ -1,6 +1,15 @@
+'use client'
+
+import { getCurrentUser } from "../api/auth-api";
+
 const Contact = () => {
+  // handlers
+  const getUser = () => getCurrentUser();
+
   return (
-    <div>Contact</div>
+    <div>
+      <button onClick={ getUser }>Click</button>
+    </div>
   )
 }
 

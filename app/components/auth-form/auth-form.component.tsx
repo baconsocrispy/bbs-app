@@ -12,9 +12,6 @@ import { signOutUser } from '@/app/api/auth-api';
 
 // types
 export type AuthFormData = {
-  grant_type: string,
-  client_secret: string,
-  client_id: string,
   user: {
     firstName?: string;
     lastName?: string;

@@ -1,6 +1,3 @@
-// helpers
-import { backendJWTRequest } from "./api-helpers";
-
 // types
 import { User } from "../contexts/user.context";
 import { AuthFormData } from "../components/auth-form/auth-form.component";
@@ -23,9 +20,10 @@ export const signUpUser = async (formData: AuthFormData) => {
 };
 
 // sign in existing user via doorkeeper oauth/token endpoint
+// response includes HttpOnly cookie with access_token
 export const signInUser = async (formData: AuthFormData) => {
   const response: AuthAPIResponse = await backendAuthRequest(
-    'POST', 'http://localhost:3001/oauth/token', formData
+    'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/oauth/token`, formData
   );
   return response;
 };
@@ -33,26 +31,30 @@ export const signInUser = async (formData: AuthFormData) => {
 // sign out current user
 export const signOutUser = async () => {
   const response = await backendAuthRequest(
-    'POST', 'http://localhost:3001/oauth/revoke'
+    'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/oauth/revoke`
   );
   return response;
 };
 
 // get currently signed-in user
 export const getCurrentUser = async () => {
-  // const user: User = await backendJWTRequest(
-  //   'GET', 'http://localhost:3001/current_user',
-  // );
-  // return user;
+  const user: User = await backendAuthRequest(
+    'GET', 'http://localhost:3001/current_user',
+  );
+  console.log(user);
+  return user;
 };
 
-// helper to send auth form data to backend
+// HELPERS
+// send auth form data in backend request
 const backendAuthRequest = async (
   method: string,
   url: string,
   data: AuthFormData | null = null
 ) => {
   const response = await fetch(url, {
+    credentials: process.env.NODE_ENV === 'development'  ? 
+      'include' : 'same-origin',
     method: method,
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
@@ -63,18 +65,19 @@ const backendAuthRequest = async (
   return response.json();  
 };
 
-// helper converts form data into URLSearchParams format
+// convert form data into URLSearchParams format
 const formatFormData = (data: AuthFormData | null) => {
   if (!data) return;
 
+  // url encode form data
   const params = new URLSearchParams();
+
+  // doorkeeper config
+  params.append('grant_type', process.env.NEXT_PUBLIC_DOORKEEPER_GRANT_TYPE as string);
 
   // user auth config
   params.append('email', data.user.email);
   params.append('password', data.user.password);
-
-  // doorkeeper config
-  params.append('grant_type', process.env.NEXT_PUBLIC_DOORKEEPER_GRANT_TYPE as string);
 
   if (data.user.firstName) { 
     params.append('firstName', data.user.firstName) 
@@ -91,8 +94,9 @@ const formatFormData = (data: AuthFormData | null) => {
   return params;
 };
 
-// format doorkeeper credentials
+// encode doorkeeper credentials in base64 format
 const doorkeeperCredentials = () => {
+  // doorkeeper credentials
   const clientId = process.env.NEXT_PUBLIC_DOORKEEPER_CLIENT_ID;
   const clientSecret = process.env.NEXT_PUBLIC_DOORKEEPER_SECRET;
 
