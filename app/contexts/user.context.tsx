@@ -51,13 +51,13 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // actions
   const signIn = async (formData: AuthFormData) => {
-    const { expires_in } = await signInUser(formData);
-    console.log('test')
+    const response = await signInUser(formData);
+    console.log(response)
   };
 
   const setCurrentUser = async () => {
     if (jwt) {
-      const currentUser: User = await getCurrentUser(jwt);
+      const currentUser: User = await getCurrentUser();
       setUser(currentUser);
       router.push('/admin');
     }

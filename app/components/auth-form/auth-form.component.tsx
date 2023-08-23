@@ -7,6 +7,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 // context
 import { UserContext } from '@/app/contexts/user.context';
 
+// api
+import { signOutUser } from '@/app/api/auth-api';
+
 // types
 export type AuthFormData = {
   grant_type: string,
@@ -39,6 +42,11 @@ const AuthForm: FC = () => {
     signIn(formData);
     reset();
   };
+
+  const signOutHandler = async () => {
+    const response = await signOutUser();
+    console.log(response);
+  }
 
   return (
     <div className='auth-form'>
@@ -75,32 +83,13 @@ const AuthForm: FC = () => {
           autoComplete='password'
         />
 
-        <input
-          type='hidden'
-          className='auth_form__input'
-          { ...register('grant_type', { required: 'Grant type is required' })}
-          value='password'
-        />
-
-        <input
-          type='hidden'
-          className='auth_form__input'
-          { ...register('client_secret', { required: 'Client secret is required' })}
-          value='00ZzPf-afLUxeEtFRPeLYc78GWR3VFX3ZdT05OrhQdA'
-        />
-
-        <input
-          type='hidden'
-          className='auth_form__input'
-          { ...register('client_id', { required: 'Client id is required' })}
-          value='4tKNC7T2cu01Gy95qJbOas4rUL1xUfdV7-I1rM-5GSw'
-        />
-
         {/* submit button */}
         <button className='auth-form__button'>
           Sign In
         </button>
       </form>
+
+      <button onClick={ signOutHandler }>Log Out</button>
     </div>
   )
 }
