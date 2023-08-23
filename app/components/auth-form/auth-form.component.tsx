@@ -7,9 +7,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 // context
 import { UserContext } from '@/app/contexts/user.context';
 
-// api
-import { signOutUser } from '@/app/api/auth-api';
-
 // types
 export type AuthFormData = {
   user: {
@@ -23,7 +20,7 @@ export type AuthFormData = {
 
 const AuthForm: FC = () => {
   // state
-  const { signIn } = useContext(UserContext)
+  const { signIn, signOut, getUser } = useContext(UserContext)
 
   // destructure useForm elements
   const {
@@ -34,15 +31,16 @@ const AuthForm: FC = () => {
   } = useForm<AuthFormData>();
 
   // handlers
-  const onSignIn: SubmitHandler<AuthFormData> = (formData: AuthFormData) => {
-    console.log('auth-form')
-    signIn(formData);
+  const onSignIn: SubmitHandler<AuthFormData> = async (
+    formData: AuthFormData
+  ) => {
+    await signIn(formData);
+    await getUser();
     reset();
   };
 
   const signOutHandler = async () => {
-    const response = await signOutUser();
-    console.log(response);
+    await signOut();
   }
 
   return (

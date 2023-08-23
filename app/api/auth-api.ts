@@ -28,10 +28,14 @@ export const signOutUser = async () => {
 
 // get currently signed-in user
 export const getCurrentUser = async () => {
-  const response = await backendAuthRequest(
-    'GET', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/current_user`,
-  );
-  return response.json();
+  try {
+    const response = await backendAuthRequest(
+      'GET', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/current_user`,
+    );
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // HELPERS
@@ -51,7 +55,6 @@ const backendAuthRequest = async (
     },
     body: formatFormData(data)
   });
-
   return response;
 };
 
