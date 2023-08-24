@@ -40,14 +40,15 @@ export const getCurrentUser = async () => {
 
 // HELPERS
 // send auth form data in backend request
+// when backend/frontend hosted on same domain, 
+// change credentials to 'same-site'
 const backendAuthRequest = async (
   method: string,
   url: string,
   data: AuthFormData | null = null
 ) => {
   const response = await fetch(url, {
-    credentials: process.env.NODE_ENV === 'development'  ? 
-      'include' : 'same-origin',
+    credentials: 'include',
     method: method,
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
