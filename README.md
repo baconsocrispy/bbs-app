@@ -13,7 +13,7 @@ Dotenv for storing environment variables (next.js may support automatically)
 if not: `yarn add dotenv`, create `.env` in root folder, ensure it's added to gitignore
 
 ###
-Active Storage setup
+Active Storage setup:
 https://kim-jenny5.medium.com/how-to-active-storage-with-a-rails-api-and-javascript-frontend-with-amazon-s3-9d1e0045d3bc
 
 
