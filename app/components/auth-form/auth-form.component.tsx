@@ -21,7 +21,7 @@ export type AuthFormData = {
 
 const AuthForm: FC = () => {
   // state
-  const { signIn, getUser } = useContext(UserContext);
+  const { signIn, updateUser } = useContext(UserContext);
   const [ loading, setLoading ] = useState(false);
   const router = useRouter();
 
@@ -41,7 +41,7 @@ const AuthForm: FC = () => {
     const response: Response = await signIn(formData);
 
     if (response.ok) {
-      await getUser();
+      updateUser()
       router.push('/admin');
     } else {
       setLoading(false);

@@ -10,33 +10,25 @@ import { UserContext } from "../contexts/user.context";
 const Admin = () => {
   // state
   const [ loading, setLoading ] = useState(true);
-  const { user, getUser, signOut } = useContext(UserContext);
+  const { user, userLoading, signOut } = useContext(UserContext);
   const router = useRouter();
 
-  // check login state on page refresh
+  // ensure user is loaded on refresh before checking presence
   useEffect(() => {
-    if (!user) {
-      setLoading(true);
-
-      const updateUser = async () => {
-        const response: boolean = await getUser();
-
-        if (!response) {
-          router.push('/admin/signin');
-        } else {
-          setLoading(false);
-        }
-      };
-
-      updateUser();
+    if (!userLoading) {
+      if (!user) {
+        router.push('/admin/signin');
+      } else {
+        setLoading(false);
+      }  
     }
-
-    setLoading(false);
-  }, [ user, getUser, router ])
+  }, [ user, userLoading, router ])
 
   // handlers
-  const signOutHandler = async () => {
-    await signOut();
+  const signOutHandler = () => {
+    setLoading(true);
+    signOut();
+    router.push('/admin/signin');
   };
 
   if (loading) {

@@ -26,6 +26,8 @@ type UserContextProps = {
   signIn: Function;
   signOut: Function;
   getUser: Function;
+  updateUser: Function;
+  userLoading: boolean;
 };
 
 type UserProviderProps = {
@@ -37,17 +39,20 @@ export const UserContext = createContext<UserContextProps>({
   user: null,
   signIn: () => {},
   signOut: () => {},
-  getUser: () => {}
+  getUser: () => {},
+  updateUser: () => {},
+  userLoading: false
 });
 
 // provider
 export const UserProvider = ({ children }: UserProviderProps) => {
   // initial state
   const [ user, setUser ] = useState<User | null>(null);
+  const [ userLoading, setUserLoading ] = useState(true);
 
   // load user on page refresh
   useEffect(() => {
-    getUser();
+    updateUser();
   }, []);
 
   // actions
@@ -61,15 +66,33 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     setUser(null);
   }
 
-  const getUser = async () => {
+  const getUser = async (): Promise<User | undefined> => {
     try {
-      const currentUser: User = await getUserFromAccessToken();
-      setUser(currentUser);
-      return true;
+      // api call to /current_user
+      const response = await getUserFromAccessToken();
+
+      // throw error if there's a problem
+      if (!response.ok) {
+        throw new Error(`User login failed: Status: ${ response.status }`)
+      }
+
+      // get user from json response
+      const currentUser: User = await response.json();
+
+      return currentUser;
     } catch (error) {
-      console.log(error)
-      return false;
+      console.log(error);
     }
+  };
+
+  const updateUser = async () => {
+    const currentUser = await getUser();
+    if (currentUser) {
+      setUser(currentUser);
+    } else {
+      setUser(null);
+    }
+    setUserLoading(false);
   };
 
   // data
@@ -77,7 +100,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     user,
     signIn,
     signOut,
-    getUser
+    getUser,
+    updateUser,
+    userLoading
   };
 
   return (

@@ -30,7 +30,7 @@ export const getUserFromAccessToken = async () => {
   const response = await backendAuthRequest(
     'GET', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/current_user`,
   );
-  return response.json();
+  return response;
 };
 
 // HELPERS
