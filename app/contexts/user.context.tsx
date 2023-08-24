@@ -13,7 +13,7 @@ import {
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
 
-type User = {
+export type User = {
   id: number;
   created_at: string;
   first_name: string;

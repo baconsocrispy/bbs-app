@@ -21,7 +21,7 @@ export type AuthFormData = {
 
 const AuthForm: FC = () => {
   // state
-  const { signIn, signOut, getUser } = useContext(UserContext);
+  const { signIn, getUser } = useContext(UserContext);
   const [ loading, setLoading ] = useState(false);
   const router = useRouter();
 
@@ -39,17 +39,13 @@ const AuthForm: FC = () => {
     setLoading(true);
 
     const response: Response = await signIn(formData);
-    
+
     if (response.ok) {
       await getUser();
       router.push('/admin');
     } else {
       setLoading(false);
     } 
-  };
-
-  const signOutHandler = async () => {
-    await signOut();
   };
 
   if (loading) return <p>Loading...</p>;
@@ -95,7 +91,7 @@ const AuthForm: FC = () => {
         </button>
       </form>
 
-      <button onClick={ signOutHandler }>Log Out</button>
+
     </div>
   )
 }

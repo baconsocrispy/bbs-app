@@ -10,7 +10,7 @@ import { UserContext } from "../contexts/user.context";
 const Admin = () => {
   // state
   const [ loading, setLoading ] = useState(true);
-  const { user, getUser } = useContext(UserContext);
+  const { user, getUser, signOut } = useContext(UserContext);
   const router = useRouter();
 
   // check login state on page refresh
@@ -30,9 +30,14 @@ const Admin = () => {
 
       updateUser();
     }
-    
+
     setLoading(false);
-  }, [])
+  }, [ user, getUser, router ])
+
+  // handlers
+  const signOutHandler = async () => {
+    await signOut();
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -41,6 +46,7 @@ const Admin = () => {
       <main>
         <div>
           <h3>Hello { user?.first_name }</h3>
+          <button onClick={ signOutHandler }>Log Out</button>
         </div>
       </main>
     )
