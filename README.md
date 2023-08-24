@@ -28,4 +28,4 @@ To fix, I changed the $height-main variable calculation from 100vh to 100%, and 
 
 
 ## To DO
-* Try catch blocks in API using response.ok logic.
+* Try catch blocks in API using response.ok logic
