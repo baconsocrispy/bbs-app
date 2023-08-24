@@ -1,7 +1,8 @@
 'use client'
 
 // library
-import { FC, useContext } from 'react';
+import { FC, useContext, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 // context
@@ -20,13 +21,14 @@ export type AuthFormData = {
 
 const AuthForm: FC = () => {
   // state
-  const { signIn, signOut, getUser } = useContext(UserContext)
+  const { signIn, signOut, getUser } = useContext(UserContext);
+  const [ loading, setLoading ] = useState(false);
+  const router = useRouter();
 
   // destructure useForm elements
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors }
   } = useForm<AuthFormData>();
 
@@ -34,14 +36,23 @@ const AuthForm: FC = () => {
   const onSignIn: SubmitHandler<AuthFormData> = async (
     formData: AuthFormData
   ) => {
-    await signIn(formData);
-    await getUser();
-    reset();
+    setLoading(true);
+
+    const response: Response = await signIn(formData);
+    
+    if (response.ok) {
+      await getUser();
+      router.push('/admin');
+    } else {
+      setLoading(false);
+    } 
   };
 
   const signOutHandler = async () => {
     await signOut();
-  }
+  };
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div className='auth-form'>

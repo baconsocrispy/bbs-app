@@ -9,33 +9,28 @@ export const signUpUser = async (formData: AuthFormData) => {
   return response;
 };
 
-// sign in existing user via doorkeeper oauth/token endpoint
-// response includes HttpOnly cookie with access_token
-export const signInUser = async (formData: AuthFormData) => {
+// retrieve HttpOnly cookie w/doorkeeper access token via email/password grant
+export const accessTokenFromCredentials = async (formData: AuthFormData) => {
   const response = await backendAuthRequest(
     'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/oauth/token`, formData
   );
   return response;
 };
 
-// sign out current user
-export const signOutUser = async () => {
+// revoke doorkeeper access token stored in current access_token cookie
+export const revokeAccessToken = async () => {
   const response = await backendAuthRequest(
     'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/oauth/revoke`
   );
   return response;
 };
 
-// get currently signed-in user
-export const getCurrentUser = async () => {
-  try {
-    const response = await backendAuthRequest(
-      'GET', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/current_user`,
-    );
-    return response.json();
-  } catch (error) {
-    console.log(error);
-  }
+// get current user from doorkeeper access token stored in cookie
+export const getUserFromAccessToken = async () => {
+  const response = await backendAuthRequest(
+    'GET', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/current_user`,
+  );
+  return response.json();
 };
 
 // HELPERS

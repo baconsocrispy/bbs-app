@@ -4,7 +4,11 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 
 // api
-import { getCurrentUser, signInUser, signOutUser } from "../api/auth-api";
+import { 
+  accessTokenFromCredentials, 
+  getUserFromAccessToken, 
+  revokeAccessToken 
+} from "../api/auth-api";
 
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
@@ -48,21 +52,23 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // actions
   const signIn = async (formData: AuthFormData) => {
-    await signInUser(formData);
+    const response = await accessTokenFromCredentials(formData);
+    return response;
   };
 
   const signOut = async () => {
-    if (!user) return;
-    await signOutUser();
+    await revokeAccessToken();
     setUser(null);
   }
 
   const getUser = async () => {
     try {
-      const currentUser: User = await getCurrentUser();
+      const currentUser: User = await getUserFromAccessToken();
       setUser(currentUser);
+      return true;
     } catch (error) {
       console.log(error)
+      return false;
     }
   };
 

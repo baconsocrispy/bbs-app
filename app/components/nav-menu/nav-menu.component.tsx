@@ -28,7 +28,7 @@ const NavMenu = () => {
         <NavLink text='Home' href='/' onClick={ handleLinkClick } />
         <NavLink text='Contact' href='/contact' onClick={ handleLinkClick } />
         <NavLink 
-          text='Admin' 
+          text={ user ? 'Admin' : 'Sign In'} 
           href={ user ? '/admin' : '/admin/signin' } 
           onClick={ handleLinkClick } 
         />
