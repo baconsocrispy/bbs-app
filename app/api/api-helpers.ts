@@ -1,11 +1,7 @@
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
 
-
-// HELPERS
-// send auth form data in backend request
-// when backend/frontend hosted on same domain, 
-// change credentials to 'same-site'
+// send authenticated backend request
 export const backendAuthRequest = async (
   method: string,
   url: string,
