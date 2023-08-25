@@ -90,8 +90,6 @@ const AuthForm: FC = () => {
           Sign In
         </button>
       </form>
-
-
     </div>
   )
 }

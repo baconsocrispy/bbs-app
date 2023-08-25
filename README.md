@@ -32,3 +32,6 @@ To fix, I changed the $height-main variable calculation from 100vh to 100%, and 
 * handle auth form error situations
 * Logo taking too long to load
 * Loading states for all pages
+* Sign up for admin
+* Carousel
+* Mobile cookie handling (not setting cross origin cookies)
