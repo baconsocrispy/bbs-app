@@ -13,9 +13,10 @@ const Admin = () => {
   const { user, userLoading, signOut } = useContext(UserContext);
   const router = useRouter();
 
-  // ensure user is loaded on refresh before checking presence
   useEffect(() => {
+    // wait for user to load on page refresh
     if (!userLoading) {
+      // redirect if user not logged in
       if (!user) {
         router.push('/admin/signin');
       } else {

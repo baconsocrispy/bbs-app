@@ -13,7 +13,7 @@ import {
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
 
-export type User = {
+type User = {
   id: number;
   created_at: string;
   first_name: string;
@@ -23,11 +23,10 @@ export type User = {
 
 type UserContextProps = {
   user: User | null;
+  userLoading: boolean;
   signIn: Function;
   signOut: Function;
-  getUser: Function;
   updateUser: Function;
-  userLoading: boolean;
 };
 
 type UserProviderProps = {
@@ -37,11 +36,10 @@ type UserProviderProps = {
 // context
 export const UserContext = createContext<UserContextProps>({
   user: null,
+  userLoading: false,
   signIn: () => {},
   signOut: () => {},
-  getUser: () => {},
   updateUser: () => {},
-  userLoading: false
 });
 
 // provider
@@ -53,7 +51,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   // load user on page refresh
   useEffect(() => {
     updateUser();
-  }, []);
+  });
 
   // actions
   const signIn = async (formData: AuthFormData) => {
@@ -66,27 +64,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     setUser(null);
   }
 
-  const getUser = async (): Promise<User | undefined> => {
-    try {
-      // api call to /current_user
-      const response = await getUserFromAccessToken();
-
-      // throw error if there's a problem
-      if (!response.ok) {
-        throw new Error(`User login failed: Status: ${ response.status }`)
-      }
-
-      // get user from json response
-      const currentUser: User = await response.json();
-
-      return currentUser;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const updateUser = async () => {
     const currentUser = await getUser();
+
     if (currentUser) {
       setUser(currentUser);
     } else {
@@ -95,14 +75,35 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     setUserLoading(false);
   };
 
+  // user api call
+  const getUser = async (): Promise<User | undefined> => {
+    try {
+      // api call to /current_user
+      const response = await getUserFromAccessToken();
+
+      // throw an error if response is not a success
+      if (!response.ok) {
+        throw new Error(`User login failed: Status: ${ response.status }`)
+      }
+
+      // get user as json from response
+      const currentUser: User = await response.json();
+
+      // return user
+      return currentUser;
+    } catch (error) {
+      // log error in console
+      console.log(error);
+    }
+  };
+
   // data
   const value = {
     user,
+    userLoading,
     signIn,
     signOut,
-    getUser,
-    updateUser,
-    userLoading
+    updateUser
   };
 
   return (
