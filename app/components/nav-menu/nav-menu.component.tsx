@@ -25,13 +25,24 @@ const NavMenu = () => {
       <Hamburger onClick={ handleHamburgerClick } />
 
       <NavLinks open={ open }>
-        <NavLink text='Home' href='/' onClick={ handleLinkClick } />
+        <NavLink 
+          text='Home' 
+          href='/' 
+          onClick={ handleLinkClick } 
+        />
+
         <NavLink 
           text='Downloads' 
           href='https://brothers-sons.odoo.com/download' 
           onClick={ handleLinkClick } 
         />
-        <NavLink text='Contact' href='/contact' onClick={ handleLinkClick } />
+
+        <NavLink 
+          text='Contact' 
+          href='/contact' 
+          onClick={ handleLinkClick } 
+        />
+
         <NavLink 
           text={ user ? 'Admin' : 'Sign In'} 
           href={ user ? '/admin' : '/admin/signin' } 
