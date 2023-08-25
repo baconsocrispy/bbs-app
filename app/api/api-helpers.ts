@@ -1,6 +1,11 @@
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
 
+// base api url
+export const baseApiUrl = () => {
+  return process.env.NEXT_PUBLIC_BASE_API_URL
+}
+
 // send authenticated backend request
 export const backendAuthRequest = async (
   method: string,
@@ -59,3 +64,4 @@ const doorkeeperCredentials = () => {
 
   return credentials;
 };
+

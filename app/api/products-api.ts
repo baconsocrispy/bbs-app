@@ -1,3 +1,4 @@
+// helpers
 import { backendAuthRequest } from "./api-helpers"
 
 export const getAllProducts = async () => {

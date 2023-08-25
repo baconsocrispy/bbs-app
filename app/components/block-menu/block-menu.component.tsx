@@ -5,23 +5,30 @@ import { FC, MouseEventHandler } from "react";
 import Link from "next/link";
 
 // types
-import { Category } from "@/app/api/categories";
+type MenuItem = {
+  id: number;
+  name: string;
+  image_url: string;  
+}
 
 type BlockMenuProps = {
   open: boolean;
-  menuItems: Category[];
-  onClick: MouseEventHandler;
+  menuItems: MenuItem[];
+  onClick?: MouseEventHandler;
 }
 
 const BlockMenu: FC<BlockMenuProps> = ({ open, menuItems, onClick }) => {
   return (
     <nav className={ open ? 'block-menu' : 'block-menu--closed' }>
-      <button 
-        className='block-menu__close'
-        onClick={ onClick }
-      >
-        X
-      </button>
+
+      { onClick && 
+        <button 
+          className='block-menu__close'
+          onClick={ onClick }
+        >
+          X
+        </button>
+      }
 
       <ul className='block-menu__items'>
         { menuItems.map(item => {
@@ -29,11 +36,11 @@ const BlockMenu: FC<BlockMenuProps> = ({ open, menuItems, onClick }) => {
             <li 
               key={ item.id } 
               className="block-menu__item" 
-              style={{ backgroundImage: `url(${ item.image })` }}
+              style={{ backgroundImage: `url(${ item.image_url })` }}
             >
               <Link 
                 className="block-menu__link" 
-                href={ `/category/${ item.name }` }
+                href={ `/categories/${ item.name }` }
               >
                 { item.name }
               </Link>
