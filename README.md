@@ -34,4 +34,4 @@ To fix, I changed the $height-main variable calculation from 100vh to 100%, and 
 * Loading states for all pages
 * Sign up for admin
 * Carousel
-* Mobile cookie handling (not setting cross origin cookies)
+* Mobile cookie handling (not setting cross origin cookies) Try setting cookie-samesite=lax

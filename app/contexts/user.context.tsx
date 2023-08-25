@@ -51,7 +51,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   // load user on page refresh
   useEffect(() => {
     updateUser();
-  });
+  }, []);
 
   // actions
   const signIn = async (formData: AuthFormData) => {

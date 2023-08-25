@@ -41,7 +41,7 @@ const AuthForm: FC = () => {
     const response: Response = await signIn(formData);
 
     if (response.ok) {
-      updateUser();
+      await updateUser();
       router.push('/admin');
     } else {
       setLoading(false);
