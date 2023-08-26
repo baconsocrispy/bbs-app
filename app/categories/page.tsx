@@ -1,10 +1,5 @@
-'use client'
-
-// library
-import { useState, useEffect } from 'react';
-
 // components
-import BlockMenu from '../components/block-menu/block-menu.component'
+import BlockMenu from '../components/block-menu/block-menu.component';
 
 // api
 import { getAllCategories } from '../api/categories-api';
@@ -16,19 +11,10 @@ type Category = {
   image_url: string;  
 };
 
-const Categories = () => {
-  // state
-  const [ categories, setCategories ] = useState<Category[] | null>(null);
-
-  // api call to get and set categories
-  useEffect(() => {
-    const getCategories = async () => {
-      const response = await getAllCategories();
-      const categoryArray: Category[] = await response.json();
-      setCategories(categoryArray);
-    };
-    getCategories();
-  }, [])
+const Categories = async () => {
+  // server-side api request
+  const response = await getAllCategories();
+  const categories: Category[] = await response.json();
 
   return (
     <main className='categories-page'>
@@ -44,4 +30,4 @@ const Categories = () => {
   )
 }
 
-export default Categories
+export default Categories;
