@@ -1,7 +1,7 @@
 'use client'
 
 // library
-import { FC, MouseEventHandler, useEffect } from "react";
+import { FC, MouseEventHandler } from "react";
 import { usePathname } from "next/navigation";
 
 // components
@@ -28,10 +28,6 @@ const BlockMenu: FC<BlockMenuProps> = ({
 }) => {
   // state
   const pathname = usePathname();
-
-  useEffect(() => {
-    console.log(menuItems);
-  }, [ menuItems ])
 
   return (
     <nav className={ open ? 'block-menu' : 'block-menu--closed' }>

@@ -1,5 +1,5 @@
 // helpers
-import { backendAuthRequest } from "./api-helpers";
+import { backendAuthRequest, baseApiUrl } from "./api-helpers";
 
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
@@ -7,7 +7,7 @@ import { AuthFormData } from "../components/auth-form/auth-form.component";
 // sign up a new user
 export const newUserFromCredentials = async (formData: AuthFormData) => {
   const response= await backendAuthRequest(
-    'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/admin/signup`, formData
+    'POST', `${ baseApiUrl() }/admin/signup`, formData
   );
   return response;
 };
@@ -15,7 +15,7 @@ export const newUserFromCredentials = async (formData: AuthFormData) => {
 // retrieve HttpOnly cookie w/doorkeeper access token via email/password grant
 export const accessTokenFromCredentials = async (formData: AuthFormData) => {
   const response = await backendAuthRequest(
-    'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/oauth/token`, formData
+    'POST', `${ baseApiUrl() }/oauth/token`, formData
   );
   return response;
 };
@@ -23,7 +23,7 @@ export const accessTokenFromCredentials = async (formData: AuthFormData) => {
 // revoke doorkeeper access token stored in current access_token cookie
 export const revokeAccessToken = async () => {
   const response = await backendAuthRequest(
-    'POST', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/oauth/revoke`
+    'POST', `${ baseApiUrl() }/oauth/revoke`
   );
   return response;
 };
@@ -31,7 +31,7 @@ export const revokeAccessToken = async () => {
 // get current user from doorkeeper access token stored in cookie
 export const getUserFromAccessToken = async () => {
   const response = await backendAuthRequest(
-    'GET', `${ process.env.NEXT_PUBLIC_BASE_API_URL }/current_user`,
+    'GET', `${ baseApiUrl() }/current_user`,
   );
   return response;
 };
