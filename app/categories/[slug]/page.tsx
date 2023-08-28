@@ -15,7 +15,7 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
 
   return (
     <main className='category-page'>
-      <Header text={ name } />
+      <Header image_url='/architecture.jpeg' text={ name } />
       <CardGrid items={ products } />
     </main>
   )

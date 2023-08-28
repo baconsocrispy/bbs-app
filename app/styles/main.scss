@@ -25,5 +25,6 @@
 @import '@/app/components/nav-links/nav-links.styles';
 
 // pages
-@import '@/app/categories/category.styles';
+@import '@/app/categories/[slug]/category-page.styles';
+@import '@/app/products/[id]/product-page.styles';
 
