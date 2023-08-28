@@ -1,23 +1,38 @@
+'use client'
+
 // library
-import { FC, MouseEventHandler } from "react";
+import { FC, MouseEventHandler, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 // components
 import Link from "next/link";
 
 // types
+import { Category } from "@/app/categories/page";
 type MenuItem = {
   id: number;
   name: string;
-  image_url: string;  
+  image_url: string;
+  slug: string;  
 }
 
 type BlockMenuProps = {
   open: boolean;
-  menuItems: MenuItem[];
+  menuItems: MenuItem[] | Category[];
+  path?: string;
   onClick?: MouseEventHandler;
 }
 
-const BlockMenu: FC<BlockMenuProps> = ({ open, menuItems, onClick }) => {
+const BlockMenu: FC<BlockMenuProps> = ({ 
+  open, menuItems, path, onClick 
+}) => {
+  // state
+  const pathname = usePathname();
+
+  useEffect(() => {
+    console.log(menuItems);
+  }, [ menuItems ])
+
   return (
     <nav className={ open ? 'block-menu' : 'block-menu--closed' }>
 
@@ -40,7 +55,10 @@ const BlockMenu: FC<BlockMenuProps> = ({ open, menuItems, onClick }) => {
             >
               <Link 
                 className="block-menu__link" 
-                href={ `/categories/${ item.name }` }
+                href={ path ? 
+                  (path + `/${ item.slug }`) : 
+                  (pathname + `/${ item.slug }`) 
+                }
               >
                 { item.name }
               </Link>

@@ -8,9 +8,9 @@ export const getAllCategories = async () => {
   return response;
 };
 
-export const getCategoryWithProducts = async (categoryId: number) => {
+export const getCategoryWithProducts = async (slug: string) => {
   const response = await backendAuthRequest(
-    'GET', `${ baseApiUrl() }/v1/categories/${ categoryId }`
+    'GET', `${ baseApiUrl() }/v1/categories/${ slug }`
   );
   return response;
 };
