@@ -1,7 +1,11 @@
 .card {
   position: relative;
   padding: 1rem;
-  
+
+  &__link {
+    cursor: pointer;
+  }
+
   &__image-container {
     width: 100%;
   }

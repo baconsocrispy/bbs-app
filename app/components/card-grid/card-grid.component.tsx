@@ -8,17 +8,17 @@ import Card from "../card/card.component";
 type Item = {
   id: number;
   name: string;
-}
+};
 
 type CardGridProps = {
   items: Item[];
-}
+};
 
 const CardGrid: FC<CardGridProps> = ({ items }) => {
   return (
     <section className="card-grid">
       { items.map((item) =>
-        <Card key={ item.id } item={ item }/>
+        <Card key={ item.id } item={ item } path='/products' />
       )}
     </section>
   )
