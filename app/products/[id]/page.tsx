@@ -9,15 +9,16 @@ const ProductPage = async ({ params }: { params: { id: number }}) => {
   const { name, short_description } = await response.json();
 
   return (
-    <div className="product-page">
-      <Header image_url='/product.jpg' text={ name } />
-      <div>
-        { name }
-      </div>
+    <main className="product-page">
+      <Header
+        image_url='/product.jpg'
+        text={ name } 
+      />
+
       <div>
         { short_description }
       </div>
-    </div>
+    </main>
   )
 }
 

@@ -1,9 +1,31 @@
 .header {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $color-white;
+  color: $color-black;
 
-  background-position: center;
-  background-size: cover;
+  &--stacked {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__image {
+    width: auto;
+    height: 100%;
+  }
+
+  &__text {
+    width: 100%;
+
+    &--overlay {
+      color: $color-white;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    &--stacked {
+      margin-bottom: 1rem;
+    }
+  }
 }

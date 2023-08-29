@@ -5,6 +5,9 @@ import Header from "@/app/components/header/header.component";
 // api
 import { getCategoryWithProducts } from "@/app/api/categories-api";
 
+// data
+import { HEADER_VARIANTS } from "@/app/components/header/header.component";
+
 const CategoryPage = async ({ params }: { params: { slug: string }}) => {
   // state
   const { slug } = params;
@@ -15,7 +18,11 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
 
   return (
     <main className='category-page'>
-      <Header image_url='/architecture.jpeg' text={ name } />
+      <Header 
+        image_url='/architecture.jpeg' 
+        text={ name } 
+        variant={ HEADER_VARIANTS.overlay }
+      />
       <CardGrid items={ products } />
     </main>
   )
