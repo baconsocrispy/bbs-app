@@ -4,7 +4,7 @@ import Image from "next/image";
 
 // types
 type HeaderProps = {
-  image_url: string;
+  imageUrl: string;
   text: string;
   variant?: string;
 };
@@ -16,7 +16,7 @@ export enum HEADER_VARIANTS {
 };
 
 const Header: FC<HeaderProps> = ({ 
-  image_url, text, variant = HEADER_VARIANTS.stacked 
+  imageUrl, text, variant = HEADER_VARIANTS.stacked 
 }) => {
   return (
     <section className={ `header header--${ variant }` }>
@@ -26,7 +26,7 @@ const Header: FC<HeaderProps> = ({
 
       <Image
         className={ `header__image header__image--${ variant }` }
-        src={ image_url } 
+        src={ imageUrl } 
         width={ 100 }
         height={ 100 }
         alt={ `${ text }` }

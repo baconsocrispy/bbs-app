@@ -18,7 +18,7 @@ export type ProductFormData = {
 
 const ProductForm = () => {
   // state
-
+  const router = useRouter();
 
   // useForm config
   const {
@@ -32,10 +32,10 @@ const ProductForm = () => {
     formData: ProductFormData
   ) => {
     const response = await createProduct(formData);
-    // const product = await response.json();
-    // console.log(response.status)
-    if (response.status === 201) {
-      console.log(response.status)
+    const product = await response.json();
+
+    if (response.status === 201 && product) {
+      router.push(`/products/${ product.id }`)
     }
   }
 

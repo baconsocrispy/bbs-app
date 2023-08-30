@@ -16,6 +16,21 @@ if not: `yarn add dotenv`, create `.env` in root folder, ensure it's added to gi
 Active Storage setup:
 https://kim-jenny5.medium.com/how-to-active-storage-with-a-rails-api-and-javascript-frontend-with-amazon-s3-9d1e0045d3bc
 
+### Images
+In order to display external images using the next/Image component, the image domains need to be set in `next.config.js`:
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: [
+      'localhost'
+    ]
+  }
+}
+
+module.exports = nextConfig
+```
+
 
 ## Troubleshooting
 

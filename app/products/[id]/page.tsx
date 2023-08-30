@@ -11,13 +11,9 @@ const ProductPage = async ({ params }: { params: { id: number }}) => {
   return (
     <main className="product-page">
       <Header
-        image_url='/product.jpg'
+        imageUrl={ product_images[0].url }
         text={ name } 
       />
-
-      <div>
-        { product_images }
-      </div>
 
       <div>
         { short_description }
