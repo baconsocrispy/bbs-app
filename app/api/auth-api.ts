@@ -1,12 +1,12 @@
 // helpers
-import { backendAuthRequest, baseApiUrl } from "./api-helpers";
+import { backendUrlEncodedRequest, baseApiUrl } from "./api-helpers";
 
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
 
 // sign up a new user
 export const newUserFromCredentials = async (formData: AuthFormData) => {
-  const response= await backendAuthRequest(
+  const response= await backendUrlEncodedRequest(
     'POST', `${ baseApiUrl() }/admin/signup`, formData
   );
   return response;
@@ -14,7 +14,7 @@ export const newUserFromCredentials = async (formData: AuthFormData) => {
 
 // retrieve HttpOnly cookie w/doorkeeper access token via email/password grant
 export const accessTokenFromCredentials = async (formData: AuthFormData) => {
-  const response = await backendAuthRequest(
+  const response = await backendUrlEncodedRequest(
     'POST', `${ baseApiUrl() }/oauth/token`, formData
   );
   return response;
@@ -22,7 +22,7 @@ export const accessTokenFromCredentials = async (formData: AuthFormData) => {
 
 // revoke doorkeeper access token stored in current access_token cookie
 export const revokeAccessToken = async () => {
-  const response = await backendAuthRequest(
+  const response = await backendUrlEncodedRequest(
     'POST', `${ baseApiUrl() }/oauth/revoke`
   );
   return response;
@@ -30,7 +30,7 @@ export const revokeAccessToken = async () => {
 
 // get current user from doorkeeper access token stored in cookie
 export const getUserFromAccessToken = async () => {
-  const response = await backendAuthRequest(
+  const response = await backendUrlEncodedRequest(
     'GET', `${ baseApiUrl() }/current_user`,
   );
   return response;

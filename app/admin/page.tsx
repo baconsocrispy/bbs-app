@@ -3,15 +3,31 @@
 // library
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 // context
 import { UserContext } from "../contexts/user.context";
+
+// types
+export type ProductFormData = {
+  product: {
+    name: string;
+    short_description: string;
+    product_images: File[]; 
+  }
+}
 
 const Admin = () => {
   // state
   const [ loading, setLoading ] = useState(true);
   const { user, userLoading, signOut } = useContext(UserContext);
   const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<ProductFormData>();
 
   useEffect(() => {
     // wait for user to load on page refresh
@@ -25,12 +41,18 @@ const Admin = () => {
     }
   }, [ user, userLoading, router ])
 
+
+
   // handlers
   const signOutHandler = () => {
     setLoading(true);
     signOut();
     router.push('/admin/signin');
   };
+
+  const submitHandler = (formData: ProductFormData) => {
+
+  }
 
   if (loading) {
     return <p>Loading...</p>;
@@ -40,6 +62,32 @@ const Admin = () => {
         <div>
           <h3>Hello { user?.first_name }</h3>
           <button onClick={ signOutHandler }>Log Out</button>
+
+          <form 
+            id="product"
+            onSubmit={ handleSubmit(submitHandler)}
+          >
+
+            <label htmlFor="name">Name</label>
+            <input 
+              type="text"
+              { ...register('product.name')} 
+            />
+
+            <label htmlFor="short-description">Description</label>
+            <input 
+              type="text"
+              { ...register('product.short_description')} 
+            />
+
+            <label htmlFor="product_images">Image</label>
+            <input 
+              type="file"
+              { ...register('product.product_images')} 
+            />
+
+            <button type='submit'>Submit</button>
+          </form>
         </div>
       </main>
     )
