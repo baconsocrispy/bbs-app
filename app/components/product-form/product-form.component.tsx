@@ -1,6 +1,7 @@
 'use client'
 
 // library
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
@@ -18,6 +19,7 @@ export type ProductFormData = {
 
 const ProductForm = () => {
   // state
+  const [ loading, setLoading ] = useState(false);
   const router = useRouter();
 
   // useForm config
@@ -31,13 +33,18 @@ const ProductForm = () => {
    const submitHandler:SubmitHandler<ProductFormData> = async (
     formData: ProductFormData
   ) => {
+    setLoading(true);
     const response = await createProduct(formData);
     const product = await response.json();
 
     if (response.status === 201 && product) {
       router.push(`/products/${ product.id }`)
+    } else {
+      setLoading(false);
     }
   }
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <form 
