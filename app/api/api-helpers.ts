@@ -36,7 +36,6 @@ export const backendFormEncodedRequest = async (
     method: method,
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Content-Type': 'multipart/form-data'
     },
     body: formEncodeFormData(data)
   });
@@ -79,7 +78,7 @@ const urlEncodeFormData = (
 const formEncodeFormData = (data: ProductFormData | null): FormData | null => {
   if (!data) return null;
 
-  // url encode form data
+  // form encode form data
   const formData = new FormData();
 
   // doorkeeper config
@@ -87,13 +86,13 @@ const formEncodeFormData = (data: ProductFormData | null): FormData | null => {
 
   // product config
   if ('product' in data && data.product) {
-    formData.append('name', data.product.name);
-    formData.append('short_description', data.product.short_description);
+    formData.append('product[name]', data.product.name);
+    formData.append('product[short_description]', data.product.short_description);
 
-    if (Array.isArray(data.product.product_images)) {
-      for (const file in data.product.product_images) {
-        formData.append('product_images', file)
-      }
+    if (data.product.product_images) {
+      for (let i = 0; i < data.product.product_images.length; i++) (
+        formData.append('product[product_images][]', data.product.product_images[i])
+      )
     }
   }
 

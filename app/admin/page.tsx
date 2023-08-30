@@ -8,6 +8,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 // context
 import { UserContext } from "../contexts/user.context";
 
+// api
+import { createProduct } from "../api/products-api";
+
 // types
 export type ProductFormData = {
   product: {
@@ -41,8 +44,6 @@ const Admin = () => {
     }
   }, [ user, userLoading, router ])
 
-
-
   // handlers
   const signOutHandler = () => {
     setLoading(true);
@@ -50,8 +51,12 @@ const Admin = () => {
     router.push('/admin/signin');
   };
 
-  const submitHandler = (formData: ProductFormData) => {
-
+  const submitHandler:SubmitHandler<ProductFormData> = async (
+    formData: ProductFormData
+  ) => {
+    const response = await createProduct(formData);
+    const product = await response.json();
+    console.log(product)
   }
 
   if (loading) {
@@ -65,6 +70,7 @@ const Admin = () => {
 
           <form 
             id="product"
+            encType="multipart/form-data"
             onSubmit={ handleSubmit(submitHandler)}
           >
 
@@ -84,6 +90,7 @@ const Admin = () => {
             <input 
               type="file"
               { ...register('product.product_images')} 
+              multiple
             />
 
             <button type='submit'>Submit</button>
