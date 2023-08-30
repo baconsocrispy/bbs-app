@@ -1,0 +1,15 @@
+.product-form {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+
+  &__textarea {
+    height: 20rem;
+  }
+
+  &__button {
+    cursor: pointer;
+    justify-self: center;
+    padding: 1rem;
+  }
+}

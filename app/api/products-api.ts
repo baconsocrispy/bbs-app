@@ -1,5 +1,5 @@
 // types
-import { ProductFormData } from "../admin/page";
+import { ProductFormData } from "../components/product-form/product-form.component";
 
 // helpers
 import { 

@@ -1,6 +1,6 @@
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
-import { ProductFormData } from "../admin/page";
+import { ProductFormData } from "../components/product-form/product-form.component";
 
 // base api url
 export const baseApiUrl = () => {
