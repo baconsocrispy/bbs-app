@@ -89,6 +89,12 @@ const formEncodeFormData = (data: ProductFormData | null): FormData | null => {
     formData.append('product[name]', data.product.name);
     formData.append('product[short_description]', data.product.short_description);
 
+    if (data.product.category_ids) {
+      data.product.category_ids.map((id) => {
+        id && formData.append('product[category_ids][]', id.toString())
+      })
+    }
+
     if (data.product.product_images) {
       for (let i = 0; i < data.product.product_images.length; i++) (
         formData.append('product[product_images][]', data.product.product_images[i])

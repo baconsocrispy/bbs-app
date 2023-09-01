@@ -1,3 +1,8 @@
+'use server'
+
+// library
+import { revalidatePath } from "next/cache";
+
 // types
 import { ProductFormData } from "../components/product-form/product-form.component";
 
@@ -23,6 +28,7 @@ export const getProduct = async (id: number) => {
 };
 
 export const createProduct = async(data: ProductFormData) => {
+  'use server'
   const response = await backendFormEncodedRequest(
     'POST', `${ baseApiUrl() }/v1/products`, data
   );
