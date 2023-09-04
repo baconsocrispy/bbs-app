@@ -2,6 +2,7 @@
 import { 
   backendUrlEncodedRequest,
   baseApiUrl,
+  configureData,
   doorkeeperCredentials
 } from "./api-helpers"
 
@@ -48,10 +49,4 @@ export const createProduct = async (
   const product: Product = await response.json();
 
   return product;
-};
-
-// add doorkeeper grant_type to formData
-const configureData = (data: FormData) => {
-  data.append('grant_type', 'password');
-  return data;
 };

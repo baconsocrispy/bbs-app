@@ -70,3 +70,8 @@ export const doorkeeperCredentials = () => {
   return credentials;
 };
 
+// add doorkeeper grant_type to formData
+export const configureData = (data: FormData) => {
+  data.append('grant_type', 'password');
+  return data;
+};

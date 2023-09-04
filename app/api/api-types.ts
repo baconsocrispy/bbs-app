@@ -8,6 +8,16 @@ export type Category = {
   slug: string;
 };
 
+export type Group = {
+  created_at: string;
+  groupImage: SerializedImage;
+  id: number;
+  name: string;
+  products: Product[];
+  short_description: string;
+  slug: string;
+};
+
 export type Product = {
   created_at: string;
   id: number;
