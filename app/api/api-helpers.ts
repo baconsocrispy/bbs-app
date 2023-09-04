@@ -4,7 +4,7 @@ import { AuthFormData } from "../components/auth-form/auth-form.component";
 // base api url
 export const baseApiUrl = () => {
   return process.env.NEXT_PUBLIC_BASE_API_URL
-}
+};
 
 // send authenticated url-encoded backend request
 export const backendUrlEncodedRequest = async (

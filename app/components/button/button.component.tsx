@@ -13,7 +13,9 @@ type ButtonProps = {
 const Button: FC<ButtonProps> = ({ text, href, className, onClick }) => {
   return (
     <button className={ `button ${ className }` } onClick={ onClick }>
-      <Link href={ href ? href : '#' }>
+      <Link 
+        className="button__link"
+        href={ href ? href : '#' }>
         { text }
       </Link>
     </button>

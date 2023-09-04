@@ -1,6 +1,6 @@
 .button {
   cursor: pointer;
-  padding: 1rem;
+  position: relative;
   background: none;
   font-family: $font-primary;
   border: 1px solid $color-white;
@@ -11,5 +11,10 @@
   &:hover {
     background-color: rgba(255, 255, 255, .7);
     color: rgba(0, 0, 0, .7);
-  } 
+  }
+
+  &__link {
+    display: block;
+    padding: 1rem;
+  }
 }

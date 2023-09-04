@@ -5,17 +5,11 @@ import BlockMenu from '../components/block-menu/block-menu.component';
 import { getAllCategories } from '../api/categories-api';
 
 // types
-export type Category = {
-  id: number;
-  name: string;
-  image_url: string;
-  slug: string;
-};
+import { Category } from '../api/api-types';
 
 const Categories = async () => {
   // server-side api request
-  const response = await getAllCategories();
-  const categories: Category[] = await response.json();
+  const categories = await getAllCategories();
 
   return (
     <main className='categories-page'>

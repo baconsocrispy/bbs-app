@@ -8,7 +8,7 @@ import { createProduct } from "../../api/products-api";
 import { getAllCategories } from "@/app/api/categories-api";
 
 // types
-import { Category } from "@/app/categories/page";
+import { Category } from "@/app/api/api-types";
 
 const ProductForm= () => {
   // state
@@ -17,8 +17,7 @@ const ProductForm= () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      const response = await getAllCategories();
-      const categories: Category[] = await response.json();
+      const categories = await getAllCategories();
       setCategories(categories);
     };
 

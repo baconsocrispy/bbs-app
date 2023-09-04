@@ -45,6 +45,8 @@ const Admin = () => {
           <button onClick={ signOutHandler }>Log Out</button>
         </div>
         <Link href='/products/new'>New Product</Link>
+        <br />
+        <Link href='/categories/new'>New Category</Link>
       </main>
     )
   }

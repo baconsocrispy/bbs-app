@@ -1,25 +1,37 @@
 // helpers
-import { revalidate } from "./server-actions";
 import { 
   backendUrlEncodedRequest,
-  baseApiUrl
+  baseApiUrl,
+  doorkeeperCredentials
 } from "./api-helpers"
 
-export const getAllProducts = async () => {
+// api
+import { revalidate } from "./server-actions";
+
+// types
+import { Product } from "./api-types";
+
+export const getAllProducts = async (): Promise<Product[]> => {
   const response = await backendUrlEncodedRequest(
     'GET', `${ baseApiUrl() }/v1/products`
   );
-  return response;
+  const { products } = await response.json();
+  return products;
 };
 
-export const getProduct = async (id: number) => {
+export const getProduct = async (
+  id: number
+): Promise<Product> => {
   const response = await backendUrlEncodedRequest(
     'GET', `${ baseApiUrl( )}/v1/products/${ id }`
   );
-  return response;
+  const product: Product = await response.json();
+  return product;
 };
 
-export const createProduct = async (data: FormData) => {
+export const createProduct = async (
+  data: FormData
+): Promise<Product> => {
   const url = `${ baseApiUrl() }/v1/products`;
 
   const response = await fetch(url, {
@@ -33,22 +45,13 @@ export const createProduct = async (data: FormData) => {
 
   revalidate('/');
 
-  return response.json();
+  const product: Product = await response.json();
+
+  return product;
 };
 
+// add doorkeeper grant_type to formData
 const configureData = (data: FormData) => {
-  data.append('grant_type', 'password')
-  return data
-}
-
-// encode doorkeeper credentials in base64 format
-const doorkeeperCredentials = () => {
-  // doorkeeper credentials
-  const clientId = process.env.NEXT_PUBLIC_DOORKEEPER_CLIENT_ID;
-  const clientSecret = process.env.NEXT_PUBLIC_DOORKEEPER_SECRET;
-
-  // encodes credentials in base64 format
-  const credentials = btoa(`${ clientId }:${ clientSecret }`);
-
-  return credentials;
+  data.append('grant_type', 'password');
+  return data;
 };

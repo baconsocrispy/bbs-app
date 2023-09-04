@@ -8,20 +8,14 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 // types
-import { Category } from "@/app/categories/page";
-type MenuItem = {
-  id: number;
-  name: string;
-  image_url: string;
-  slug: string;  
-}
+import { Category } from "@/app/api/api-types";
 
 type BlockMenuProps = {
   open: boolean;
-  menuItems: MenuItem[] | Category[];
+  menuItems: Category[];
   path?: string;
   onClick?: MouseEventHandler;
-}
+};
 
 const BlockMenu: FC<BlockMenuProps> = ({ 
   open, menuItems, path, onClick 
@@ -47,7 +41,7 @@ const BlockMenu: FC<BlockMenuProps> = ({
             <li 
               key={ item.id } 
               className="block-menu__item" 
-              style={{ backgroundImage: `url(${ item.image_url })` }}
+              style={{ backgroundImage: `url(${ item.categoryImage.url })` }}
             >
               <Link 
                 className="block-menu__link" 
