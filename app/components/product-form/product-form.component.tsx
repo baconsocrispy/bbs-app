@@ -2,63 +2,28 @@
 
 // library
 import { useState, useEffect } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 
 // api
 import { createProduct } from "../../api/products-api";
-import { Category } from "@/app/categories/page";
 import { getAllCategories } from "@/app/api/categories-api";
 
 // types
-export type ProductFormData = {
-  product: {
-    name: string;
-    short_description: string;
-    product_images: File[]; 
-    category_ids: number[];
-  }
-};
+import { Category } from "@/app/categories/page";
 
-const ProductForm = () => {
+const ProductForm= () => {
   // state
   const [ loading, setLoading ] = useState(true);
   const [ categories, setCategories ] = useState<Category[] | null>(null)
-  const router = useRouter();
 
   useEffect(() => {
     const getCategories = async () => {
       const response = await getAllCategories();
       const categories: Category[] = await response.json();
       setCategories(categories);
-      console.log(categories);
     };
 
     categories ? setLoading(false) : getCategories();
   }, [ categories ])
-
-  // useForm config
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<ProductFormData>();
-
-   // handler
-   const submitHandler:SubmitHandler<ProductFormData> = async (
-    formData: ProductFormData
-  ) => {
-    setLoading(true);
-
-    const response = await createProduct(formData);
-    const product = await response.json();
-
-    if (response.status === 201 && product) {
-      router.push(`/products/${ product.id }`)
-    } else {
-      setLoading(false);
-    }
-  };
 
   if (loading) return <p>Loading...</p>;
 
@@ -66,8 +31,7 @@ const ProductForm = () => {
     <form 
       id="product"
       className="product-form"
-      encType="multipart/form-data"
-      onSubmit={ handleSubmit(submitHandler)}
+      action={ formData => createProduct(formData) }
     >
       {/* product name */}
       <label 
@@ -80,8 +44,8 @@ const ProductForm = () => {
         id="name" 
         className="product-form__input"
         type="text"
-        { ...register('product.name')}
         autoComplete="false"
+        name="product[name]"
       />
 
       {/* product description */}
@@ -94,7 +58,7 @@ const ProductForm = () => {
       <textarea
         id="short-description"
         className="product-form__textarea" 
-        { ...register('product.short_description')} 
+        name="product[short_description]"
       />
 
       {/* product images */}
@@ -108,7 +72,7 @@ const ProductForm = () => {
         id="product-images"
         className="product-form__attach-button"
         type="file"
-        { ...register('product.product_images')} 
+        name="product[product_images][]"
         multiple
       />
 
@@ -118,8 +82,8 @@ const ProductForm = () => {
             <input 
               id={ `category-${ category.name }` }
               type='checkbox'
-              { ...register(`product.category_ids.${ category.id }`)}
               value={ category.id }
+              name={ `product[category_ids][]`}
             />
             <label htmlFor={  `category-${ category.name }` }>
               { category.name }

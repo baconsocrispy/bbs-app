@@ -1,16 +1,8 @@
-'use server'
-
-// library
-import { revalidatePath } from "next/cache";
-
-// types
-import { ProductFormData } from "../components/product-form/product-form.component";
-
 // helpers
+import { revalidate } from "./server-actions";
 import { 
-  backendFormEncodedRequest,
-  backendUrlEncodedRequest, 
-  baseApiUrl 
+  backendUrlEncodedRequest,
+  baseApiUrl
 } from "./api-helpers"
 
 export const getAllProducts = async () => {
@@ -27,10 +19,36 @@ export const getProduct = async (id: number) => {
   return response;
 };
 
-export const createProduct = async(data: ProductFormData) => {
-  'use server'
-  const response = await backendFormEncodedRequest(
-    'POST', `${ baseApiUrl() }/v1/products`, data
-  );
-  return response;
+export const createProduct = async (data: FormData) => {
+  const url = `${ baseApiUrl() }/v1/products`;
+
+  const response = await fetch(url, {
+    credentials: 'include',
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${ doorkeeperCredentials() }`,
+    },
+    body: configureData(data)
+  });
+
+  revalidate('/');
+
+  return response.json();
+};
+
+const configureData = (data: FormData) => {
+  data.append('grant_type', 'password')
+  return data
+}
+
+// encode doorkeeper credentials in base64 format
+const doorkeeperCredentials = () => {
+  // doorkeeper credentials
+  const clientId = process.env.NEXT_PUBLIC_DOORKEEPER_CLIENT_ID;
+  const clientSecret = process.env.NEXT_PUBLIC_DOORKEEPER_SECRET;
+
+  // encodes credentials in base64 format
+  const credentials = btoa(`${ clientId }:${ clientSecret }`);
+
+  return credentials;
 };
