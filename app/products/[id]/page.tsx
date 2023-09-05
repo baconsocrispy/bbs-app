@@ -5,8 +5,8 @@ import Header from "@/app/components/header/header.component";
 import { getProduct } from "@/app/api/products-api";
 
 const ProductPage = async ({ params }: { params: { id: number }}) => {
-  const response = await getProduct(params.id);
-  const { name, short_description, product_images } = await response.json();
+  const product = await getProduct(params.id);
+  const { name, short_description, product_images } = product;
 
   return (
     <main className="product-page">
