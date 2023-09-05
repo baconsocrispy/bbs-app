@@ -1,16 +1,20 @@
 // helpers
-import { baseApiUrl, doorkeeperCredentials, configureData } from "./api-helpers";
+import { 
+  baseApiUrl,
+  configureData,
+  doorkeeperCredentials 
+} from "./api-helpers";
 
 // api
 import { revalidate } from "./server-actions";
 
 // types
-import { Category } from "./api-types";
+import { Group } from "./api-types";
 
-export const createCategory = async (
+export const createGroup = async (
   data: FormData
-): Promise<Category> => {
-  const url = `${ baseApiUrl() }/v1/categories`;
+): Promise<Group> => {
+  const url = `${ baseApiUrl() }/v1/groups`;
 
   const response = await fetch(url, {
     credentials: 'include',
@@ -21,9 +25,11 @@ export const createCategory = async (
     body: configureData(data)
   });
 
-  const category = await response.json();
+  const group = await response.json();
+
+  console.log(group);
 
   revalidate('/');
 
-  return category;
+  return group;
 };

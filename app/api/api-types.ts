@@ -3,7 +3,7 @@ export type Category = {
   created_at: string;
   id: number;
   name: string;
-  products: Product[];
+  groups: Group[];
   short_description: string;
   slug: string;
 };

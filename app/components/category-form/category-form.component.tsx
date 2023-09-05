@@ -40,7 +40,7 @@ const CategoryForm = () => {
       {/* category image */}
       <label 
         className="product-form__label"
-        htmlFor="product-images"
+        htmlFor="category-image"
       >
         Image
       </label>

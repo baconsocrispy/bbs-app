@@ -14,7 +14,7 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
 
   // pre-fetch category details on server
   const category = await getCategoryWithProducts(slug);
-  const { name, products, categoryImage } = category;
+  const { name, groups, categoryImage } = category;
 
   return (
     <main className='category-page'>
@@ -23,7 +23,7 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
         text={ name } 
         variant={ HEADER_VARIANTS.overlay }
       />
-      <CardGrid items={ products } />
+      <CardGrid items={ groups } />
     </main>
   )
 }

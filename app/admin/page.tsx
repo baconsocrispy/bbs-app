@@ -47,6 +47,8 @@ const Admin = () => {
         <Link href='/products/new'>New Product</Link>
         <br />
         <Link href='/categories/new'>New Category</Link>
+        <br />
+        <Link href='/groups/new'>New Group</Link>
       </main>
     )
   }
