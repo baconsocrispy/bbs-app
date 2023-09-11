@@ -11,13 +11,12 @@ const Categories = async () => {
   return (
     <main className='categories-page'>
       <section>
-        {/* { categories && 
+        { categories && 
           <BlockMenu 
             open={ true } 
             menuItems={ categories } 
           />
-        } */}
-        <p>TEST</p>
+        }
       </section>
     </main>
   )
