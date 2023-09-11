@@ -50,7 +50,7 @@ export const createCategory = async (
 
   const category = await response.json();
 
-  revalidate('/');
+  await revalidate('/');
 
   return category;
 };
