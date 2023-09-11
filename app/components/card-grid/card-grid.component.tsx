@@ -5,20 +5,16 @@ import { FC } from "react";
 import Card from "../card/card.component";
 
 // types
-type Item = {
-  id: number;
-  name: string;
-};
-
+import { Group, Product } from "@/app/api/api-types";
 type CardGridProps = {
-  items: Item[];
+  items: Group[];
 };
 
 const CardGrid: FC<CardGridProps> = ({ items }) => {
   return (
     <section className="card-grid">
       { items.map((item) =>
-        <Card key={ item.id } item={ item } path='/products' />
+        <Card key={ item.id } item={ item } path='/categories' />
       )}
     </section>
   )

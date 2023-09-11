@@ -23,14 +23,14 @@ In order to display external images using the next/Image component, the image do
 const nextConfig = {
   images: {
     domains: [
-      'localhost'
+      'localhost',
+      'bbs-api-v1-044032d0438d.herokuapp.com'
     ]
   }
 }
 
 module.exports = nextConfig
 ```
-
 
 ## Troubleshooting
 
@@ -41,6 +41,44 @@ https://developer.chrome.com/blog/url-bar-resizing/
 
 To fix, I changed the $height-main variable calculation from 100vh to 100%, and set the Grid component to position: fixed 
 
+## 500 Internal Server Error
+I started getting a 500 Internal Server Error when refreshing the `/categories` page in production. There was an message indicating a client-side error in the console, but no message about where it could be originating from. In the functions logs in Netlify I saw th is error:
+
+```
+Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './server.edge' is not defined by "exports" in /var/task/node_modules/react-dom/package.jsonSep 11, 12:50:55 PM: 9362194b ERROR      at new NodeError (node:internal/errors:405:5)Sep 11, 12:50:55 PM: 9362194b ERROR      at exportsNotFound (node:internal/modules/esm/resolve:364:10)Sep 
+```
+
+This appears to be a Nextjs bug and required downgrading to next version 13.4.9 from 13.4.12 and adding a `prebuild.js` file per below and `"prebuild": "node prebuild.js",` to the `package.json` scripts:
+
+```
+console.log("********* PREBUILDING");
+
+const path = require("node:path");
+const fs = require("fs");
+const baseDir = process.cwd();
+
+const prebuildScripts = async () => {
+  const file = path.join(
+    baseDir,
+    "/node_modules",
+    "next/dist/server/require-hook.js"
+  );
+
+  const content = await fs.promises.readFile(file, "utf-8");
+
+  await fs.promises.writeFile(
+    file,
+    content.replace(
+      "if (process.env.__NEXT_PRIVATE_PREBUNDLED_REACT) {",
+      "if (true) {"
+    )
+  );
+};
+
+prebuildScripts();
+```
+
+* help from: https://answers.netlify.com/t/server-edge-not-defined-error-on-nextjs-ssr-functions-cause-site-to-return-500-errors/91793/31
 
 ## To DO
 * Try catch blocks in API using response.ok logic

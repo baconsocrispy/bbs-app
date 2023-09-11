@@ -3,42 +3,50 @@ import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// assets
-import ProductImage from '@/public/product.jpg';
+// components
+import Button from "../button/button.component";
 
 // types
-type Item = {
-  id: number;
-  name: string;
-}
-
+import { Group } from "@/app/api/api-types";
 type CardProps = {
-  item: Item;
+  item: Group;
   path?: string;
 }
 
 const Card: FC<CardProps> = ({ item, path }) => {
   return (
     <div className="card">
+      <div className="card__header-container">
+        <h4 className="card__header">
+          { item.name }
+        </h4>
+      </div>
+
       <Link 
         className="card__link"
-        href={ path ?  
-          `${ path + '/' + item.id }` :
-          `/${ item.id }`
-      }>
+        href={ '/' }>
         <div className="card__image-container">
           <Image 
             className="card__image"
-            src={ ProductImage } 
-            alt="Temp Image" 
+            src={ item.groupImage.url } 
+            alt={ item.name + ' group' }
+            width={ 100 }
+            height={ 100 }
           />
         </div>
-        <div className="card__header-container">
-          <h4 className="card__header">
-            { item.name }
-          </h4>
-        </div>
       </Link>
+
+      <div className="card__text-container">
+        <p className="card__text">
+          { item.short_description }
+        </p>
+      </div>
+
+      <Button 
+        className="card__button"
+        href={ "/" }
+        text={ 'Explore ' + item.name }
+      />
     </div>
   )
 }
