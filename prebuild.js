@@ -1,6 +1,6 @@
 console.log("********* PREBUILDING");
 
-const path = require("node.path");
+const path = require("node:path");
 const fs = require("fs");
 const baseDir = process.cwd();
 
@@ -12,7 +12,7 @@ const prebuildScripts = async () => {
   );
 
   const content = await fs.promises.readFile(file, "utf-8");
-  
+
   await fs.promises.writeFile(
     file,
     content.replace(
