@@ -11,12 +11,16 @@ import { revalidate } from "./server-actions";
 // types
 import { Category } from "./api-types";
 
-export const getAllCategories = async (): Promise<Category[]> => {
-  const response = await backendUrlEncodedRequest(
-    'GET', `${ baseApiUrl() }/v1/categories`
-  );
-  const { categories } = await response.json();
-  return categories;
+export const getAllCategories = async (): Promise<Category[] | undefined> => {
+  try {
+    const response = await backendUrlEncodedRequest(
+      'GET', `${ baseApiUrl() }/v1/categories`
+    );
+    const { categories } = await response.json();
+    return categories;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getCategoryWithProducts = async (
