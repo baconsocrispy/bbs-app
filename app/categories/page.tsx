@@ -20,6 +20,6 @@ const Categories = async () => {
       </section>
     </main>
   )
-}
+};
 
 export default Categories;

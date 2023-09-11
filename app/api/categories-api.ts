@@ -11,7 +11,7 @@ import { revalidate } from "./server-actions";
 // types
 import { Category } from "./api-types";
 
-export const getAllCategories = async (): Promise<Category[] | undefined> => {
+export const getAllCategories = async (): Promise<Category[] | null> => {
   try {
     const response = await backendUrlEncodedRequest(
       'GET', `${ baseApiUrl() }/v1/categories`
@@ -20,6 +20,7 @@ export const getAllCategories = async (): Promise<Category[] | undefined> => {
     return categories;
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 
