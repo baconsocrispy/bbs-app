@@ -20,7 +20,7 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
     <main className='category-page'>
       <Header 
         imageUrl={ categoryImage.url }
-        text={ name } 
+        text={ categoryImage.url } 
         variant={ HEADER_VARIANTS.overlay }
       />
       <CardGrid items={ groups } />

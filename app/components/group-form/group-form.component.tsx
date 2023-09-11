@@ -2,6 +2,7 @@
 
 // library
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 // api
 import { createGroup } from "@/app/api/groups-api";
@@ -12,22 +13,34 @@ import { Category } from "@/app/api/api-types";
 
 
 const GroupForm = () => {
-  const [ categories, setCategories ] = useState<Category[] | null>(null)
+  // state
+  const [ categories, setCategories ] = useState<Category[] | null>(null);
+  const router = useRouter();
 
+  // get categories
   useEffect(() => {
     const getCategories = async () => {
       const categories = await getAllCategories();
       setCategories(categories);
     };
     getCategories();
-  }, [])
+  }, []);
 
+  // handler
+  const submitHandler = async (formData: FormData) => {
+    try {
+      await createGroup(formData);
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <form
     id="group"
     className="product-form"
-    action={ formData => createGroup(formData) }
+    action={ formData => submitHandler(formData) }
   >
     {/* group name */}
     <label 
