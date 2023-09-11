@@ -36,7 +36,7 @@ const BlockMenu: FC<BlockMenuProps> = ({
       }
 
       <ul className='block-menu__items'>
-        { menuItems.map(item => {
+        { menuItems?.map(item => {
           return (
             <li 
               key={ item.id } 
