@@ -1,13 +1,30 @@
 'use client'
+// library
+import { useRouter } from "next/navigation";
 
+// api
 import { createCategory } from "@/app/api/categories-api";
 
 const CategoryForm = () => {
+  // state
+  const router = useRouter();
+
+  // handler
+  const handleSubmit = async (formData: FormData) => {
+    try {
+      await createCategory(formData);
+      router.push('/');
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <form
       id="category"
       className="product-form"
-      action={ formData => createCategory(formData) }
+      action={ formData => handleSubmit(formData) }
     >
       {/* category name */}
       <label 
