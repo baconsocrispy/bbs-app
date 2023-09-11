@@ -6,6 +6,14 @@ const nextConfig = {
   images: {
     domains: [
       'localhost'
+    ],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'bbs-api-v1-044032d0438d.herokuapp.com',
+        port: '',
+        pathname: '/rails/active_storage/blobs/redirect/**'
+      }
     ]
   }
 }
