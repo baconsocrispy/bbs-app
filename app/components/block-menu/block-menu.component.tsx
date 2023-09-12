@@ -41,7 +41,7 @@ const BlockMenu: FC<BlockMenuProps> = ({
             <li 
               key={ item.id } 
               className="block-menu__item" 
-              style={{ backgroundImage: `url(${ item.categoryImage.url })` }}
+              style={{ backgroundImage: `url(${ item.image.url })` }}
             >
               <Link 
                 className="block-menu__link" 

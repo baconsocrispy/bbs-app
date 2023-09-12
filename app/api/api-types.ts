@@ -1,7 +1,7 @@
 export type Category = {
-  categoryImage: SerializedImage;
   created_at: string;
   id: number;
+  image: SerializedImage;
   name: string;
   groups: Group[];
   short_description: string;
@@ -10,8 +10,8 @@ export type Category = {
 
 export type Group = {
   created_at: string;
-  groupImage: SerializedImage;
   id: number;
+  image: SerializedImage;
   name: string;
   products: Product[];
   short_description: string;

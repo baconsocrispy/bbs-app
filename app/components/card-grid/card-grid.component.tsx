@@ -5,7 +5,7 @@ import { FC } from "react";
 import Card from "../card/card.component";
 
 // types
-import { Group, Product } from "@/app/api/api-types";
+import { Group } from "@/app/api/api-types";
 type CardGridProps = {
   items: Group[];
 };
@@ -13,11 +13,11 @@ type CardGridProps = {
 const CardGrid: FC<CardGridProps> = ({ items }) => {
   return (
     <section className="card-grid">
-      { items.map((item) =>
+      { items?.map((item) =>
         <Card key={ item.id } item={ item } path='/categories' />
       )}
     </section>
   )
-}
+};
 
 export default CardGrid;

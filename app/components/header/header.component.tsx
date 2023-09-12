@@ -1,5 +1,7 @@
 // library
 import { FC } from "react";
+
+// components
 import Image from "next/image";
 
 // types
@@ -27,9 +29,8 @@ const Header: FC<HeaderProps> = ({
       <Image
         className={ `header__image header__image--${ variant }` }
         src={ imageUrl } 
-        width={ 100 }
-        height={ 100 }
         alt={ `${ text }` }
+        fill
       />
     </section>
   )

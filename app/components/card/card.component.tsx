@@ -28,10 +28,10 @@ const Card: FC<CardProps> = ({ item, path }) => {
         <div className="card__image-container">
           <Image 
             className="card__image"
-            src={ item.groupImage.url } 
+            src={ item.image.url } 
             alt={ item.name + ' group' }
-            width={ 100 }
-            height={ 100 }
+            width={ 500 }
+            height={ 500 }
           />
         </div>
       </Link>
