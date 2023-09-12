@@ -6,7 +6,7 @@ import { getProduct } from "@/app/api/products-api";
 
 const ProductPage = async ({ params }: { params: { id: number }}) => {
   const product = await getProduct(params.id);
-  const { name, short_description, image } = product;
+  const { image, name, short_description } = product;
 
   return (
     <main className="product-page">
