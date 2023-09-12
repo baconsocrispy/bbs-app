@@ -20,10 +20,10 @@ const CardGrid: FC<CardGridProps> = ({ items }) => {
   const [ segment, setSegment ] = useState<string | null>(null);
 
   useEffect(() => {
-    const currentSegment = pathname.split('/')[0];
+    const currentSegment = pathname.split('/')[1];
     currentSegment === 'categories' ? 
-      setSegment('/categories/') : 
-      setSegment('/product-groups/')
+      setSegment('/product-groups/') : 
+      setSegment('/products/')
   }, [ pathname ]);
 
   return (

@@ -1,19 +1,26 @@
 // components
-import Header from "@/app/components/header/header.component";
+import Image from "next/image";
 
 // api
 import { getProduct } from "@/app/api/products-api";
 
 const ProductPage = async ({ params }: { params: { id: number }}) => {
   const product = await getProduct(params.id);
-  const { name, short_description, product_images } = product;
+  const { name, short_description, image } = product;
 
   return (
     <main className="product-page">
-      <Header
-        imageUrl={ product_images[0].url }
-        text={ name } 
-      />
+      <h1>{ name }</h1>
+
+      <div className="product-image__container">
+        <Image
+          className="product-image" 
+          src={ image.url }
+          alt={ name }
+          width={ 500 }
+          height={ 500 }
+        />
+      </div>
 
       <div>
         { short_description }
