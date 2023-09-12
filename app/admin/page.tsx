@@ -44,11 +44,18 @@ const Admin = () => {
           <h3>Hello { user?.first_name }</h3>
           <button onClick={ signOutHandler }>Log Out</button>
         </div>
-        <Link href='/products/new'>New Product</Link>
-        <br />
-        <Link href='/categories/new'>New Category</Link>
-        <br />
-        <Link href='/groups/new'>New Group</Link>
+
+        <div>
+          <Link href='/products/new'>New Product</Link>
+          <br />
+          <Link href='/categories/new'>New Category</Link>
+          <br />
+          <Link href='/groups/new'>New Group</Link>
+        </div>
+        
+        <div>
+          
+        </div>
       </main>
     )
   }
