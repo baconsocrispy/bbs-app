@@ -3,18 +3,18 @@ import CardGrid from "@/app/components/card-grid/card-grid.component";
 import Header from "@/app/components/header/header.component";
 
 // api
-import { getCategoryWithGroups } from "@/app/api/categories-api";
+import { getGroupWithProducts } from "@/app/api/groups-api";
 
 // data
 import { HEADER_VARIANTS } from "@/app/components/header/header.component";
 
-const CategoryPage = async ({ params }: { params: { slug: string }}) => {
+const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
   // state
   const { slug } = params;
 
-  // pre-fetch category details on server
-  const category = await getCategoryWithGroups(slug);
-  const { name, groups, image } = category;
+  // load group on server
+  const group = await getGroupWithProducts(slug);
+  const { name, products, image } = group;
 
   return (
     <main className='category-page'>
@@ -23,9 +23,9 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
         text={ name } 
         variant={ HEADER_VARIANTS.overlay }
       />
-      <CardGrid items={ groups } />
+      <CardGrid items={ products } />
     </main>
   )
 };
 
-export default CategoryPage;
+export default ProductGroupPage;

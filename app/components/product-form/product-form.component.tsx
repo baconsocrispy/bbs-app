@@ -2,27 +2,36 @@
 
 // library
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // api
 import { createProduct } from "../../api/products-api";
-import { getAllCategories } from "@/app/api/categories-api";
+import { getAllGroups } from "@/app/api/groups-api";
 
 // types
-import { Category } from "@/app/api/api-types";
+import { Group } from "@/app/api/api-types";
 
 const ProductForm= () => {
   // state
   const [ loading, setLoading ] = useState(true);
-  const [ categories, setCategories ] = useState<Category[] | null>(null)
+  const [ groups, setCategories ] = useState<Group[] | null>(null);
+  const router = useRouter();
 
+  // load groups
   useEffect(() => {
-    const getCategories = async () => {
-      const categories = await getAllCategories();
-      setCategories(categories);
+    const getGroups = async () => {
+      const groups = await getAllGroups();
+      setCategories(groups);
     };
 
-    categories ? setLoading(false) : getCategories();
-  }, [ categories ])
+    groups ? setLoading(false) : getGroups();
+  }, [ groups ]);
+
+  // handler
+  const submitHandler = async (formData: FormData) => {
+    await createProduct(formData);
+    router.push('/');
+  };
 
   if (loading) return <p>Loading...</p>;
 
@@ -30,7 +39,7 @@ const ProductForm= () => {
     <form 
       id="product"
       className="product-form"
-      action={ formData => createProduct(formData) }
+      action={ formData => submitHandler(formData) }
     >
       {/* product name */}
       <label 
@@ -60,6 +69,20 @@ const ProductForm= () => {
         name="product[short_description]"
       />
 
+       {/* product images */}
+       <label 
+        className="product-form__label"
+        htmlFor="product-default-image"
+      >
+        Default Image
+      </label>
+      <input 
+        id="product-default-image"
+        className="product-form__attach-button"
+        type="file"
+        name="product[default_image]"
+      />
+
       {/* product images */}
       <label 
         className="product-form__label"
@@ -75,21 +98,21 @@ const ProductForm= () => {
         multiple
       />
 
-      <div className="category-select">
-        { categories && categories.map((category) => 
-          <div key={ category.id }>
-            <input 
-              id={ `category-${ category.name }` }
-              type='checkbox'
-              value={ category.id }
-              name={ `product[category_ids][]`}
-            />
-            <label htmlFor={  `category-${ category.name }` }>
-              { category.name }
-            </label>
-          </div>
+      {/* group id */}
+      <label htmlFor="group-select">
+        Product Group
+      </label>
+      <select
+        id="group-select"
+        className="product-form__select"
+        name="product[group_id]"
+      >
+        { groups?.map((group) => 
+          <option key={ group.id } value={ group.id }>
+            { group.name }
+          </option>
         )}
-      </div>
+      </select>
 
       {/* submit button */}
       <button 

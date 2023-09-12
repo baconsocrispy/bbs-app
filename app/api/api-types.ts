@@ -22,8 +22,10 @@ export type Product = {
   created_at: string;
   id: number;
   name: string;
-  product_images: SerializedImage[];
+  image: SerializedImage;
+  images: SerializedImage[];
   short_description: string;
+  slug: string;
 };
 
 export type SerializedImage = {

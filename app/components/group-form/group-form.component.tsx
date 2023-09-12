@@ -96,7 +96,7 @@ const GroupForm = () => {
       className="product-form__select"
       name='group[category_id]'
     >
-      { categories && categories.map((category) => 
+      { categories?.map((category) => 
         <option key={ category.id } value={ category.id }>
           { category.name }
         </option>

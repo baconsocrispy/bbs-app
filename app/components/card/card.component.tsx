@@ -1,35 +1,39 @@
 // library
 import { FC } from "react";
-import Image from "next/image";
-import Link from "next/link";
 
 // components
 import Button from "../button/button.component";
+import Image from "next/image";
+import Link from "next/link";
 
 // types
-import { Group } from "@/app/api/api-types";
+import { Group, Product } from "@/app/api/api-types";
+
 type CardProps = {
-  item: Group;
-  path?: string;
-}
+  item: Group | Product;
+  path: string | null;
+};
 
 const Card: FC<CardProps> = ({ item, path }) => {
+  // state
+  const { image, name, short_description, slug } = item;
+
   return (
     <div className="card">
       <div className="card__header-container">
         <h4 className="card__header">
-          { item.name }
+          { name }
         </h4>
       </div>
 
       <Link 
         className="card__link"
-        href={ '/' }>
+        href={  path + slug }>
         <div className="card__image-container">
           <Image 
             className="card__image"
-            src={ item.image.url } 
-            alt={ item.name + ' group' }
+            src={ image.url } 
+            alt={ name }
             width={ 500 }
             height={ 500 }
           />
@@ -38,17 +42,17 @@ const Card: FC<CardProps> = ({ item, path }) => {
 
       <div className="card__text-container">
         <p className="card__text">
-          { item.short_description }
+          { short_description }
         </p>
       </div>
 
       <Button 
         className="card__button"
-        href={ "/" }
-        text={ 'Explore ' + item.name }
+        href={ path + slug }
+        text={ 'View ' + name }
       />
     </div>
   )
-}
+};
 
 export default Card;
