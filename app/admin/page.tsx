@@ -52,10 +52,6 @@ const Admin = () => {
           <br />
           <Link href='/product-groups/new'>New Group</Link>
         </div>
-        
-        <div>
-          
-        </div>
       </main>
     )
   }
