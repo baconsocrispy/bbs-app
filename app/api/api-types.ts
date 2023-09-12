@@ -18,6 +18,13 @@ export type Group = {
   slug: string;
 };
 
+export type HeroContent = {
+  button_text: string;
+  header_text: string;
+  images: SerializedImage[];
+  href: string;
+};
+
 export type Product = {
   created_at: string;
   id: number;

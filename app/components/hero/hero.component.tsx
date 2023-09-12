@@ -1,19 +1,38 @@
+// library
+import { FC } from 'react';
+
 // components
+import Carousel from '../carousel/carousel.component';
 import Button from '../button/button.component';
 
-const Hero = () => {
+// types
+import { SerializedImage } from '@/app/api/api-types';
+
+type HeroProps = {
+  buttonText: string;
+  images: SerializedImage[];
+  headerText: string;
+  href: string;
+}
+
+const Hero: FC<HeroProps> = ({
+  buttonText,
+  images, 
+  headerText,
+  href
+}) => {
   return (
     <section className='hero'>
-      <div className='carousel'></div>
+      <Carousel images={ images } />
 
       <div className='hero__content'>
         <h1 className='hero__text'>
-          Lighting People
+          { headerText }
         </h1>
 
         <Button
-          text='View Catalog'
-          href='/categories'
+          text={ buttonText }
+          href={ href }
           className='hero__button'
         />
       </div>

@@ -1,8 +1,22 @@
 .carousel {
-  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   z-index: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/ceiling.jpeg');
-  background-position: center;
-}
+  overflow: hidden;
+
+  &__image {
+    position: absolute;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 2s ease-out;
+    opacity: 1;
+
+    &--hidden {
+      opacity: 0;
+    }
+  }
+};

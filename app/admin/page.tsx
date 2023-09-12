@@ -51,6 +51,8 @@ const Admin = () => {
           <Link href='/categories/new'>New Category</Link>
           <br />
           <Link href='/product-groups/new'>New Group</Link>
+          <br />
+          <Link href='/hero-content/new'>New Hero Content</Link>
         </div>
       </main>
     )
