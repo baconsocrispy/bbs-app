@@ -46,6 +46,6 @@ const Carousel: FC<CarouselProps> = ({ images }) => {
      )}
     </div>
   )
-}
+};
 
 export default Carousel;

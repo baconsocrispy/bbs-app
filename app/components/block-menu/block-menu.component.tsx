@@ -50,7 +50,17 @@ const BlockMenu: FC<BlockMenuProps> = ({
                   (pathname + `/${ item.slug }`) 
                 }
               >
-                { item.name }
+                <div className="block-menu__header-container">
+                  <h4 className="block-menu__header">
+                    { item.name }
+                  </h4>
+                </div>
+                
+                <div className="block-menu__text-container">
+                  <p className="block-menu__text">
+                    { item.short_description }
+                  </p>
+                </div>
               </Link>
             </li>
           )
