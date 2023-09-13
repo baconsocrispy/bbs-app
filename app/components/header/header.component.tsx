@@ -22,16 +22,15 @@ const Header: FC<HeaderProps> = ({
 }) => {
   return (
     <section className={ `header header--${ variant }` }>
-      <h1 className={ `header__text header__text--${ variant }` }>
-        { text }
-      </h1>
-
-      <Image
-        className={ `header__image header__image--${ variant }` }
-        src={ imageUrl } 
-        alt={ `${ text }` }
-        fill
-      />
+        <h1 className={ `header__text header__text--${ variant }` }>
+          { text }
+        </h1>
+        <Image
+          className={ `header__image header__image--${ variant }` }
+          src={ imageUrl } 
+          alt={ `${ text }` }
+          fill
+        />
     </section>
   )
 };

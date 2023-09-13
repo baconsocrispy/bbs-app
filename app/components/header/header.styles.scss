@@ -3,7 +3,7 @@
   display: flex;
   color: $color-black;
   overflow: hidden;
-
+  background-color: $color-black;
 
   &--stacked {
     flex-direction: column;
@@ -12,6 +12,7 @@
 
   &__image {
     object-fit: cover;
+    padding: 1rem;
   }
 
   &__text {
