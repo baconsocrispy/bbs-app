@@ -59,13 +59,27 @@ const CategoryForm = () => {
         className="product-form__label"
         htmlFor="category-image"
       >
-        Image
+        Default Image
       </label>
       <input 
         id="category-image"
         className="product-form__attach-button"
         type="file"
         name="category[category_image]"
+      />
+
+      {/* banner image */}
+      <label 
+        className="product-form__label"
+        htmlFor="banner-image"
+      >
+        Banner Image
+      </label>
+      <input 
+        id="banner-image"
+        className="product-form__attach-button"
+        type="file"
+        name="category[banner_image]"
       />
 
       {/* submit button */}

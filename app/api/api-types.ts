@@ -1,4 +1,5 @@
 export type Category = {
+  banner: SerializedImage;
   created_at: string;
   id: number;
   image: SerializedImage;
@@ -9,6 +10,7 @@ export type Category = {
 };
 
 export type Group = {
+  banner: SerializedImage;
   created_at: string;
   id: number;
   image: SerializedImage;

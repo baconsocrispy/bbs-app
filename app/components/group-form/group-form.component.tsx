@@ -75,7 +75,7 @@ const GroupForm = () => {
       className="product-form__label"
       htmlFor="group-image"
     >
-      Image
+      Default Image
     </label>
     <input 
       id="group-image"
@@ -83,6 +83,20 @@ const GroupForm = () => {
       type="file"
       name="group[group_image]"
     />
+
+    {/* banner image */}
+    <label 
+        className="product-form__label"
+        htmlFor="banner-image"
+      >
+        Banner Image
+      </label>
+      <input 
+        id="banner-image"
+        className="product-form__attach-button"
+        type="file"
+        name="group[banner_image]"
+      />
 
     {/* category select */}
     <label

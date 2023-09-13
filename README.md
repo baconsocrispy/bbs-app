@@ -88,3 +88,10 @@ prebuildScripts();
 * Sign up for admin
 * Carousel
 * Mobile cookie handling (not setting cross origin cookies) Try setting cookie-samesite=lax
+
+## Image Size Recommendations
+Images should be on darker side allowing white font to read clearly and showcase lights.
+
+* Hero Slideshow Images: 1920 x 1280px | <600kb | Patterned 
+* Category/Group Default: 690x690px | <100kb | Vertical 
+* Categeory/Group Banner: 
