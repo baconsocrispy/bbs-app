@@ -12,6 +12,7 @@ const Logo = () => {
         <Image 
           src={ LogoImage }
           alt='BB&S Logo'
+          priority
         />
       </Link>
     </div>
