@@ -14,12 +14,12 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
 
   // pre-fetch category details on server
   const category = await getCategoryWithGroups(slug);
-  const { name, groups, image } = category;
+  const { name, groups, banner } = category;
 
   return (
     <main className='category-page'>
       <Header 
-        imageUrl={ image.url }
+        imageUrl={ banner.url }
         text={ name } 
         variant={ HEADER_VARIANTS.overlay }
       />

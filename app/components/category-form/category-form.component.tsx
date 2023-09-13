@@ -1,24 +1,39 @@
 'use client'
 // library
+import { ChangeEvent, FC, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // api
-import { createCategory } from "@/app/api/categories-api";
+import { 
+  createCategory, 
+  updateCategory 
+} from "@/app/api/categories-api";
 
-const CategoryForm = () => {
+
+// types
+import { Category } from "@/app/api/api-types";
+type CategoryFormProps = {
+  category?: Category;
+}
+
+const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
   // state
+  const [ name, setName ] = useState(category ? category.name : '');
+  const [ short_description, setShortDescription ] = useState(category ? category.short_description : '');
   const router = useRouter();
 
-  // handler
+  // handlers
   const handleSubmit = async (formData: FormData) => {
     try {
-      await createCategory(formData);
+      category ? 
+        await updateCategory(category.slug, formData) : 
+        await createCategory(formData);
       router.push('/');
 
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <form
@@ -39,6 +54,8 @@ const CategoryForm = () => {
         type="text"
         autoComplete="false"
         name="category[name]"
+        value={ name }
+        onChange={ (e) => setName(e.target.value) }
       />
 
       {/* category description */}
@@ -52,6 +69,8 @@ const CategoryForm = () => {
         id="short-description"
         className="product-form__textarea" 
         name="category[short_description]"
+        value={ short_description }
+        onChange={ (e) => setShortDescription(e.target.value) }
       />
 
       {/* category image */}

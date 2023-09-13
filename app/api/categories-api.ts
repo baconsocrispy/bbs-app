@@ -50,6 +50,28 @@ export const createCategory = async (
   return category;
 };
 
+export const updateCategory = async (
+  slug: string,
+  data: FormData
+): Promise<Category> => {
+  const url = `${ baseApiUrl() }/v1/categories/${ slug }`;
+
+  const response = await fetch(url, {
+    credentials: 'include',
+    method: 'PUT',
+    headers: {
+      'Authorization': `Basic ${ doorkeeperCredentials() }`,
+    },
+    body: configureData(data)
+  });
+
+  const category = await response.json();
+
+  revalidate('/');
+
+  return category;
+};
+
 // add doorkeeper grant_type to formData
 const configureData = (data: FormData) => {
   data.append('grant_type', 'password');

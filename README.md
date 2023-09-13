@@ -86,8 +86,8 @@ prebuildScripts();
 * Logo taking too long to load
 * Loading states for all pages
 * Sign up for admin
-* Carousel
 * Mobile cookie handling (not setting cross origin cookies) Try setting cookie-samesite=lax
+* protect update/new/delete routes with authentication on frontend
 
 ## Image Size Recommendations
 Images should be on darker side allowing white font to read clearly and showcase lights.
