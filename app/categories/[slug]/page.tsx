@@ -19,7 +19,7 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
   return (
     <main className='category-page'>
       <Header 
-        imageUrl={ banner.url }
+        imageUrl={ banner?.url }
         text={ name } 
         variant={ HEADER_VARIANTS.overlay }
       />
