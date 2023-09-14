@@ -1,19 +1,32 @@
 'use client'
 
 // library
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // api
-import { createHeroContent } from "@/app/api/hero-api";
+import { createHeroContent, updateHeroContent } from "@/app/api/hero-api";
 
-const HeroForm= () => {
+// types
+import { HeroContent } from "@/app/api/api-types";
+
+type HeroFormProps = {
+  heroContent?: HeroContent;
+}
+
+const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
   // state
+  const [ buttonText, setButtonText ] = useState(heroContent ? heroContent.button_text : '');
+  const [ headerText, setHeaderText ] = useState(heroContent ? heroContent.header_text : '');
+  const [ href, setHref ] = useState(heroContent ? heroContent.href : '#')
+
   const router = useRouter();
 
   // handler
   const submitHandler = async (formData: FormData) => {
-    await createHeroContent(formData);
+    heroContent ?
+      await updateHeroContent(heroContent.id, formData) :
+      await createHeroContent(formData)
     router.push('/');
   };
 
@@ -36,7 +49,9 @@ const HeroForm= () => {
         type="text"
         autoComplete="false"
         name="hero_content[button_text]"
-      />
+        value={ buttonText }
+        onChange={ (e) => setButtonText(e.target.value) }
+      /> 
 
       {/* product description */}
       <label
@@ -50,9 +65,11 @@ const HeroForm= () => {
         type="text"
         className="product-form__input" 
         name="hero_content[header_text]"
+        value={ headerText }
+        onChange={ (e) => setHeaderText(e.target.value) }
       />
 
-       {/* product images */}
+       {/* button link */}
        <label 
         className="product-form__label"
         htmlFor="href"
@@ -64,6 +81,8 @@ const HeroForm= () => {
         className="product-form__input"
         type="text"
         name="hero_content[href]"
+        value={ href }
+        onChange={ (e) => setHref(e.target.value) }
       />
 
       {/* product images */}

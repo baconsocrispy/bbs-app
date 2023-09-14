@@ -23,6 +23,7 @@ export type Group = {
 export type HeroContent = {
   button_text: string;
   header_text: string;
+  id: number;
   images: SerializedImage[];
   href: string;
 };

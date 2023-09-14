@@ -32,6 +32,28 @@ export const createHeroContent = async (
   return heroContent;
 };
 
+export const updateHeroContent = async (
+  id: number,
+  data: FormData
+): Promise<HeroContent> => {
+  const url = `${ baseApiUrl() }/v1/hero_contents/${ id }`;
+
+  const response = await fetch(url, {
+    credentials: 'include',
+    method: 'PUT',
+    headers: {
+      'Authorization': `Basic ${ doorkeeperCredentials() }`,
+    },
+    body: configureData(data)
+  });
+
+  revalidate('/');
+
+  const heroContent: HeroContent = await response.json();
+
+  return heroContent;
+};
+
 export const getHeroContent = async (): Promise<HeroContent> => {
   const response = await backendUrlEncodedRequest(
     'GET', `${ baseApiUrl() }/v1/hero_contents`
