@@ -1,30 +1,15 @@
 // components
-import Image from "next/image";
+import Product from "@/app/components/product/product.component";
 
 // api
 import { getProduct } from "@/app/api/products-api";
 
 const ProductPage = async ({ params }: { params: { id: number }}) => {
   const product = await getProduct(params.id);
-  const { image, name, short_description } = product;
 
   return (
     <main className="product-page">
-      <h1>{ name }</h1>
-
-      <div className="product-image__container">
-        <Image
-          className="product-image" 
-          src={ image.url }
-          alt={ name }
-          width={ 500 }
-          height={ 500 }
-        />
-      </div>
-
-      <div>
-        { short_description }
-      </div>
+      <Product product={ product } />
     </main>
   )
 }

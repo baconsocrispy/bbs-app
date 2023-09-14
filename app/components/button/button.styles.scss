@@ -9,9 +9,11 @@
   transition: background-color 0.4s ease-in-out;
 
   &:hover {
-    background-color: rgba(255, 255, 255, .7);
-    color: rgba(0, 0, 0, .7);
-    border: 1px solid $color-black;
+    @media (min-width: $breakpoint-md) {
+      background-color: rgba(255, 255, 255, .7);
+      color: rgba(0, 0, 0, .7);
+      border: 1px solid $color-black;
+    }
   }
 
   &__link {
