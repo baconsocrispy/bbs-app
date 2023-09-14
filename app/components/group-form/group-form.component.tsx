@@ -1,19 +1,24 @@
 'use client'
 
 // library
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // api
-import { createGroup } from "@/app/api/groups-api";
+import { createGroup, updateGroup } from "@/app/api/groups-api";
 import { getAllCategories } from "@/app/api/categories-api";
 
 // types
-import { Category } from "@/app/api/api-types";
+import { Category, Group } from "@/app/api/api-types";
 
+type GroupFormProps = {
+  group: Group;
+};
 
-const GroupForm = () => {
+const GroupForm: FC<GroupFormProps> = ({ group }) => {
   // state
+  const [ name, setName ] = useState(group ? group.name : '');
+  const [ short_description, setShortDescription ] = useState(group ? group.short_description : '');
   const [ categories, setCategories ] = useState<Category[] | null>(null);
   const router = useRouter();
 
@@ -29,7 +34,9 @@ const GroupForm = () => {
   // handler
   const submitHandler = async (formData: FormData) => {
     try {
-      await createGroup(formData);
+      group ? 
+        await updateGroup(group.slug, formData) :
+        await createGroup(formData)
       router.push('/');
     } catch (error) {
       console.log(error);
@@ -38,54 +45,58 @@ const GroupForm = () => {
 
   return (
     <form
-    id="group"
-    className="product-form"
-    action={ formData => submitHandler(formData) }
-  >
-    {/* group name */}
-    <label 
-      className="product-form__label"
-      htmlFor="name"
+      id="group"
+      className="product-form"
+      action={ formData => submitHandler(formData) }
     >
-      Name
-    </label>
-    <input
-      id="name" 
-      className="product-form__input"
-      type="text"
-      autoComplete="false"
-      name="group[name]"
-    />
+      {/* group name */}
+      <label 
+        className="product-form__label"
+        htmlFor="name"
+      >
+        Name
+      </label>
+      <input
+        id="name" 
+        className="product-form__input"
+        type="text"
+        autoComplete="false"
+        name="group[name]"
+        value={ name }
+        onChange={ (e) => setName(e.target.value) }
+      />
 
-    {/* group description */}
-    <label
-      className="product-form__label" 
-      htmlFor="short-description"
-    >
-      Description
-    </label>
-    <textarea
-      id="short-description"
-      className="product-form__textarea" 
-      name="group[short_description]"
-    />
+      {/* group description */}
+      <label
+        className="product-form__label" 
+        htmlFor="short-description"
+      >
+        Description
+      </label>
+      <textarea
+        id="short-description"
+        className="product-form__textarea" 
+        name="group[short_description]"
+        value={ short_description }
+        onChange={ (e) => setShortDescription(e.target.value) }
+      />
 
-    {/* group image */}
-    <label 
-      className="product-form__label"
-      htmlFor="group-image"
-    >
-      Default Image
-    </label>
-    <input 
-      id="group-image"
-      className="product-form__attach-button"
-      type="file"
-      name="group[group_image]"
-    />
+      {/* group image */}
+      <label 
+        className="product-form__label"
+        htmlFor="group-image"
+      >
+        Default Image
+      </label>
+      <input 
+        id="group-image"
+        className="product-form__attach-button"
+        type="file"
+        name="group[group_image]"
+      />
 
-    {/* banner image */}
-    <label 
+      {/* banner image */}
+      <label 
         className="product-form__label"
         htmlFor="banner-image"
       >
@@ -98,34 +109,37 @@ const GroupForm = () => {
         name="group[banner_image]"
       />
 
-    {/* category select */}
-    <label
-      className="product-form__label"
-      htmlFor="category-select"
-    >
-      Category
-    </label>
-    <select
-      id="category-select"
-      className="product-form__select"
-      name='group[category_id]'
-    >
-      { categories?.map((category) => 
-        <option key={ category.id } value={ category.id }>
-          { category.name }
-        </option>
-      )}
-    </select>
+      {/* category select */}
+      <label
+        className="product-form__label"
+        htmlFor="category-select"
+      >
+        Category
+      </label>
+      <select
+        id="category-select"
+        className="product-form__select"
+        name='group[category_id]'
+      >
+        { categories?.map((category) => 
+          <option 
+            key={ category.id } 
+            value={ category.id } 
+          >
+            { category.name }
+          </option>
+        )}
+      </select>
 
-    {/* submit button */}
-    <button 
-      className="product-form__button"
-      type='submit'
-    >
-      Submit
-    </button>
-  </form>
+      {/* submit button */}
+      <button 
+        className="product-form__button"
+        type='submit'
+      >
+        Submit
+      </button>
+    </form>
   )
-}
+};
 
-export default GroupForm
+export default GroupForm;

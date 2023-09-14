@@ -94,4 +94,4 @@ Images should be on darker side allowing white font to read clearly and showcase
 
 * Hero Slideshow Images: 1920 x 1280px | <600kb | Patterned 
 * Category/Group Default: 690x690px | <100kb | Vertical 
-* Categeory/Group Banner: 
+* Categeory/Group Banner: 1600 x 690 | 

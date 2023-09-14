@@ -1,6 +1,8 @@
 // components
+import CategoryForm from "@/app/components/category-form/category-form.component";
+
+// api
 import { getCategoryWithGroups } from "@/app/api/categories-api";
-import CategoryForm from "@/app/components/category-form/category-form.component"
 
 const CategoryEditPage = async ({ params }: { params: { slug: string }}) => {
   // state
@@ -14,4 +16,4 @@ const CategoryEditPage = async ({ params }: { params: { slug: string }}) => {
   )
 }
 
-export default CategoryEditPage
+export default CategoryEditPage;

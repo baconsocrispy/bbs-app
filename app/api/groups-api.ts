@@ -48,3 +48,25 @@ export const createGroup = async (
 
   return group;
 };
+
+export const updateGroup = async (
+  slug: string,
+  data: FormData
+): Promise<Group> => {
+  const url = `${ baseApiUrl() }/v1/groups/${ slug }`;
+
+  const response = await fetch(url, {
+    credentials: 'include',
+    method: 'PUT',
+    headers: {
+      'Authorization': `Basic ${ doorkeeperCredentials() }`,
+    },
+    body: configureData(data)
+  });
+
+  const group = await response.json();
+
+  revalidate('/');
+
+  return group;
+};

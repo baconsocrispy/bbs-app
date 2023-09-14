@@ -1,6 +1,6 @@
 'use client'
 // library
-import { ChangeEvent, FC, useState } from "react";
+import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // api

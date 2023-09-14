@@ -14,12 +14,12 @@ const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
 
   // load group on server
   const group = await getGroupWithProducts(slug);
-  const { name, products, image } = group;
+  const { name, products, banner } = group;
 
   return (
     <main className='category-page'>
       <Header 
-        imageUrl={ image.url }
+        imageUrl={ banner.url }
         text={ name } 
         variant={ HEADER_VARIANTS.overlay }
       />
