@@ -1,18 +1,24 @@
 'use client'
 
 // library
-import { useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 // api
-import { createProduct } from "../../api/products-api";
+import { createProduct, updateProduct } from "../../api/products-api";
 import { getAllGroups } from "@/app/api/groups-api";
 
 // types
-import { Group } from "@/app/api/api-types";
+import { Group, Product } from "@/app/api/api-types";
 
-const ProductForm= () => {
+type ProductFormProps = {
+  product: Product;
+};
+
+const ProductForm: FC<ProductFormProps> = ({ product }) => {
   // state
+  const [ name, setName ] = useState(product ? product.name : '');
+  const [ shortDescription, setShortDescription ] = useState(product ? product.short_description : '');
   const [ loading, setLoading ] = useState(true);
   const [ groups, setCategories ] = useState<Group[] | null>(null);
   const router = useRouter();
@@ -29,7 +35,9 @@ const ProductForm= () => {
 
   // handler
   const submitHandler = async (formData: FormData) => {
-    await createProduct(formData);
+    product ? 
+      await updateProduct(product.slug, formData) :
+      await createProduct(formData)
     router.push('/');
   };
 
@@ -54,6 +62,8 @@ const ProductForm= () => {
         type="text"
         autoComplete="false"
         name="product[name]"
+        value={ name }
+        onChange={ (e) => e.target.value }
       />
 
       {/* product description */}
@@ -67,6 +77,8 @@ const ProductForm= () => {
         id="short-description"
         className="product-form__textarea" 
         name="product[short_description]"
+        value={ shortDescription }
+        onChange={ (e) => e.target.value }
       />
 
        {/* product images */}
