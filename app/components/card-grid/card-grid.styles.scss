@@ -3,4 +3,9 @@
   grid-template-columns: 1fr;
   gap: 1rem;
   overflow: scroll;
+  background-color: $color-black;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
