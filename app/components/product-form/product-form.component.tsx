@@ -63,7 +63,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         autoComplete="false"
         name="product[name]"
         value={ name }
-        onChange={ (e) => e.target.value }
+        onChange={ (e) => setName(e.target.value) }
       />
 
       {/* product description */}
@@ -78,7 +78,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         className="product-form__textarea" 
         name="product[short_description]"
         value={ shortDescription }
-        onChange={ (e) => e.target.value }
+        onChange={ (e) => setShortDescription(e.target.value) }
       />
 
        {/* product images */}
