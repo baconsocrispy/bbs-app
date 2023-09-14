@@ -12,7 +12,7 @@ import { getAllGroups } from "@/app/api/groups-api";
 import { Group, Product } from "@/app/api/api-types";
 
 type ProductFormProps = {
-  product: Product;
+  product?: Product;
 };
 
 const ProductForm: FC<ProductFormProps> = ({ product }) => {
