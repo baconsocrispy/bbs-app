@@ -12,7 +12,7 @@ import { getAllCategories } from "@/app/api/categories-api";
 import { Category, Group } from "@/app/api/api-types";
 
 type GroupFormProps = {
-  group: Group;
+  group?: Group;
 };
 
 const GroupForm: FC<GroupFormProps> = ({ group }) => {
