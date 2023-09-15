@@ -10,7 +10,7 @@
   list-style: none;
   
   font-family: $font-primary;
-  font-size: 3rem;
+  font-size: 4rem;
   text-transform: uppercase;
   text-align: center;
 
@@ -18,5 +18,19 @@
 
   &--closed {
     display: none;
+
+    @media (min-width: $breakpoint-md) {
+      display: grid;
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    position: relative;
+    grid-template-columns: repeat(5, max-content);
+    gap: 1rem;
+    top: 0;
+    font-size: 1.5rem;
+    background-color: transparent;
+    text-align: start;
   }
 }

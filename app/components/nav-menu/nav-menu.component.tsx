@@ -32,6 +32,12 @@ const NavMenu = () => {
         />
 
         <NavLink 
+          text='Products' 
+          href='/categories' 
+          onClick={ handleLinkClick } 
+        />
+
+        <NavLink 
           text='Downloads' 
           href='https://brothers-sons.odoo.com/download' 
           onClick={ handleLinkClick } 

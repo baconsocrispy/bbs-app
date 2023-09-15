@@ -10,7 +10,7 @@ const Categories = async () => {
 
   return (
     <main className='categories-page'>
-      <section>
+      <section className='categories'>
         { categories && 
           <BlockMenu 
             open={ true } 

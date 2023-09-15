@@ -10,7 +10,7 @@ type NavLinksProps = {
 const NavLinks: FC<NavLinksProps> = ({ children, open }) => {
   return (
     <ul className={
-      open ? 'nav-links' : 'nav-links--closed'
+      open ? 'nav-links' : 'nav-links nav-links--closed'
     }>
       { children }
     </ul>
