@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 // styles
 import '@/app/styles/main.scss'
 import { UserProvider } from './contexts/user.context';
+import Spinner from './components/spinner/spinner.component';
 
 export default function RootLayout({
   children,

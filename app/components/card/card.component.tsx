@@ -34,8 +34,8 @@ const Card: FC<CardProps> = ({ item, path }) => {
             className="card__image"
             src={ image.url } 
             alt={ name }
-            width={ 500 }
-            height={ 500 }
+            width={ 690 }
+            height={ 690 }
           />
         </div>
       </Link>

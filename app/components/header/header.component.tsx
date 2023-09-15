@@ -30,6 +30,7 @@ const Header: FC<HeaderProps> = ({
           src={ imageUrl } 
           alt={ `${ text }` }
           fill
+          priority
         />
     </section>
   )
