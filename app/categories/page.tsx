@@ -14,12 +14,10 @@ const Categories = async () => {
     <main className='categories-page'>
       <section className='categories'>
         { categories && 
-          <Suspense fallback={ <Loading /> }>
-            <BlockMenu 
-              open={ true } 
-              menuItems={ categories } 
-            />
-          </Suspense>
+          <BlockMenu 
+            open={ true } 
+            menuItems={ categories } 
+          />
         }
       </section>
     </main>

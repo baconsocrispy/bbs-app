@@ -9,6 +9,7 @@ import Link from "next/link";
 
 // types
 import { Category } from "@/app/api/api-types";
+import Image from "next/image";
 
 type BlockMenuProps = {
   open: boolean;
@@ -41,7 +42,6 @@ const BlockMenu: FC<BlockMenuProps> = ({
             <li 
               key={ item.id } 
               className="block-menu__item" 
-              style={{ backgroundImage: `url(${ item.image.url })` }}
             >
               <Link 
                 className="block-menu__link" 
@@ -49,7 +49,14 @@ const BlockMenu: FC<BlockMenuProps> = ({
                   (path + `/${ item.slug }`) : 
                   (pathname + `/${ item.slug }`) 
                 }
-              >
+              > 
+                <Image
+                  className="block-menu__image"
+                  src={ item.image.url }
+                  alt={ item.name }
+                  fill
+                />
+
                 <div className="block-menu__header-container">
                   <h4 className="block-menu__header">
                     { item.name }

@@ -43,6 +43,7 @@
   }
 
   &__link {
+    // position: relative;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -62,6 +63,11 @@
 
   &__header-container {
     padding: 1rem;
+  }
+
+  &__image {
+    z-index: -1;
+    object-fit: cover;
   }
 
   &__header {
