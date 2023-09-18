@@ -30,6 +30,7 @@
 @import '@/app/components/thumbnail/thumbnail.styles';
 
 // pages
+@import '@/app/categories/categories-page.styles';
 @import '@/app/categories/[slug]/category-page.styles';
 @import '@/app/products/[slug]/product-page.styles';
 @import '@/app/admin/signin/signin-page.styles';

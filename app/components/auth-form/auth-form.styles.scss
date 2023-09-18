@@ -15,6 +15,7 @@
   }
 
   &__button {
+    cursor: pointer;
     grid-column: 2 / 3;
     justify-self: flex-end;
   }
