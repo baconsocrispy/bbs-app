@@ -28,7 +28,8 @@ const Card: FC<CardProps> = ({ item, path }) => {
 
       <Link 
         className="card__link"
-        href={  path + slug }>
+        href={  path + slug }
+      >
         <div className="card__image-container">
           <Image 
             className="card__image"
