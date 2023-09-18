@@ -1,0 +1,14 @@
+.sign-in-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-md) {
+    align-items: center;
+  }
+
+  &__header {
+    padding: 1rem;
+    font-family: $font-header;
+  }
+}

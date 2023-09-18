@@ -1,12 +1,22 @@
 .auth-form {
-  width: 100vw;
   padding: 1rem;
+  max-width: 35rem;
+
+  @media (min-width: $breakpoint-md) {
+    min-width: 35rem;
+    max-width: 25%;
+  }
 
   &__form {
     display: grid;
     grid-template-columns: max-content 1fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 1rem 0rem;
+  }
+
+  &__button {
+    grid-column: 2 / 3;
+    justify-self: flex-end;
   }
 
   &__label {

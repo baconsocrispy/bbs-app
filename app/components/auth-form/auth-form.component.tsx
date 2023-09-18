@@ -5,6 +5,9 @@ import { FC, useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+// components
+import Button from '../button/button.component';
+
 // context
 import { UserContext } from '@/app/contexts/user.context';
 
@@ -48,7 +51,7 @@ const AuthForm: FC = () => {
     } 
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Signing in...</p>;
 
   return (
     <div className='auth-form'>
