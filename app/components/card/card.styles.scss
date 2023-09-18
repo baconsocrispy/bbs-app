@@ -6,15 +6,16 @@
   padding: 2rem;
   gap: 1rem;
   background-color: $color-white;
-  overflow: hidden;
-  border: 1px solid red;
+ 
 
   @media (min-width: $breakpoint-md) {
     grid-template-rows: max-content 1fr max-content;
-    min-width: 69rem;
-    max-width: 69rem;
-    height: 69rem;
+    min-width: $breakpoint-md;
+    max-width: $card-length;
+    height: $breakpoint-md;
     background-color: $color-black;
+    overflow: hidden;
+    border-radius: .5rem;
   }
 
   &__link {
@@ -39,6 +40,7 @@
     width: 75%;
     height: auto;
     background-color: $color-black;
+    border-radius: .5rem;
 
     @media (min-width: $breakpoint-md) {
       width: 100%;
@@ -48,8 +50,9 @@
   &__header-container {
     @media (min-width: $breakpoint-md) {
       z-index: 10;
-      background-color:  rgba(0, 0, 0, .7);;
+      background-color:  rgba(0, 0, 0, .7);
       padding: 1rem;
+      border-radius: .5rem;
     }
   }
 
@@ -65,9 +68,8 @@
   }
 
   &__text-container {
-    z-index: 10;
-
     @media (min-width: $breakpoint-md) {
+      z-index: 10;
       display: flex;
       align-items: flex-end;
       height: 100%;
@@ -83,12 +85,14 @@
       display: flex;
       align-items: flex-end;
       color: $color-white;
+      border-radius: .5rem;
     }
   }
 
   &__button {
     justify-self: center;
-    background-color: $color-black;
+    background-color:  rgba(0, 0, 0, .7);
     text-transform: capitalize;
+    border-radius: .5rem;
   }
 }
