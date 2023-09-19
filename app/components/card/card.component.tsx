@@ -21,9 +21,9 @@ const Card: FC<CardProps> = ({ item, path }) => {
   return (
     <div className="card">
       <div className="card__header-container">
-        <h4 className="card__header">
+        <h2 className="card__header">
           { name }
-        </h4>
+        </h2>
       </div>
 
       <Link 

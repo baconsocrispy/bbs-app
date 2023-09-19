@@ -11,7 +11,7 @@
   @media (min-width: $breakpoint-md) {
     grid-template-rows: max-content 1fr max-content;
     min-width: $breakpoint-md;
-    max-width: $card-max-width;
+    max-width: $max-width-card;
     min-height: $breakpoint-md;
     background-color: $color-black;
     overflow: hidden;
@@ -50,8 +50,8 @@
   &__header-container {
     @media (min-width: $breakpoint-md) {
       z-index: 10;
-      background-color:  rgba(0, 0, 0, .7);
-      padding: 1rem;
+      background-color: $color-black-transparent;
+      padding: $padding-default;
       border-radius: $border-radius;
     }
   }
@@ -60,7 +60,7 @@
     text-align: center;
     text-transform: uppercase;
     font-family: $font-header;
-    font-size: 3rem;
+    font-size: $font-size-header;
 
     @media (min-width: $breakpoint-md) {
       color: $color-white;
@@ -80,8 +80,8 @@
     white-space: pre-line;
 
     @media (min-width: $breakpoint-md) {
-      background-color: rgba(0, 0, 0, .7);
-      padding: 1rem;
+      background-color: $color-black-transparent;
+      padding: $padding-default;
       display: flex;
       align-items: flex-end;
       color: $color-white;
@@ -91,7 +91,7 @@
 
   &__button {
     justify-self: center;
-    background-color:  rgba(0, 0, 0, .7);
+    background-color:  $color-black-transparent;
     text-transform: capitalize;
     border-radius: $border-radius;
   }

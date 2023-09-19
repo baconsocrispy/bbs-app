@@ -2,9 +2,12 @@
 $font-primary: 'Lato', sans-serif;
 $font-header: 'MicrogrammaDBolExt.TTF', sans-serif;
 $font-size-default: 1.6rem;
+$font-size-header: 3rem;
+$font-size-sm: 1rem;
 
 // colors
 $color-black: #141313;
+$color-black-transparent: rgba(0, 0, 0, .7);
 $color-green: green;
 $color-white: #FFFFFF;
 
@@ -13,8 +16,11 @@ $height-banner: 2rem;
 $height-footer: 4rem;
 $height-nav: 4rem;
 $height-main: calc(100% - $height-banner - $height-nav - $height-footer);
-$card-max-width: 80rem;
+$max-width-card: 80rem;
 $border-radius: .5rem;
+
+// spacing
+$padding-default: 1rem;
 
 // breakpoints
 $breakpoint-sm: 500px;

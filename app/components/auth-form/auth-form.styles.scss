@@ -1,5 +1,5 @@
 .auth-form {
-  padding: 1rem;
+  padding: $padding-default;
   max-width: 35rem;
 
   @media (min-width: $breakpoint-md) {

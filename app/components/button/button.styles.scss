@@ -5,20 +5,20 @@
   font-family: $font-primary;
   border: 1px solid $color-white;
   color: $color-white;
-  background-color: rgba(0, 0, 0, .7);;
+  background-color: $color-black-transparent;
   transition: background-color 0.4s ease-in-out;
   border-radius: $border-radius;
 
   &:hover {
     @media (min-width: $breakpoint-md) {
       background-color: rgba(255, 255, 255, .7);
-      color: rgba(0, 0, 0, .7);
+      color: $color-black-transparent;
       border: 1px solid $color-black;
     }
   }
 
   &__link {
     display: block;
-    padding: 1rem;
+    padding: $padding-default;
   }
 }
