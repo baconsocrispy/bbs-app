@@ -21,6 +21,15 @@
     border: none;
   }
 
+  &__edit-button {
+    z-index: 20;
+    cursor: pointer;
+    position: absolute;
+    top: $padding-default;
+    right: $padding-default;
+    padding: 0 $padding-default;
+  }
+
   &__items {
     height: 100%;
     display: grid;
