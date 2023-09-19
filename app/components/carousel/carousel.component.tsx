@@ -15,9 +15,10 @@ type CarouselProps = {
 const Carousel: FC<CarouselProps> = ({ images }) => {
   // state
   const [ activeIndex, setActiveIndex ] = useState(0);
-  const onLastSlide = activeIndex === images.length - 1;
   const [ loading, setLoading ] = useState(true);
   const [ imagesLoaded, setImagesLoaded ] = useState(0);
+
+  const onLastSlide = activeIndex === images.length - 1;
 
   // show spinner while images load
   useEffect(() => {
@@ -49,6 +50,7 @@ const Carousel: FC<CarouselProps> = ({ images }) => {
   return (
     <>
       { loading && <Spinner /> }
+      
       <div className="carousel">
     
         { images?.map((image, index) => 

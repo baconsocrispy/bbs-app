@@ -5,9 +5,6 @@ import Header from "@/app/components/header/header.component";
 // api
 import { getCategoryWithGroups } from "@/app/api/categories-api";
 
-// data
-import { HEADER_VARIANTS } from "@/app/components/header/header.component";
-
 const CategoryPage = async ({ params }: { params: { slug: string }}) => {
   // state
   const { slug } = params;
@@ -21,7 +18,6 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
       <Header 
         imageUrl={ banner?.url }
         text={ name } 
-        variant={ HEADER_VARIANTS.overlay }
       />
       <CardGrid items={ groups } />
     </main>

@@ -5,9 +5,6 @@ import Header from "@/app/components/header/header.component";
 // api
 import { getGroupWithProducts } from "@/app/api/groups-api";
 
-// data
-import { HEADER_VARIANTS } from "@/app/components/header/header.component";
-
 const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
   // state
   const { slug } = params;
@@ -21,7 +18,6 @@ const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
       <Header 
         imageUrl={ banner.url }
         text={ name } 
-        variant={ HEADER_VARIANTS.overlay }
       />
       <CardGrid items={ products } />
     </main>

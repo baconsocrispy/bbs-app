@@ -1,8 +1,11 @@
+'use client'
+
 // library
-import { FC } from "react";
+import { FC, useState } from "react";
 
 // components
 import Image from "next/image";
+import Spinner from "../spinner/spinner.component";
 
 // types
 type HeaderProps = {
@@ -18,10 +21,16 @@ export enum HEADER_VARIANTS {
 };
 
 const Header: FC<HeaderProps> = ({ 
-  imageUrl, text, variant = HEADER_VARIANTS.stacked 
+  imageUrl, text, variant = HEADER_VARIANTS.overlay 
 }) => {
+  // state
+  const [ loading, setLoading ] = useState(true);
+
   return (
-    <section className={ `header header--${ variant }` }>
+    <>
+      { loading && <Spinner /> }
+      <section className={ `header header--${ variant }` }>
+
         <h1 className={ `header__text header__text--${ variant }` }>
           { text }
         </h1>
@@ -31,8 +40,10 @@ const Header: FC<HeaderProps> = ({
           alt={ `${ text }` }
           fill
           priority
+          onLoadingComplete={ () => setLoading(false) }
         />
-    </section>
+      </section>
+    </>
   )
 };
 
