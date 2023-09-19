@@ -6,7 +6,8 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 // api
 import { 
   accessTokenFromCredentials, 
-  getUserFromAccessToken, 
+  getUserFromAccessToken,
+  newUserFromCredentials, 
   revokeAccessToken 
 } from "../api/auth-api";
 
@@ -26,6 +27,7 @@ type UserContextProps = {
   userLoading: boolean;
   signIn: Function;
   signOut: Function;
+  signUp: Function;
   updateUser: Function;
 };
 
@@ -39,6 +41,7 @@ export const UserContext = createContext<UserContextProps>({
   userLoading: false,
   signIn: () => {},
   signOut: () => {},
+  signUp: () => {},
   updateUser: () => {},
 });
 
@@ -54,6 +57,11 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   }, []);
 
   // actions
+  const signUp = async (formData: AuthFormData) => {
+    const response = await newUserFromCredentials(formData);
+    return response;
+  };
+
   const signIn = async (formData: AuthFormData) => {
     const response = await accessTokenFromCredentials(formData);
     return response;
@@ -103,6 +111,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     userLoading,
     signIn,
     signOut,
+    signUp,
     updateUser
   };
 

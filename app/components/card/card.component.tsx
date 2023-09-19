@@ -24,7 +24,7 @@ const Card: FC<CardProps> = ({ item, path }) => {
 
   return (
     <div className="card">
-      { user && 
+      {/* { user && 
         <button className="block-menu__edit-button">
           <Link 
             className="block-menu__edit-link"
@@ -33,7 +33,7 @@ const Card: FC<CardProps> = ({ item, path }) => {
             Edit
           </Link>
         </button>
-      }
+      } */}
 
       <div className="card__header-container">
         <h2 className="card__header">
@@ -41,11 +41,12 @@ const Card: FC<CardProps> = ({ item, path }) => {
         </h2>
       </div>
 
-      <Link 
-        className="card__link"
-        href={  path + slug }
-      >
-        <div className="card__image-container">
+
+      <div className="card__image-container">
+        <Link 
+          className="card__link"
+          href={  path + slug }
+        >
           <Image 
             className="card__image"
             src={ image.url } 
@@ -53,8 +54,9 @@ const Card: FC<CardProps> = ({ item, path }) => {
             width={ 690 }
             height={ 690 }
           />
-        </div>
-      </Link>
+        </Link>
+      </div>
+
 
       <div className="card__text-container">
         <p className="card__text">
@@ -67,6 +69,8 @@ const Card: FC<CardProps> = ({ item, path }) => {
         href={ path + slug }
         text={ 'View ' + name }
       />
+
+      
     </div>
   )
 };
