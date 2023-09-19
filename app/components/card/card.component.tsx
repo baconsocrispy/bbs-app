@@ -1,10 +1,13 @@
 // library
-import { FC } from "react";
+import { FC, useContext } from "react";
 
 // components
 import Button from "../button/button.component";
 import Image from "next/image";
 import Link from "next/link";
+
+// context
+import { UserContext } from "@/app/contexts/user.context";
 
 // types
 import { Group, Product } from "@/app/api/api-types";
@@ -16,10 +19,22 @@ type CardProps = {
 
 const Card: FC<CardProps> = ({ item, path }) => {
   // state
+  const { user } = useContext(UserContext)
   const { image, name, short_description, slug } = item;
 
   return (
     <div className="card">
+      { user && 
+        <button className="block-menu__edit-button">
+          <Link 
+            className="block-menu__edit-link"
+            href={ `${ path }edit/${ item.slug }` }
+          >
+            Edit
+          </Link>
+        </button>
+      }
+
       <div className="card__header-container">
         <h2 className="card__header">
           { name }

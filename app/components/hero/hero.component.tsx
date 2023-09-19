@@ -1,38 +1,49 @@
+'use client'
+
 // library
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
 // components
-import Carousel from '../carousel/carousel.component';
 import Button from '../button/button.component';
+import Carousel from '../carousel/carousel.component';
+import Link from 'next/link';
+
+// context
+import { UserContext } from '@/app/contexts/user.context';
 
 // types
-import { SerializedImage } from '@/app/api/api-types';
+import { HeroContent } from '@/app/api/api-types';
 
 type HeroProps = {
-  buttonText: string;
-  images: SerializedImage[];
-  headerText: string;
-  href: string;
+  heroContent: HeroContent;
 }
 
-const Hero: FC<HeroProps> = ({
-  buttonText,
-  images, 
-  headerText,
-  href
-}) => {
+const Hero: FC<HeroProps> = ({ heroContent }) => {
+  const { user } = useContext(UserContext);
+
   return (
     <section className='hero'>
-      <Carousel images={ images } />
+      { user && 
+        <button className="block-menu__edit-button">
+          <Link 
+            className="block-menu__edit-link"
+            href="/hero-content/edit/"
+          >
+            Edit
+          </Link>
+        </button>
+      }
+
+      <Carousel images={ heroContent.images } />
 
       <div className='hero__content'>
         <h1 className='hero__text'>
-          { headerText }
+          { heroContent.header_text }
         </h1>
 
         <Button
-          text={ buttonText }
-          href={ href }
+          text={ heroContent.button_text }
+          href={ heroContent.href }
           className='hero__button'
         />
       </div>

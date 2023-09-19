@@ -33,7 +33,7 @@ const BlockMenu: FC<BlockMenuProps> = ({
   open, menuItems, path, onClick 
 }) => {
   // state
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const pathname = usePathname();
   const [ loading, setLoading ] = useState(true);
   const [ imagesLoaded, setImagesLoaded ] = useState(0);
