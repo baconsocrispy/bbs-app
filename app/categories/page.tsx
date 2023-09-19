@@ -1,7 +1,5 @@
 // components
 import BlockMenu from '../components/block-menu/block-menu.component';
-import { Suspense } from 'react';
-import Loading from '../loading';
 
 // api
 import { getAllCategories } from '../api/categories-api';

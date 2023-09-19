@@ -11,8 +11,6 @@ import Spinner from "../spinner/spinner.component";
 
 // types
 import { Category } from "@/app/api/api-types";
-import { SP } from "next/dist/shared/lib/utils";
-
 
 type BlockMenuProps = {
   open: boolean;
