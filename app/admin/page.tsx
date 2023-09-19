@@ -39,23 +39,51 @@ const Admin = () => {
     return <p>Loading...</p>;
   } else {
     return (
-      <main>
+      <main className="admin-page">
         <div>
           <h3>Hello { user?.first_name }</h3>
-          <button onClick={ signOutHandler }>Log Out</button>
+          
         </div>
 
-        <div>
-          <Link href='/products/new'>New Product</Link>
-          <br />
-          <Link href='/categories/new'>New Category</Link>
-          <br />
-          <Link href='/product-groups/new'>New Group</Link>
-          <br />
-          <Link href='/hero-content/new'>New Hero Content</Link>
-          <br />
-          <Link href='/hero-content/edit'>Edit Hero Content</Link>
+        <div className="admin-page__links">
+          <Link 
+            className="admin-page__link"
+            href='/products/new'
+          >
+            New Product
+          </Link>
+          <Link 
+            className="admin-page__link"
+            href='/categories/new'
+          >
+            New Category
+          </Link>
+          <Link
+            className="admin-page__link" 
+            href='/product-groups/new'
+          >
+            New Group
+          </Link>
+          <Link
+            className="admin-page__link"
+            href='/hero-content/edit'
+          >
+            Edit Homepage
+          </Link>
+          <Link
+            className="admin-page__link"
+            href='/admin/signup'
+          >
+            Add User
+          </Link>
         </div>
+
+        <button 
+          className="admin-page__logout"
+          onClick={ signOutHandler }
+        >
+          Log Out
+        </button>
       </main>
     )
   }

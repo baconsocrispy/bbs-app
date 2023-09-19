@@ -1,0 +1,38 @@
+.admin-page {
+  position: relative;
+  padding: $padding-default;
+
+  &__links {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+
+    @media (min-width: $breakpoint-md) {
+      flex-direction: row;
+    }
+  }
+
+  &__link {
+    padding: 3rem;
+    border: 1px solid $color-black;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-black-transparent;
+      color: $color-white;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      max-width: 25%;
+    }
+  }
+
+  &__logout {
+    cursor: pointer;
+    padding: $padding-default;
+    margin-top: $padding-default;
+  }
+}
