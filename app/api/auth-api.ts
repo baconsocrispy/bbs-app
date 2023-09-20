@@ -7,7 +7,7 @@ import { AuthFormData } from "../components/auth-form/auth-form.component";
 // sign up a new user
 export const newUserFromCredentials = async (formData: AuthFormData) => {
   const response= await backendUrlEncodedRequest(
-    'POST', `${ baseApiUrl() }/admin/signup`, formData
+    'POST', `${ baseApiUrl() }/users/signup`, formData
   );
   return response;
 };

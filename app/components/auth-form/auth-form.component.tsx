@@ -177,7 +177,7 @@ const AuthForm: FC<AuthFormProps> = ({
 
         {/* submit button */}
         <button className='auth-form__button'>
-          { AUTH_FORM_TYPES.signup ? 'Sign Up' : 'Sign In' }
+          { formType === AUTH_FORM_TYPES.signup ? 'Sign Up' : 'Sign In' }
         </button>
       </form>
     </div>

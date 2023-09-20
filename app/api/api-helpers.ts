@@ -42,15 +42,15 @@ const urlEncodeFormData = (
     params.append('password', data.user.password);
 
     if (data.user.firstName) { 
-      params.append('firstName', data.user.firstName) 
+      params.append('first_name', data.user.firstName) 
     }
 
     if (data.user.lastName) { 
-      params.append('lastName', data.user.lastName) 
+      params.append('last_name', data.user.lastName) 
     }
 
     if (data.user.passwordConfirmation) { 
-      params.append('passwordConfirmation', data.user.passwordConfirmation) 
+      params.append('password_confirmation', data.user.passwordConfirmation) 
     }
   }
 
