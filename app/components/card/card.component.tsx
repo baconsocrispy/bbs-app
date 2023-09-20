@@ -24,7 +24,7 @@ const Card: FC<CardProps> = ({ item, path }) => {
 
   return (
     <div className="card">
-      {/* { user && 
+      { user && 
         <button className="block-menu__edit-button">
           <Link 
             className="block-menu__edit-link"
@@ -33,7 +33,7 @@ const Card: FC<CardProps> = ({ item, path }) => {
             Edit
           </Link>
         </button>
-      } */}
+      }
 
       <div className="card__header-container">
         <h2 className="card__header">
