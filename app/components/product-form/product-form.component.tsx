@@ -10,6 +10,7 @@ import { getAllGroups } from "@/app/api/groups-api";
 
 // types
 import { Group, Product } from "@/app/api/api-types";
+import FeaturesGroup from "../features-group/features-group.component";
 
 type ProductFormProps = {
   product?: Product;
@@ -81,8 +82,10 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         onChange={ (e) => setShortDescription(e.target.value) }
       />
 
-       {/* product images */}
-       <label 
+      <FeaturesGroup features={ product?.features }/>
+
+      {/* product images */}
+      <label 
         className="product-form__label"
         htmlFor="product-default-image"
       >

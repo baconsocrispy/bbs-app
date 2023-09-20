@@ -9,6 +9,14 @@ export type Category = {
   slug: string;
 };
 
+export type Feature = {
+  created_at: string;
+  highlight?: string;
+  id: number;
+  order?: number;
+  text: string;
+};
+
 export type Group = {
   banner: SerializedImage;
   created_at: string;
@@ -30,6 +38,7 @@ export type HeroContent = {
 
 export type Product = {
   created_at: string;
+  features?: Feature[];
   id: number;
   name: string;
   image: SerializedImage;
