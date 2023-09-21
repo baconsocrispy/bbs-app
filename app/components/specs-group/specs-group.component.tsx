@@ -21,11 +21,18 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
   const [ specs, setSpecs ] = useState(productSpecs ? productSpecs : []);
   const [ category, setCategory ] = useState('');
   const [ text, setText ] = useState('');
+  const [ errorMessage, setErrorMessage ] = useState('');
 
   // handlers
   const handleAddSpec: MouseEventHandler = (e) => {
     // prevent form submit
     e.preventDefault();
+
+    // ensure all fields are filled in
+    if ( category === '' || text === '') {
+      setErrorMessage('All fields are required')
+      return;
+    }
 
     const spec: Spec = { category: category, text: text };
     const newSpecArray = [
@@ -36,6 +43,7 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
     setSpecs(newSpecArray);
     setCategory('');
     setText('');
+    setErrorMessage('');
   };
 
   return (
@@ -55,6 +63,7 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
           value={ text }
           onChange={ (e) => setText(e.target.value) }
         />
+        <p>{ errorMessage !== '' && errorMessage }</p>
       </div>
 
       <button onClick={ handleAddSpec }>

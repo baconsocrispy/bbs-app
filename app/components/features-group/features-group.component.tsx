@@ -21,11 +21,18 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
   const [ features, setFeatures ] = useState(productFeatures ? productFeatures : []);
   const [ highlight, setHighlight ] = useState('');
   const [ text, setText ] = useState('');
+  const [ errorMessage, setErrorMessage ] = useState('');
 
   // handlers
   const handleAddFeature: MouseEventHandler = (e) => {
     // prevent form submit
     e.preventDefault();
+
+    // ensure all fields are filled in
+    if (text === '') {
+      setErrorMessage('Text field is required');
+      return;
+    }
 
     const feature: Feature = { highlight: highlight, text: text };
     const newFeatureArray = [
@@ -36,6 +43,7 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
     setFeatures(newFeatureArray);
     setHighlight('');
     setText('');
+    setErrorMessage('');
   };
 
   return (
@@ -55,6 +63,7 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
           value={ text }
           onChange={ (e) => setText(e.target.value) }
         />
+        <p>{ errorMessage !== '' && errorMessage }</p>
       </div>
 
       <button onClick={ handleAddFeature }>

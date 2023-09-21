@@ -21,11 +21,18 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
   const [ textBlocks, setTextBlocks ] = useState(productTextBlocks ? productTextBlocks : []);
   const [ title, setTitle ] = useState('');
   const [ text, setText ] = useState('');
+  const [ errorMessage, setErrorMessage ] = useState('');
 
   // handlers
   const handleAddTextBlock: MouseEventHandler = (e) => {
     // prevent form submit
     e.preventDefault();
+
+    // ensure fields are filled in
+    if (text === '') {
+      setErrorMessage('Text field can\'t be blank')
+      return;
+    }
 
     const textBlock: TextBlock = { title: title, text: text };
     const newTextBlockArray = [
@@ -36,6 +43,7 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
     setTextBlocks(newTextBlockArray);
     setTitle('');
     setText('');
+    setErrorMessage('');
   };
 
   return (
@@ -55,6 +63,7 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
           value={ text }
           onChange={ (e) => setText(e.target.value) }
         />
+        <p>{ errorMessage !== '' && errorMessage }</p>
       </div>
 
       <button onClick={ handleAddTextBlock }>
