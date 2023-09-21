@@ -16,10 +16,10 @@ const Thumbnail: FC<ThumbnailProps> = ({ image, selected, className }) => {
     <div className={ `thumbnail ${ className }`}>
       <Image
         className="thumbnail__image"
-        src={ image.url }
+        src={ image?.url }
         width={ 100 }
         height={ 100 }
-        alt={ image.filename }
+        alt={ image?.filename }
       />
     </div>
   )

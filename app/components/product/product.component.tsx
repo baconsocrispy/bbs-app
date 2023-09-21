@@ -26,7 +26,7 @@ const Product: FC<ProductProps> = ({ product }) => {
         <div className="product__image-container">
           <Image
             className="product__image" 
-            src={ image.url }
+            src={ image?.url }
             alt={ name }
             width={ 500 }
             height={ 500 }

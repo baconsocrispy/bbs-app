@@ -49,7 +49,7 @@ const Card: FC<CardProps> = ({ item, path }) => {
         >
           <Image 
             className="card__image"
-            src={ image.url } 
+            src={ image?.url } 
             alt={ name }
             width={ 690 }
             height={ 690 }

@@ -1,28 +1,57 @@
 'use client'
 
 // library
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, ChangeEventHandler } from "react";
 import { useRouter } from "next/navigation";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 // api
-import { createProduct, updateProduct } from "../../api/products-api";
+import { 
+  createProduct, 
+  encodeProductFormData, 
+  updateProduct 
+} from "../../api/products-api";
+
 import { getAllGroups } from "@/app/api/groups-api";
 
 // types
-import { Group, Product } from "@/app/api/api-types";
+import { Feature, Group, Product } from "@/app/api/api-types";
 import FeaturesGroup from "../features-group/features-group.component";
+
+export type ProductFormData = {
+  product: {
+    features_attributes: Feature[];
+    group_id: number;
+    name: string;
+    short_description: string;
+  }
+}
 
 type ProductFormProps = {
   product?: Product;
 };
 
 const ProductForm: FC<ProductFormProps> = ({ product }) => {
-  // state
+  // form state
+  const [ defaultImage, setDefaultImage ] = useState<File | null>(null);
+  const [ groups, setCategories ] = useState<Group[] | null>(null);
+  const [ images, setImages ] = useState<FileList | null>(null);
   const [ name, setName ] = useState(product ? product.name : '');
   const [ shortDescription, setShortDescription ] = useState(product ? product.short_description : '');
+  
+  // loading state
   const [ loading, setLoading ] = useState(true);
-  const [ groups, setCategories ] = useState<Group[] | null>(null);
+
+  // navigation
   const router = useRouter();
+
+  // useForm elements
+  const {
+    handleSubmit,
+    register,
+    unregister,
+    formState: { errors }
+  } = useForm<ProductFormData>();
 
   // load groups
   useEffect(() => {
@@ -30,16 +59,28 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       const groups = await getAllGroups();
       setCategories(groups);
     };
-
     groups ? setLoading(false) : getGroups();
   }, [ groups ]);
 
-  // handler
-  const submitHandler = async (formData: FormData) => {
+  // handlers
+  const submitHandler: SubmitHandler<ProductFormData> = async (formData: ProductFormData) => {
+    const encodedData = encodeProductFormData(formData, defaultImage, images);
     product ? 
-      await updateProduct(product.slug, formData) :
-      await createProduct(formData)
+      await updateProduct(product.slug, encodedData) :
+      await createProduct(encodedData)
     router.push('/');
+  };
+
+  const defaultImageChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    e.target.files ? 
+      setDefaultImage(e.target.files[0]) :
+      setDefaultImage(null)
+  };
+
+  const imagesChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    e.target.files ?
+      setImages(e.target.files) :
+      setImages(null)
   };
 
   if (loading) return <p>Loading...</p>;
@@ -48,7 +89,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
     <form 
       id="product"
       className="product-form"
-      action={ formData => submitHandler(formData) }
+      onSubmit={ handleSubmit(submitHandler) }
     >
       {/* product name */}
       <label 
@@ -62,7 +103,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         className="product-form__input"
         type="text"
         autoComplete="false"
-        name="product[name]"
+        { ...register('product.name') }
         value={ name }
         onChange={ (e) => setName(e.target.value) }
       />
@@ -77,12 +118,16 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       <textarea
         id="short-description"
         className="product-form__textarea" 
-        name="product[short_description]"
+        { ...register('product.short_description')}
         value={ shortDescription }
         onChange={ (e) => setShortDescription(e.target.value) }
       />
 
-      <FeaturesGroup features={ product?.features }/>
+      <FeaturesGroup 
+        productFeatures={ product?.features }
+        register={ register }
+        unregister={ unregister }
+      />
 
       {/* product images */}
       <label 
@@ -96,6 +141,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         className="product-form__attach-button"
         type="file"
         name="product[default_image]"
+        onChange={ defaultImageChange }
       />
 
       {/* product images */}
@@ -111,6 +157,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         type="file"
         name="product[product_images][]"
         multiple
+        onChange={ imagesChange }
       />
 
       {/* group id */}
@@ -120,7 +167,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       <select
         id="group-select"
         className="product-form__select"
-        name="product[group_id]"
+        { ...register('product.group_id') }
       >
         { groups?.map((group) => 
           <option key={ group.id } value={ group.id }>
