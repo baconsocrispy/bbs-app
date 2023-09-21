@@ -5,6 +5,10 @@ import { FC, useState, useEffect, ChangeEventHandler } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
+// components
+import FeaturesGroup from "../features-group/features-group.component";
+import SpecsGroup from "../specs-group/specs-group.component";
+
 // api
 import { 
   createProduct, 
@@ -15,8 +19,7 @@ import {
 import { getAllGroups } from "@/app/api/groups-api";
 
 // types
-import { Feature, Group, Product } from "@/app/api/api-types";
-import FeaturesGroup from "../features-group/features-group.component";
+import { Feature, Group, Product, Spec } from "@/app/api/api-types";
 
 export type ProductFormData = {
   product: {
@@ -24,8 +27,9 @@ export type ProductFormData = {
     group_id: number;
     name: string;
     short_description: string;
+    specs_attributes: Spec[];
   }
-}
+};
 
 type ProductFormProps = {
   product?: Product;
@@ -125,6 +129,12 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
 
       <FeaturesGroup 
         productFeatures={ product?.features }
+        register={ register }
+        unregister={ unregister }
+      />
+
+      <SpecsGroup 
+        productSpecs={ product?.specs }
         register={ register }
         unregister={ unregister }
       />

@@ -117,7 +117,22 @@ export const encodeProductFormData = (
 
       // id
       feature.id && formData.append(
-        `product[features_attributes][${ index }][highlight]`, feature.id.toString()
+        `product[features_attributes][${ index }][id]`, feature.id.toString()
+      );
+    })
+  }
+
+  if (data.product.specs_attributes) {
+    data.product.specs_attributes.forEach((spec, index) => {
+      // category
+      formData.append(`product[specs_attributes][${ index }][category]`, spec.category);
+
+      // text
+      formData.append(`product[specs_attributes][${ index }][text]`, spec.text);
+
+      // id
+      spec.id && formData.append(
+        `product[specs_attributes][${ index }][id]`, spec.id.toString()
       );
     })
   }

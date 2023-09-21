@@ -14,6 +14,7 @@ export type Feature = {
   highlight?: string;
   id?: number;
   order?: number;
+  product_id?: number;
   text: string;
 };
 
@@ -45,6 +46,7 @@ export type Product = {
   images: SerializedImage[];
   short_description: string;
   slug: string;
+  specs: Spec[];
 };
 
 export type SerializedImage = {
@@ -52,4 +54,12 @@ export type SerializedImage = {
   filename: string;
   id: number;
   url: string;
+};
+
+export type Spec = {
+  category: string;
+  created_at?: string;
+  id?: number;
+  product_id?: number;
+  text: string;
 };
