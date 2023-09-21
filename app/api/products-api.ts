@@ -74,6 +74,19 @@ export const updateProduct = async (
   return product;
 };
 
+export const deleteProduct = async (
+  slug: string
+): Promise<Product> => {
+  const response = await backendUrlEncodedRequest(
+    'DELETE', `${ baseApiUrl( )}/v1/products/${ slug }`
+  );
+  
+  revalidate('/');
+
+  return response.json();
+};
+
+// format form data for api request
 export const encodeProductFormData = (
   data: ProductFormData, 
   defaultImage: File | null, 
@@ -105,6 +118,7 @@ export const encodeProductFormData = (
   }
 
   // nested attributes
+  // features
   if (data.product.features_attributes) {
     data.product.features_attributes.forEach((feature, index) => {
       // text
@@ -122,6 +136,7 @@ export const encodeProductFormData = (
     })
   }
 
+  // specs
   if (data.product.specs_attributes) {
     data.product.specs_attributes.forEach((spec, index) => {
       // category
@@ -133,6 +148,24 @@ export const encodeProductFormData = (
       // id
       spec.id && formData.append(
         `product[specs_attributes][${ index }][id]`, spec.id.toString()
+      );
+    })
+  }
+
+  // text-blocks
+  if (data.product.text_blocks_attributes) {
+    data.product.text_blocks_attributes.forEach((textBlock, index) => {
+      // text
+      formData.append(`product[text_blocks_attributes][${ index }][text]`, textBlock.text);
+
+      // title
+      textBlock.title && formData.append(
+        `product[text_blocks_attributes][${ index }][title]`, textBlock.title
+      );
+
+      // id
+      textBlock.id && formData.append(
+        `product[text_blocks_attributes][${ index }][id]`, textBlock.id.toString()
       );
     })
   }

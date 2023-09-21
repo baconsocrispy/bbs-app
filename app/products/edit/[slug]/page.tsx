@@ -10,7 +10,7 @@ const EditProductPage = async ({ params }: { params: { slug: string }}) => {
   const product = await getProduct(slug);
 
   return (
-    <main>
+    <main className="edit-product-page">
       <ProductForm product={ product }/>
     </main>
   )

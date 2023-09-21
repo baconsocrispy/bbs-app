@@ -47,6 +47,7 @@ export type Product = {
   short_description: string;
   slug: string;
   specs: Spec[];
+  textBlocks: TextBlock[];
 };
 
 export type SerializedImage = {
@@ -61,5 +62,14 @@ export type Spec = {
   created_at?: string;
   id?: number;
   product_id?: number;
+  text: string;
+};
+
+export type TextBlock = {
+  created_at?: string;
+  id?: number;
+  order?: number;
+  product_id?: number;
+  title?: string;
   text: string;
 };

@@ -39,7 +39,7 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
   };
 
   return (
-    <section className='features-group'>
+    <section className='product-form__section'>
       <h2>Features</h2>
 
       <div className="feature-form">

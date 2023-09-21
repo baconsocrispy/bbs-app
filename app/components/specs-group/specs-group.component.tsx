@@ -39,7 +39,7 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
   };
 
   return (
-    <section className='specs-group'>
+    <section className='product-form__section'>
       <h2>Specs</h2>
 
       <div className="spec-form">
