@@ -2,6 +2,7 @@
 import { FC } from "react";
 
 // components
+import Features from "../features/features.component";
 import Image from "next/image";
 import Thumbnail from "../thumbnail/thumbnail.component";
 
@@ -14,7 +15,16 @@ type ProductProps = {
 
 const Product: FC<ProductProps> = ({ product }) => {
   // state
-  const { image, images, name, short_description } = product;
+  const { 
+    features,
+    featuresHeader,
+    image, 
+    images, 
+    name, 
+    short_description,
+    specs,
+    textBlocks
+  } = product;
 
   return (
     <section className="product">
@@ -49,7 +59,7 @@ const Product: FC<ProductProps> = ({ product }) => {
         </p>
       </div>
 
-
+      <Features features={ features } header={ featuresHeader }/>
     </section>
   )
 }

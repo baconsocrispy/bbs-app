@@ -40,6 +40,7 @@ export type HeroContent = {
 export type Product = {
   created_at: string;
   features: Feature[];
+  featuresHeader?: string;
   id: number;
   name: string;
   image: SerializedImage;
