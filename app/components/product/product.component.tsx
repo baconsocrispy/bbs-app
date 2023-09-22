@@ -4,6 +4,7 @@ import { FC } from "react";
 // components
 import Features from "../features/features.component";
 import Image from "next/image";
+import Specs from "../specs/specs.component";
 import Thumbnail from "../thumbnail/thumbnail.component";
 
 // types
@@ -59,6 +60,7 @@ const Product: FC<ProductProps> = ({ product }) => {
         </p>
       </div>
 
+      <Specs specs={ specs } />
       <Features features={ features } header={ featuresHeader }/>
     </section>
   )
