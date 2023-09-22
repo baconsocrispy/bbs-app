@@ -1,0 +1,23 @@
+.features-section {
+  padding: $padding-default;
+
+  &__header {
+    font-family: $font-header;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    list-style-position: inside;
+  }
+
+  &__item {
+    p {
+      display: inline;
+    }
+  }
+
+  &__highlight {
+    text-transform: uppercase;
+    font-weight: 700b;
+  }
+}

@@ -1,0 +1,17 @@
+.text-block-section {
+  padding: $padding-default;
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: $padding-lg;
+    }
+  }
+
+  &__header {
+    font-family: $font-header;
+  }
+}

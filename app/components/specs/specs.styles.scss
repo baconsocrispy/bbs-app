@@ -1,0 +1,19 @@
+.specs-section {
+  padding: $padding-default;
+  &__header {
+    text-transform: uppercase;
+    font-family: $font-header;
+  }
+
+  &__category-list {
+    list-style: none;
+  }
+
+  &__category-header {
+    font-family: $font-header;
+  }
+
+  &__specs-list {
+    list-style: inside;
+  }
+}

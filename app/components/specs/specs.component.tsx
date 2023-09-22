@@ -30,7 +30,7 @@ const Specs: FC<SpecsProps> = ({ specs }) => {
   return (
     <section className="specs-section">
       <h2 className="specs-section__header">
-        specs
+        technical specs
       </h2>
       <ul className="specs-section__category-list">
         {

@@ -6,11 +6,11 @@
   height: 100%;
   color: $color-white;
   background-color: $color-black;
-  padding: $padding-default;
+  padding: $padding-lg;
   overflow: scroll;
 
   @media (min-width: $breakpoint-lg) {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   &__header {
@@ -22,7 +22,8 @@
     }
   }
 
-  &__image-display {
+  // image elements
+  &__image-section {
     @media (min-width: $breakpoint-sm) {
       max-width: 75%;
     }
@@ -32,7 +33,7 @@
     }
 
     @media (min-width: $breakpoint-lg) {
-     width: 100%;
+     max-width: 80%;
     }
   }
 
@@ -43,9 +44,20 @@
   &__image {
     width: 100%;
     height: auto;
+    border-radius: $border-radius;
   }
 
-  &__text-container {
+  &__thumbnail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: .5rem;
+  }
+
+  // summary elements
+  &__summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     padding: 1rem;
   }
 
@@ -54,9 +66,8 @@
     font-family: $font-header;
   }
 
-  &__thumbnail-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: .5rem;
+  &__cta {
+    align-self: center;
   }
+
 }

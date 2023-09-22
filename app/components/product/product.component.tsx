@@ -10,6 +10,8 @@ import Thumbnail from "../thumbnail/thumbnail.component";
 
 // types
 import { Product } from "@/app/api/api-types";
+import Link from "next/link";
+import Button from "../button/button.component";
 
 type ProductProps = {
   product: Product;
@@ -29,12 +31,8 @@ const Product: FC<ProductProps> = ({ product }) => {
   } = product;
 
   return (
-    <section className="product">
-      <h1 className="product__header">
-        { name }
-      </h1>
-
-      <div className="product__image-display">
+    <div className="product">
+      <section className="product__image-section">
         <div className="product__image-container">
           <Image
             className="product__image" 
@@ -52,19 +50,22 @@ const Product: FC<ProductProps> = ({ product }) => {
             <Thumbnail key={ image.id } image={ image } selected={ false }/>
           )}
         </div>
-      </div>
+      </section>
       
-      <div className="product__text-container">
-        <h4 className="product__text-header">description</h4>
+      <section className="product__summary-section">
+        <h1 className="product__header">
+          { name }
+        </h1>
         <p className="product__short-description">
           { short_description }
         </p>
-      </div>
+        <Button href="/contact" className="product__cta" text="Inquire" />
+      </section>
 
       <Specs specs={ specs } />
-      <Features features={ features } header={ featuresHeader }/>
       <TextBlocks textBlocks={ textBlocks } />
-    </section>
+      <Features features={ features } header={ featuresHeader }/>
+    </div>
   )
 }
 
