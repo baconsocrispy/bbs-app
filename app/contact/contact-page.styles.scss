@@ -1,4 +1,7 @@
 .contact-page {
+  position: relative;
+  display: grid;
+  grid-template-rows: 25% 1fr;
   color: $color-white;
   background-color: $color-black;
 }
