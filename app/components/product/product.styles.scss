@@ -21,6 +21,18 @@
     @media(min-width: $breakpoint-lg) {
       grid-column: 1 / -1;
     }
+
+    &--mobile {
+      @media (min-width: $breakpoint-lg) {
+        display: none;
+      }
+    }
+
+    &--desktop {
+      @media (max-width: $breakpoint-lg) {
+        display: none;
+      }
+    }
   }
 
   // summary elements

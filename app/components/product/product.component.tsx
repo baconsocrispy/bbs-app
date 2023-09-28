@@ -33,10 +33,13 @@ const Product: FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="product">
+      <h1 className="product__header product__header--mobile">
+        { name }
+      </h1>
       <ImageDisplay defaultImage={ image } images={ images } />
       
       <section className="product__summary-section">
-        <h1 className="product__header">
+        <h1 className="product__header product__header--desktop">
           { name }
         </h1>
         <p className="product__short-description">
