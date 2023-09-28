@@ -70,3 +70,15 @@ export const updateGroup = async (
 
   return group;
 };
+
+export const deleteGroup = async (
+  slug: string
+): Promise<Group> => {
+  const response = await backendUrlEncodedRequest(
+    'DELETE', `${ baseApiUrl( )}/v1/groups/${ slug }`
+  );
+  
+  revalidate('/');
+
+  return response.json();
+};

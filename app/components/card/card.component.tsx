@@ -10,11 +10,11 @@ import Link from "next/link";
 import { UserContext } from "@/app/contexts/user.context";
 
 // types
-import { Group, Product } from "@/app/api/api-types";
+import { Category, Group, Product } from "@/app/api/api-types";
 
 type CardProps = {
   item: Group | Product;
-  path: string | null;
+  path?: string | null;
 };
 
 const Card: FC<CardProps> = ({ item, path }) => {
@@ -69,8 +69,6 @@ const Card: FC<CardProps> = ({ item, path }) => {
         href={ path + slug }
         text={ 'View ' + name }
       />
-
-      
     </div>
   )
 };

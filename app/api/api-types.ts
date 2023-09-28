@@ -1,10 +1,11 @@
 export type Category = {
   banner: SerializedImage;
   created_at: string;
+  groups: Group[];
   id: number;
   image: SerializedImage;
   name: string;
-  groups: Group[];
+  pinned: SerializedImage;
   short_description: string;
   slug: string;
 };

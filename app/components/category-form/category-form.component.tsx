@@ -101,6 +101,20 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
         name="category[banner_image]"
       />
 
+      {/* pinned image */}
+      <label 
+        className="product-form__label"
+        htmlFor="pinned-image"
+      >
+        Pinned Image
+      </label>
+      <input 
+        id="pinned-image"
+        className="product-form__attach-button"
+        type="file"
+        name="category[pinned_image]"
+      />
+
       {/* submit button */}
       <button 
         className="product-form__button"

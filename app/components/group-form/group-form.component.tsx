@@ -1,11 +1,11 @@
 'use client'
 
 // library
-import { FC, useEffect, useState } from "react";
+import { FC, MouseEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // api
-import { createGroup, updateGroup } from "@/app/api/groups-api";
+import { createGroup, deleteGroup, updateGroup } from "@/app/api/groups-api";
 import { getAllCategories } from "@/app/api/categories-api";
 
 // types
@@ -31,7 +31,7 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
     getCategories();
   }, []);
 
-  // handler
+  // handlers
   const submitHandler = async (formData: FormData) => {
     try {
       group ? 
@@ -40,6 +40,14 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
       router.push('/');
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleDeleteGroup: MouseEventHandler = async (e) => {
+    e.preventDefault();
+    if (group) {
+      await deleteGroup(group.slug);
+      router.push('/');
     }
   };
 
@@ -138,6 +146,16 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
       >
         Submit
       </button>
+
+      { group &&
+        <button 
+          className="product-form__button"
+          type='submit'
+          onClick={ handleDeleteGroup }
+        >
+          Delete Group
+        </button>
+      }
     </form>
   )
 };

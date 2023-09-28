@@ -6,15 +6,18 @@ import { usePathname } from "next/navigation";
 
 // components
 import Card from "../card/card.component";
+import FeaturedCard from "../featured-card/featured-card.component";
 
 // types
-import { Group, Product } from "@/app/api/api-types";
+import { Category, Group, Product } from "@/app/api/api-types";
+
 
 type CardGridProps = {
   items: Group[] | Product[];
+  pinnedItem?: Category;
 };
 
-const CardGrid: FC<CardGridProps> = ({ items }) => {
+const CardGrid: FC<CardGridProps> = ({ items, pinnedItem }) => {
   // state
   const pathname = usePathname();
   const [ segment, setSegment ] = useState<string | null>(null);
@@ -29,6 +32,10 @@ const CardGrid: FC<CardGridProps> = ({ items }) => {
 
   return (
     <section className="card-grid">
+      {
+        pinnedItem && <FeaturedCard category={ pinnedItem } />
+      }
+   
       { items?.map((item) =>
         <Card key={ item.id } item={ item } path={ segment }/>
       )}

@@ -5,6 +5,7 @@ import Header from "@/app/components/header/header.component";
 // api
 import { getGroupWithProducts } from "@/app/api/groups-api";
 
+
 const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
   // state
   const { slug } = params;

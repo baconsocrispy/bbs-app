@@ -19,7 +19,7 @@ const CategoryPage = async ({ params }: { params: { slug: string }}) => {
         imageUrl={ banner?.url }
         text={ name } 
       />
-      <CardGrid items={ groups } />
+      <CardGrid items={ groups } pinnedItem={ category }/>
     </main>
   )
 };
