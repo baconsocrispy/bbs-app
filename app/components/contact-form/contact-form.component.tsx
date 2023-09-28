@@ -1,13 +1,26 @@
 'use client'
+// library
+import { useState } from "react";
 
 // api
 import { submitContactForm } from "@/app/api/contact-api";
 
 const ContactForm = () => {
+  // state
+  const [ loading, setLoading ] = useState(false);
+
   // handler
   const handleSubmit = async (formData: FormData) => {
-    await submitContactForm(formData);
+    setLoading(true);
+    const response = await submitContactForm(formData);
+    if (response.ok) {
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
   };
+
+  if (loading) return <p>Sending message...</p>;
 
   return (
     <form
@@ -25,7 +38,7 @@ const ContactForm = () => {
         id="contact-form-first-name"
         className="contact-form__input"
         type="text"
-        name="first-name"
+        name="first_name"
       />
 
       {/* last name */}
@@ -39,7 +52,7 @@ const ContactForm = () => {
         id="contact-form-last-name"
         className="contact-form__input"
         type="text"
-        name="last-name"
+        name="last_name"
       />
 
       {/* email */}
@@ -70,7 +83,6 @@ const ContactForm = () => {
         className="contact-form__input"
         type="tel"
         name="phone"
-        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
       />
 
       {/* message */}
