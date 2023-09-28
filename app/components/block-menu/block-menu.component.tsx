@@ -96,6 +96,8 @@ const BlockMenu: FC<BlockMenuProps> = ({
                     onLoadingComplete={ () => onLoadHandler() }
                     src={ item.image.url }
                     alt={ item.name }
+                    // height={ 690 }
+                    // width={ 1600 }
                     fill
                   />
 
@@ -103,12 +105,6 @@ const BlockMenu: FC<BlockMenuProps> = ({
                     <h4 className="block-menu__header">
                       { item.name }
                     </h4>
-                  </div>
-                  
-                  <div className="block-menu__text-container">
-                    <p className="block-menu__text">
-                      { item.short_description }
-                    </p>
                   </div>
                 </Link>
               </li>

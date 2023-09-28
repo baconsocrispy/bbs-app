@@ -20,6 +20,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
   // state
   const [ name, setName ] = useState(category ? category.name : '');
   const [ short_description, setShortDescription ] = useState(category ? category.short_description : '');
+  const [ tagLine, setTagLine ] = useState(category ? category.tagLine : '');
   const router = useRouter();
 
   // handlers
@@ -71,6 +72,21 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
         name="category[short_description]"
         value={ short_description }
         onChange={ (e) => setShortDescription(e.target.value) }
+      />
+
+      {/* category tag line */}
+      <label
+        className="product-form__label" 
+        htmlFor="tag-line"
+      >
+        Tag Line
+      </label>
+      <input
+        id="tag-line"
+        className="product-form__input" 
+        name="category[tag_line]"
+        value={ tagLine }
+        onChange={ (e) => setTagLine(e.target.value) }
       />
 
       {/* category image */}

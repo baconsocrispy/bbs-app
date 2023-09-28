@@ -8,6 +8,7 @@ export type Category = {
   pinned: SerializedImage;
   short_description: string;
   slug: string;
+  tagLine: string;
 };
 
 export type Feature = {
