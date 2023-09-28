@@ -23,7 +23,7 @@ const FeaturedCard: FC<FeaturedCardProps> = ({ category }) => {
       </div>
 
       <div className="card__image-container">
-        <div className="card__link">
+        <div className="card__link" style={{ cursor: 'default'}}>
           <Image 
             className="card__image"
             src={ pinned?.url } 
