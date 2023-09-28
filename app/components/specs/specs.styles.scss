@@ -1,5 +1,15 @@
 .specs-section {
   padding: $padding-default;
+
+
+  @media (min-width: $breakpoint-lg) {
+    align-self: flex-start;
+    justify-self: flex-start;
+    border: 1px solid $color-white;
+    grid-column: 2 / 3;
+    grid-row: 2 / -1;
+  }
+
   &__header {
     text-transform: uppercase;
     font-family: $font-header;

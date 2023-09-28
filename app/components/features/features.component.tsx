@@ -11,9 +11,9 @@ type FeaturesProps = {
 const Features: FC<FeaturesProps> = ({ features, header }) => {
   return (
     <section className="features-section">
-      <h2 className="features-section__header">
+      <h3 className="features-section__header">
         { header ||= 'Features' }
-      </h2>
+      </h3>
 
       <ul className="features-section__list">
         { features.map((feature) => 

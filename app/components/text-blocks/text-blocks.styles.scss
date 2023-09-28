@@ -1,6 +1,10 @@
 .text-block-section {
   padding: $padding-default;
 
+  @media (min-width: $breakpoint-lg) {
+    grid-row: 3 / -1;
+  }
+
   &__list {
     list-style: none;
   }

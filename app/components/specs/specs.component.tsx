@@ -29,9 +29,9 @@ const Specs: FC<SpecsProps> = ({ specs }) => {
 
   return (
     <section className="specs-section">
-      <h2 className="specs-section__header">
+      <h3 className="specs-section__header">
         technical specs
-      </h2>
+      </h3>
       <ul className="specs-section__category-list">
         {
           Object.entries(sortedSpecs).map((category, index) => 
