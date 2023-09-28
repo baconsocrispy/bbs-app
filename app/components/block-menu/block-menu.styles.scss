@@ -59,10 +59,6 @@
     font-size: 3rem;
     text-decoration: none;
     text-transform: capitalize;
-
-    @media (min-width: $breakpoint-md) {
-      align-items: flex-start;
-    }
   }
 
   &__header-container {
