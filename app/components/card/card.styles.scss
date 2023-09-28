@@ -6,6 +6,7 @@
   padding: 2rem;
   gap: 1rem;
   background-color: $color-white;
+  border-top: 1px solid $color-white;
 
   @media (min-width: $breakpoint-md) {
     width: 100%;
