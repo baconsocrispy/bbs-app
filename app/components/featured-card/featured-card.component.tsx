@@ -23,13 +23,15 @@ const FeaturedCard: FC<FeaturedCardProps> = ({ category }) => {
       </div>
 
       <div className="card__image-container">
-        <Image 
-          className="card__image"
-          src={ pinned?.url } 
-          alt={ name }
-          width={ 690 }
-          height={ 690 }
-        />
+        <div className="card__link">
+          <Image 
+            className="card__image"
+            src={ pinned?.url } 
+            alt={ name }
+            width={ 690 }
+            height={ 690 }
+          />
+        </div>
       </div>
 
       <div className="card__text-container">
