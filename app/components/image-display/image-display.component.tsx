@@ -17,23 +17,35 @@ type ImageDisplayProps = {
 }
 
 const ImageDisplay: FC<ImageDisplayProps> = ({ defaultImage, images }) => {
+  // state
+  const [ currentImage, setCurrentImage ] = useState<SerializedImage>(defaultImage);
+
   return (
     <section className="image-display">
       <div className="image-display__image-container">
         <Image
           className="image-display__image" 
-          src={ defaultImage.url }
-          alt={ defaultImage.filename }
-          width={ 500 }
-          height={ 500 }
+          src={ currentImage.url }
+          alt={ currentImage.filename }
+          width={ 690 }
+          height={ 690 }
         />
       </div>
 
       <div className="image-display__thumbnail-container">
-        <Thumbnail image={ defaultImage } selected={ false }/>
+        <Thumbnail 
+          image={ defaultImage } 
+          selected={ false } 
+          onClick={ () => setCurrentImage(defaultImage) }
+        />
 
         { images?.map((image) => 
-          <Thumbnail key={ image.id } image={ image } selected={ false }/>
+          <Thumbnail 
+            key={ image.id } 
+            image={ image } 
+            selected={ false } 
+            onClick={ () => setCurrentImage(image) }
+          />
         )}
       </div>
     </section>

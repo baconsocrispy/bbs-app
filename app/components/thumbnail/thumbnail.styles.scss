@@ -1,8 +1,11 @@
 .thumbnail {
+  cursor: pointer;
   position: relative;
+  width: 90%;
 
   &__image {
     width: 100%;
+    object-fit: cover;
     border-radius: $border-radius;
   }
 }

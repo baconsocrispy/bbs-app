@@ -12,6 +12,7 @@ import Thumbnail from "../thumbnail/thumbnail.component";
 import { Product } from "@/app/api/api-types";
 import Link from "next/link";
 import Button from "../button/button.component";
+import ImageDisplay from "../image-display/image-display.component";
 
 type ProductProps = {
   product: Product;
@@ -32,25 +33,7 @@ const Product: FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="product">
-      <section className="product__image-section">
-        <div className="product__image-container">
-          <Image
-            className="product__image" 
-            src={ image?.url }
-            alt={ name }
-            width={ 500 }
-            height={ 500 }
-          />
-        </div>
-
-        <div className="product__thumbnail-container">
-          <Thumbnail image={ image } selected={ false }/>
-
-          { images.length && images.map((image) => 
-            <Thumbnail key={ image.id } image={ image } selected={ false }/>
-          )}
-        </div>
-      </section>
+      <ImageDisplay defaultImage={ image } images={ images } />
       
       <section className="product__summary-section">
         <h1 className="product__header">

@@ -1,5 +1,5 @@
 // library
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 
 // types
 import { SerializedImage } from "@/app/api/api-types";
@@ -9,11 +9,17 @@ type ThumbnailProps = {
   image: SerializedImage;
   selected: boolean;
   className?: string;
+  onClick: MouseEventHandler;
 };
 
-const Thumbnail: FC<ThumbnailProps> = ({ image, selected, className }) => {
+const Thumbnail: FC<ThumbnailProps> = ({ 
+  image, selected, className, onClick 
+}) => {
   return (
-    <div className={ `thumbnail ${ className }`}>
+    <div 
+      className={ `thumbnail ${ className }`} 
+      onClick={ onClick }
+    >
       <Image
         className="thumbnail__image"
         src={ image?.url }
