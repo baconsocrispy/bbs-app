@@ -56,19 +56,20 @@
     height: 100%;
     padding: $padding-default;
     color: inherit;
-    font-size: 3rem;
+    font-size: 4rem;
     text-decoration: none;
     text-transform: capitalize;
   }
 
   &__header-container {
     padding: $padding-default;
+    background-color: $color-black-transparent;
+    border-radius: $border-radius;
   }
 
   &__image {
     z-index: -1;
     object-fit: cover;
-    // object-position: 50% 0%;
     border-radius: $border-radius;
   }
 
