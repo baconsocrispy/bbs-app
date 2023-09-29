@@ -12,6 +12,7 @@ const ContactForm = () => {
   // handler
   const handleSubmit = async (formData: FormData) => {
     setLoading(true);
+    
     const response = await submitContactForm(formData);
     if (response.ok) {
       setLoading(false);
