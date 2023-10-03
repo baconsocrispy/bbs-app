@@ -66,6 +66,7 @@ export type Spec = {
   id?: number;
   product_id?: number;
   text: string;
+  _destroy?: boolean;
 };
 
 export type TextBlock = {

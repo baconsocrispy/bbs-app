@@ -107,15 +107,16 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       onSubmit={ handleSubmit(submitHandler) }
     >
       <section className="product-form__section">
+        <h2 className="product-form__sub-header">General</h2>
         {/* product name */}
         <label 
           className="product-form__label"
-          htmlFor="name"
+          htmlFor="product-name"
         >
-          Name
+          Name*
         </label>
         <input
-          id="name" 
+          id="product-name" 
           className="product-form__input"
           type="text"
           autoComplete="false"
@@ -127,12 +128,12 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         {/* product description */}
         <label
           className="product-form__label" 
-          htmlFor="short-description"
+          htmlFor="product-short-description"
         >
           Description
         </label>
         <textarea
-          id="short-description"
+          id="product-short-description"
           className="product-form__textarea" 
           { ...register('product.short_description')}
           value={ shortDescription }
@@ -144,7 +145,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           className="product-form__label"
           htmlFor="product-default-image"
         >
-          Default Image
+          Default Image*
         </label>
         <input 
           id="product-default-image"
@@ -171,12 +172,15 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         />
 
         {/* group id */}
-        <label htmlFor="group-select">
-          Product Group
+        <label 
+          className="product-form__label"
+          htmlFor="group-select"
+        >
+          product group*
         </label>
         <select
           id="group-select"
-          className="product-form__select"
+          className="product-form__input"
           { ...register('product.group_id') }
         >
           { groups?.map((group) => 
@@ -186,15 +190,15 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           )}
         </select>
       </section>
-      
-      <FeaturesGroup 
-        productFeatures={ product?.features }
-        register={ register }
-        unregister={ unregister }
-      />
 
       <SpecsGroup 
         productSpecs={ product?.specs }
+        register={ register }
+        unregister={ unregister }
+      />
+      
+      <FeaturesGroup 
+        productFeatures={ product?.features }
         register={ register }
         unregister={ unregister }
       />

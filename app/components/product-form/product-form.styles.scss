@@ -1,20 +1,35 @@
 .product-form {
   display: grid;
   grid-template-rows: repeat(4, max-content);
-  gap: 1rem;
-  padding: 2rem;
+  grid-template-columns: max-content max-content;
+  gap: $padding-lg;
+  padding: $padding-lg;
+  text-transform: capitalize;
 
   &__section {
     display: grid;
+    gap: $padding-default;
+  }
+
+  &__input {
+    padding: $padding-default;
+    width: 50%;
   }
 
   &__textarea {
+    padding: $padding-default;
     height: 20rem;
   }
 
   &__button {
     cursor: pointer;
     justify-self: center;
+    align-self: center;
     padding: $padding-default;
+  }
+
+  &__spec-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

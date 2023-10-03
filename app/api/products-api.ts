@@ -149,6 +149,11 @@ export const encodeProductFormData = (
       spec.id && formData.append(
         `product[specs_attributes][${ index }][id]`, spec.id.toString()
       );
+
+      // _destroy
+      spec._destroy && formData.append(
+        `product[specs_attributes][${ index }][_destroy]`, spec._destroy.toString()
+      );
     })
   }
 

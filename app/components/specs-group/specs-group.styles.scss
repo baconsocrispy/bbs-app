@@ -1,0 +1,41 @@
+.specs-group {
+  &__form {
+    display: grid;
+    margin-top: $padding-default;
+    gap: $padding-default;
+  }
+
+  &__input {
+    padding: $padding-default;
+  }
+
+  &__list {
+    display: grid;
+    gap: $padding-default;
+    margin-top: $padding-default;
+    list-style: none;
+  }
+
+  &__list-header {
+
+  }
+
+  &__item {
+    display: grid;
+    gap: $padding-default;
+    grid-template-columns: repeat(2, 1fr) max-content;
+    width: 100%;
+
+    &--deleted {
+      visibility: hidden;
+      position: absolute;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    justify-self: center;
+    align-self: center;
+    padding: $padding-default;
+  }
+}
