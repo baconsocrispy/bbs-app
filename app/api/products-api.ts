@@ -133,6 +133,11 @@ export const encodeProductFormData = (
       feature.id && formData.append(
         `product[features_attributes][${ index }][id]`, feature.id.toString()
       );
+
+      // _destroy
+      feature._destroy && formData.append(
+        `product[features_attributes][${ index }][_destroy]`, feature._destroy.toString()
+      );
     })
   }
 
@@ -171,6 +176,11 @@ export const encodeProductFormData = (
       // id
       textBlock.id && formData.append(
         `product[text_blocks_attributes][${ index }][id]`, textBlock.id.toString()
+      );
+
+      // _destroy
+      textBlock._destroy && formData.append(
+        `product[text_blocks_attributes][${ index }][_destroy]`, textBlock._destroy.toString()
       );
     })
   }

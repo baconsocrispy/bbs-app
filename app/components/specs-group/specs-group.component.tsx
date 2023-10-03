@@ -1,21 +1,26 @@
 'use client'
 
 // library
-import { FC, MouseEventHandler, MouseEvent, useState } from "react";
+import { 
+  FC, 
+  MouseEvent,
+  MouseEventHandler, 
+  useState 
+} from "react";
+
+import { UseFormRegister } from "react-hook-form";
 
 // types
 import { Spec } from "@/app/api/api-types";
-import { UseFormRegister, UseFormUnregister } from "react-hook-form";
 import { ProductFormData } from "../product-form/product-form.component";
 
 type SpecsGroupProps = {
   productSpecs?: Spec[];
   register: UseFormRegister<ProductFormData>;
-  unregister: UseFormUnregister<ProductFormData>;
 }
 
 const SpecsGroup: FC<SpecsGroupProps> = ({ 
-  productSpecs, register, unregister 
+  productSpecs, register 
 }) => {
   // state
   const [ specs, setSpecs ] = useState(productSpecs ||= []);
@@ -106,10 +111,12 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
       </div>
 
       <ul className="specs-group__list">
+        {/* header row */}
         <li className="specs-group__item">
           <h3 className="specs-group__list-header">Category</h3>
           <h3 className="specs-group__list-header">Text</h3>
         </li>
+
         { specs?.map((spec, index) => 
           <li 
             key={ index }
@@ -118,7 +125,6 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
             }
           >
             <input
-              id="spec-form-category"
               className="specs-group__category"
               type="text"
               { ...register(`product.specs_attributes.${ index }.category`) }
@@ -126,7 +132,6 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
               readOnly
             />
             <input
-              id="spec-form-text"
               className="specs-group__text"
               type="text"
               { ...register(`product.specs_attributes.${ index }.text`) }

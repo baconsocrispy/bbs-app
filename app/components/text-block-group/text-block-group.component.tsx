@@ -1,21 +1,26 @@
 'use client'
 
 // library
-import { FC, MouseEventHandler, useState } from "react";
+import { 
+  FC, 
+  MouseEvent, 
+  MouseEventHandler, 
+  useState 
+} from "react";
+
+import { UseFormRegister } from "react-hook-form";
 
 // types
 import { TextBlock } from "@/app/api/api-types";
-import { UseFormRegister, UseFormUnregister } from "react-hook-form";
 import { ProductFormData } from "../product-form/product-form.component";
 
 type TextBlockGroupProps = {
   productTextBlocks?: TextBlock[];
   register: UseFormRegister<ProductFormData>;
-  unregister: UseFormUnregister<ProductFormData>;
 }
 
 const TextBlockGroup: FC<TextBlockGroupProps> = ({ 
-  productTextBlocks, register, unregister 
+  productTextBlocks, register 
 }) => {
   // state
   const [ textBlocks, setTextBlocks ] = useState(productTextBlocks ? productTextBlocks : []);
@@ -46,57 +51,113 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
     setErrorMessage('');
   };
 
-  return (
-    <section className='product-form__section'>
-      <h2>Text Blocks</h2>
+  const handleDeleteTextBlock = (
+    event: MouseEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    // prevent form submit
+    event.preventDefault();
 
-      <div className="text-block-form">
-        <label htmlFor="">title</label>
+    // copy specs array
+    const updatedTextBlocks = [ ...textBlocks ];
+
+    // add destroy flag to deleted spec
+    updatedTextBlocks[index] = { ...updatedTextBlocks[index], _destroy: true };
+
+    setTextBlocks(updatedTextBlocks);
+  };
+
+  return (
+    <section className='text-block-group'>
+      <h2 className="text-block-group__header">Text Blocks</h2>
+
+      <div className="text-block-group__form">
+        {/* title */}
+        <label 
+          className="text-block-group__label"
+          htmlFor="text-block-form-title"
+        >title</label>
         <input 
+          id="text-block-form-title"
+          className="text-block-group__input"
           type="text"
           value={ title }
           onChange={ (e) => setTitle(e.target.value) }
         />
-        <label htmlFor="">text</label>
+
+        {/* text */}
+        <label 
+          className="text-block-group__label"
+          htmlFor="text-block-form-text"
+        >
+          text*
+        </label>
         <input
+          id="text-block-form-text"
+          className="text-block-group__input"
           type="text"
           value={ text }
           onChange={ (e) => setText(e.target.value) }
         />
-        <p>{ errorMessage !== '' && errorMessage }</p>
+        <p className="text-block-group__error-message">
+          { errorMessage !== '' && errorMessage }
+        </p>
       </div>
 
-      <button onClick={ handleAddTextBlock }>
+      <button 
+        className="text-block-group__button"
+        onClick={ handleAddTextBlock }
+      >
         Add Text Block
       </button>
 
-      <ul>
+      <ul className="text-block-group__list">
+        <li className="text-block-group__item">
+          <h3 className="text-block-group__list-header">Title</h3>
+          <h3 className="text-block-group__list-header">Text</h3>
+        </li>
         { textBlocks?.map((textBlock, index) => 
-          <li key={ index }>
-            <div className="text-block-form">
-              <label htmlFor="">
-                title
-              </label>
-              <input 
-                type="text"
-                { ...register(`product.text_blocks_attributes.${ index }.title`) }
-                value={ textBlock.title }
-              />
-              <label htmlFor="">text</label>
-              <input
-                type="text"
-                { ...register(`product.text_blocks_attributes.${ index }.text`) }
-                value={ textBlock.text }
-              />
+          <li 
+            key={ index }
+            className={ textBlock._destroy ? 
+              'text-block-group__item--deleted' : 'text-block-group__item' 
+            }
+          >
+            <input 
+              className="text-block-group__title"
+              type="text"
+              { ...register(`product.text_blocks_attributes.${ index }.title`) }
+              value={ textBlock.title }
+            />
 
-              { textBlock.id &&
-                <input 
-                  type="hidden"
-                  { ...register(`product.text_blocks_attributes.${ index }.id`) }
-                  value={ textBlock.id }
-                />
-              }
-            </div>
+            <input
+              className="text-block-group__text"
+              type="text"
+              { ...register(`product.text_blocks_attributes.${ index }.text`) }
+              value={ textBlock.text }
+            />
+
+            { textBlock.id &&
+              <input 
+                type="hidden"
+                { ...register(`product.text_blocks_attributes.${ index }.id`) }
+                value={ textBlock.id }
+              />
+            }
+
+            { textBlock._destroy && 
+              <input 
+                type="hidden"
+                { ...register(`product.text_blocks_attributes.${ index }._destroy`) }
+                value={ textBlock._destroy.toString() }
+              />
+            }
+
+            <button 
+              onClick={ (e) => handleDeleteTextBlock(e, index) }
+            >
+              Delete
+            </button>
           </li>
         )}
       </ul>

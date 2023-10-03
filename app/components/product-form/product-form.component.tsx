@@ -194,19 +194,16 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       <SpecsGroup 
         productSpecs={ product?.specs }
         register={ register }
-        unregister={ unregister }
       />
       
       <FeaturesGroup 
         productFeatures={ product?.features }
         register={ register }
-        unregister={ unregister }
       />
 
       <TextBlockGroup
         productTextBlocks={ product?.textBlocks }
         register={ register }
-        unregister={ unregister }
       />
 
 

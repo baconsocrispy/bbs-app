@@ -1,21 +1,26 @@
 'use client'
 
 // library
-import { FC, MouseEventHandler, useState } from "react";
+import { 
+  FC, 
+  MouseEvent,
+  MouseEventHandler, 
+  useState 
+} from "react";
+
+import { UseFormRegister } from "react-hook-form";
 
 // types
 import { Feature } from "@/app/api/api-types";
-import { UseFormRegister, UseFormUnregister } from "react-hook-form";
 import { ProductFormData } from "../product-form/product-form.component";
 
 type FeaturesGroupProps = {
   productFeatures?: Feature[];
   register: UseFormRegister<ProductFormData>;
-  unregister: UseFormUnregister<ProductFormData>;
 }
 
 const FeaturesGroup: FC<FeaturesGroupProps> = ({ 
-  productFeatures, register, unregister 
+  productFeatures, register 
 }) => {
   // state
   const [ features, setFeatures ] = useState(productFeatures ? productFeatures : []);
@@ -46,57 +51,116 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
     setErrorMessage('');
   };
 
-  return (
-    <section className='product-form__section'>
-      <h2>Features</h2>
+  const handleDeleteFeature = (
+    event: MouseEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    // prevent form submit
+    event.preventDefault();
 
-      <div className="feature-form">
-        <label htmlFor="">highlight</label>
+    // copy features array
+    const updatedFeatures = [ ...features ];
+
+    // add destroy flag to deleted spec
+    updatedFeatures[index] = { ...updatedFeatures[index], _destroy: true };
+
+    setFeatures(updatedFeatures);
+  };
+
+  return (
+    <section className='features-group'>
+      <h2 className="features-group__header">Features</h2>
+
+      <div className="features-group__form">
+        {/* highlight */}
+        <label
+          className="features-group__label" 
+          htmlFor="feature-form-highlight"
+        >
+          highlight
+        </label>
         <input 
+          id="feature-form-highlight"
+          className="features-group__input"
           type="text"
           value={ highlight }
           onChange={ (e) => setHighlight(e.target.value) }
         />
-        <label htmlFor="">text</label>
+
+        {/* text */}
+        <label 
+          className="features-group__label"
+          htmlFor="feature-form-text">text*</label>
         <input
+          id="feature-form-text"
+          className="features-group__input"
           type="text"
           value={ text }
           onChange={ (e) => setText(e.target.value) }
         />
-        <p>{ errorMessage !== '' && errorMessage }</p>
+        <p className="features-group__error-message">
+          { errorMessage !== '' && errorMessage }
+        </p>
       </div>
 
-      <button onClick={ handleAddFeature }>
+      <button 
+        className="features-group__button"
+        onClick={ handleAddFeature }
+      >
         Add Feature
       </button>
 
-      <ul>
-        { features?.map((feature, index) => 
-          <li key={ index }>
-            <div className="feature-form">
-              <label htmlFor="">
-                highlight
-              </label>
-              <input 
-                type="text"
-                { ...register(`product.features_attributes.${ index }.highlight`) }
-                value={ feature.highlight }
-              />
-              <label htmlFor="">text</label>
-              <input
-                type="text"
-                { ...register(`product.features_attributes.${ index }.text`) }
-                value={ feature.text }
-              />
+      <ul className="features-group__list">
+        {/* header row */}
+        <li className="features-group__item">
+          <h3 className="features-group__list-header">Highlight</h3>
+          <h3 className="features-group__list-header">Text</h3>
+        </li>
 
-              { feature.id &&
-                <input 
-                  type="hidden"
-                  { ...register(`product.features_attributes.${ index }.id`) }
-                  value={ feature.id }
-                />
-              }
-            </div>
+        { features?.map((feature, index) => 
+          <li 
+            key={ index }
+            className={ feature._destroy ? 
+              'features-group__item--deleted' : 'features-group__item' 
+            }
+          >
+            <input 
+              className="features-group__highlight"
+              type="text"
+              { ...register(`product.features_attributes.${ index }.highlight`) }
+              value={ feature.highlight }
+              readOnly
+            />
+
+            <input
+              className="features-group__text"
+              type="text"
+              { ...register(`product.features_attributes.${ index }.text`) }
+              value={ feature.text }
+              readOnly
+            />
+
+            { feature.id &&
+              <input 
+                type="hidden"
+                { ...register(`product.features_attributes.${ index }.id`) }
+                value={ feature.id }
+              />
+            }
+
+            { feature._destroy && 
+              <input 
+                type="hidden"
+                { ...register(`product.features_attributes.${ index }._destroy`) }
+                value={ feature._destroy.toString() }
+              />
+            }
+
+            <button 
+              onClick={ (e) => handleDeleteFeature(e, index) }
+            >
+              Delete
+            </button>            
           </li>
         )}
       </ul>

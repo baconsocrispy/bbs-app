@@ -18,6 +18,7 @@ export type Feature = {
   order?: number;
   product_id?: number;
   text: string;
+  _destroy?: boolean;
 };
 
 export type Group = {
@@ -76,4 +77,5 @@ export type TextBlock = {
   product_id?: number;
   title?: string;
   text: string;
+  _destroy?: boolean;
 };
