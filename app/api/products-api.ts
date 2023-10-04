@@ -88,8 +88,7 @@ export const deleteProduct = async (
       },
     });
 
-    if (response.ok) {
-      revalidate('/');
+    if (response.ok) { revalidate('/');
     } else {
       console.log('Error deleting product')
     }
