@@ -99,8 +99,8 @@ export const deleteProduct = async (
 
 // format form data for api request
 export const encodeProductFormData = (
-  data: ProductFormData, 
-  defaultImage: File | null, 
+  data: ProductFormData,
+  defaultImage: File | null,
   images: FileList | null
 ): FormData => {
   // create new formData object
@@ -116,7 +116,7 @@ export const encodeProductFormData = (
 
   // product images
   if (defaultImage) {
-    formData.append('product[default_image]', defaultImage)
+    formData.append('product[default_image]', defaultImage);
   }
 
   if (images) {
@@ -124,7 +124,7 @@ export const encodeProductFormData = (
     const imageArray = Array.from(images);
 
     for (const image of imageArray) {
-      formData.append('product[product_images][]', image)
+      formData.append('product[product_images][]', image);
     }
   }
 

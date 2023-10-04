@@ -54,6 +54,7 @@ type ProductFormProps = {
 const ProductForm: FC<ProductFormProps> = ({ product }) => {
   // form state
   const [ defaultImage, setDefaultImage ] = useState<File | null>(null);
+  const [ groupId, setGroupId ] = useState<number | undefined>(product ? product.groupId : undefined);
   const [ groups, setCategories ] = useState<Group[] | null>(null);
   const [ images, setImages ] = useState<FileList | null>(null);
   const [ name, setName ] = useState(product ? product.name : '');
@@ -93,9 +94,9 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         await updateProduct(product.slug, encodedData) :
         await createProduct(encodedData)
       router.push('/');
-    } catch {
-      // setLoading(false);
-      console.log(loading)
+    } catch (error) {
+      setLoading(false);
+      console.error('Something went wrong:', error);
     }
   };
 
@@ -205,9 +206,15 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           id="group-select"
           className="product-form__input"
           { ...register('product.group_id') }
+          value={ groupId }
+          onChange={ (e) => setGroupId(Number(e.target.value)) }
         >
           { groups?.map((group) => 
-            <option key={ group.id } value={ group.id }>
+            <option 
+              key={ group.id } 
+              value={ group.id }
+              selected={ group.id === groupId }
+            >
               { group.name }
             </option>
           )}

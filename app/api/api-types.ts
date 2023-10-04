@@ -44,6 +44,7 @@ export type Product = {
   created_at: string;
   features: Feature[];
   featuresHeader?: string;
+  groupId: number;
   id: number;
   name: string;
   image: SerializedImage;
