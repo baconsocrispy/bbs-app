@@ -48,9 +48,9 @@ const Product: FC<ProductProps> = ({ product }) => {
         <Button href="/contact" className="product__cta" text="Inquire" />
       </section>
 
-      { specs && <Specs specs={ specs } /> }
-      { textBlocks && <TextBlocks textBlocks={ textBlocks } /> }
-      { features && <Features features={ features } header={ featuresHeader }/> }
+      { specs.length && <Specs specs={ specs } /> }
+      { textBlocks.length && <TextBlocks textBlocks={ textBlocks } /> }
+      { features.length && <Features features={ features } header={ featuresHeader }/> }
     </div>
   )
 }
