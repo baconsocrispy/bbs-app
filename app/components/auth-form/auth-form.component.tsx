@@ -38,7 +38,6 @@ const AuthForm: FC<AuthFormProps> = ({
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors }
   } = useForm<AuthFormData>();
 

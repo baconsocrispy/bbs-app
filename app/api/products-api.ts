@@ -76,14 +76,26 @@ export const updateProduct = async (
 
 export const deleteProduct = async (
   slug: string
-): Promise<Product> => {
-  const response = await backendUrlEncodedRequest(
-    'DELETE', `${ baseApiUrl( )}/v1/products/${ slug }`
-  );
-  
-  revalidate('/');
+): Promise<void> => {
+  const url = `${ baseApiUrl() }/v1/products/${ slug }`;
 
-  return response.json();
+  try {
+    const response = await fetch(url, {
+      credentials: 'include',
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Basic ${ doorkeeperCredentials() }`,
+      },
+    });
+
+    if (response.ok) {
+      revalidate('/');
+    } else {
+      console.log('Error deleting product')
+    }
+  } catch (error) {
+    console.error('An error occurred: ', error);
+  };
 };
 
 // format form data for api request

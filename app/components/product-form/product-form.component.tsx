@@ -1,7 +1,14 @@
 'use client'
 
 // library
-import { FC, useState, useEffect, ChangeEventHandler, MouseEventHandler } from "react";
+import { 
+  ChangeEventHandler, 
+  FC, 
+  MouseEventHandler,
+  useEffect, 
+  useState
+} from "react";
+
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -21,7 +28,13 @@ import {
 import { getAllGroups } from "@/app/api/groups-api";
 
 // types
-import { Feature, Group, Product, Spec, TextBlock } from "@/app/api/api-types";
+import { 
+  Feature, 
+  Group, 
+  Product, 
+  Spec, 
+  TextBlock 
+} from "@/app/api/api-types";
 
 export type ProductFormData = {
   product: {
@@ -56,7 +69,6 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   const {
     handleSubmit,
     register,
-    unregister,
     formState: { errors }
   } = useForm<ProductFormData>();
 
@@ -71,11 +83,30 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
 
   // handlers
   const submitHandler: SubmitHandler<ProductFormData> = async (formData: ProductFormData) => {
+    setLoading(true);
+
+    // format form data for fetch request
     const encodedData = encodeProductFormData(formData, defaultImage, images);
-    product ? 
-      await updateProduct(product.slug, encodedData) :
-      await createProduct(encodedData)
-    router.push('/');
+
+    try {
+      product ? 
+        await updateProduct(product.slug, encodedData) :
+        await createProduct(encodedData)
+      router.push('/');
+    } catch {
+      // setLoading(false);
+      console.log(loading)
+    }
+  };
+
+  const handleDeleteProduct: MouseEventHandler = async (e) => {
+    // prevent form submit
+    e.preventDefault();
+
+    if (product) {
+      await deleteProduct(product.slug);
+      router.push('/');
+    }
   };
 
   const defaultImageChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -88,14 +119,6 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
     e.target.files ?
       setImages(e.target.files) :
       setImages(null)
-  };
-
-  const handleDeleteProduct: MouseEventHandler = async (e) => {
-    e.preventDefault();
-    if (product) {
-      await deleteProduct(product.slug);
-      router.push('/');
-    }
   };
 
   if (loading) return <p>Loading...</p>;

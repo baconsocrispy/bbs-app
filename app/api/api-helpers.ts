@@ -1,6 +1,5 @@
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
-import { ProductFormData } from "../components/product-form/product-form.component";
 
 // base api url
 export const baseApiUrl = () => {
@@ -11,7 +10,7 @@ export const baseApiUrl = () => {
 export const backendUrlEncodedRequest = async (
   method: string,
   url: string,
-  data: AuthFormData | null = null
+  data: AuthFormData | undefined = undefined
 ) => {
   const response = await fetch(url, {
     credentials: 'include',
@@ -27,9 +26,9 @@ export const backendUrlEncodedRequest = async (
 
 // convert form data into URLSearchParams format
 const urlEncodeFormData = (
-  data: AuthFormData | null
-): URLSearchParams | null => {
-  if (!data) return null;
+  data: AuthFormData | undefined
+): URLSearchParams | undefined => {
+  if (!data) return;
 
   // url encode form data
   const params = new URLSearchParams();
