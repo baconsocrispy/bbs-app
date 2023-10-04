@@ -2,9 +2,11 @@
   position: relative;
   display: flex;
   justify-content: center;
+  
   color: $color-black;
   overflow: hidden;
   background-color: $color-black;
+ 
 
   &--stacked {
     flex-direction: column;
