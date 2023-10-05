@@ -1,0 +1,9 @@
+.groups-group {
+  &__list {
+    list-style: none;
+  }
+
+  &__label {
+    margin-left: $padding-default;
+  }
+}

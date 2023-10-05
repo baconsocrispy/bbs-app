@@ -100,8 +100,8 @@ export const deleteProduct = async (
 // format form data for api request
 export const encodeProductFormData = (
   data: ProductFormData,
-  defaultImage: File | null,
-  images: FileList | null
+  defaultImage?: File,
+  images?: FileList
 ): FormData => {
   // create new formData object
   const formData = new FormData();
@@ -112,7 +112,6 @@ export const encodeProductFormData = (
   // product attributes
   formData.append('product[name]', data.product.name);
   formData.append('product[short_description]', data.product.short_description);
-  formData.append('product[group_id]', data.product.group_id.toString());
 
   // product images
   if (defaultImage) {
@@ -148,6 +147,26 @@ export const encodeProductFormData = (
       // _destroy
       feature._destroy && formData.append(
         `product[features_attributes][${ index }][_destroy]`, feature._destroy.toString()
+      );
+    })
+  }
+
+  // groups
+  if (data.product.product_groupings_attributes) {
+    data.product.product_groupings_attributes.forEach((grouping, index) => {
+      // group_id
+      formData.append(
+        `product[product_groupings_attributes][${ index }][group_id]`, grouping.group_id.toString()
+      );
+
+      // id
+      grouping.id && formData.append(
+        `product[product_groupings_attributes][${ index }][id]`, grouping.id.toString()
+      );
+
+      // _destroy
+      grouping._destroy && formData.append(
+        `product[product_groupings_attributes][${ index }][_destroy]`, grouping._destroy.toString()
       );
     })
   }

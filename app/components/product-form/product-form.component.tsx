@@ -32,14 +32,16 @@ import {
   Feature, 
   Group, 
   Product, 
+  ProductGrouping, 
   Spec, 
   TextBlock 
 } from "@/app/api/api-types";
+import GroupsGroup from "../groups-group/groups-group.component";
 
 export type ProductFormData = {
   product: {
     features_attributes: Feature[];
-    group_id: number;
+    product_groupings_attributes: ProductGrouping[];
     name: string;
     short_description: string;
     specs_attributes: Spec[];
@@ -53,10 +55,9 @@ type ProductFormProps = {
 
 const ProductForm: FC<ProductFormProps> = ({ product }) => {
   // form state
-  const [ defaultImage, setDefaultImage ] = useState<File | null>(null);
-  const [ groupId, setGroupId ] = useState<number | undefined>(product ? product.groupId : undefined);
-  const [ groups, setCategories ] = useState<Group[] | null>(null);
-  const [ images, setImages ] = useState<FileList | null>(null);
+  const [ defaultImage, setDefaultImage ] = useState<File | undefined>(undefined);
+  const [ groups, setGroups ] = useState<Group[] | undefined>(undefined);
+  const [ images, setImages ] = useState<FileList | undefined>(undefined);
   const [ name, setName ] = useState(product ? product.name : '');
   const [ shortDescription, setShortDescription ] = useState(product ? product.short_description : '');
   
@@ -77,7 +78,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   useEffect(() => {
     const getGroups = async () => {
       const groups = await getAllGroups();
-      setCategories(groups);
+      setGroups(groups);
     };
     groups ? setLoading(false) : getGroups();
   }, [ groups ]);
@@ -113,13 +114,13 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   const defaultImageChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     e.target.files ? 
       setDefaultImage(e.target.files[0]) :
-      setDefaultImage(null)
+      setDefaultImage(undefined)
   };
 
   const imagesChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     e.target.files ?
       setImages(e.target.files) :
-      setImages(null)
+      setImages(undefined)
   };
 
   if (loading) return <p>Loading...</p>;
@@ -194,32 +195,15 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           multiple
           onChange={ imagesChange }
         />
-
-        {/* group id */}
-        <label 
-          className="product-form__label"
-          htmlFor="group-select"
-        >
-          product group*
-        </label>
-        <select
-          id="group-select"
-          className="product-form__input"
-          { ...register('product.group_id') }
-          value={ groupId }
-          onChange={ (e) => setGroupId(Number(e.target.value)) }
-        >
-          { groups?.map((group) => 
-            <option 
-              key={ group.id } 
-              value={ group.id }
-              selected={ group.id === groupId }
-            >
-              { group.name }
-            </option>
-          )}
-        </select>
       </section>
+
+      { groups && 
+        <GroupsGroup 
+          groups={ groups }
+          productGroupings={ product?.productGroupings }
+          register={ register }
+        /> 
+      }
 
       <SpecsGroup 
         productSpecs={ product?.specs }

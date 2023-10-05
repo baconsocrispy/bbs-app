@@ -44,16 +44,24 @@ export type Product = {
   created_at: string;
   features: Feature[];
   featuresHeader?: string;
-  groupId: number;
   id: number;
   name: string;
   image: SerializedImage;
   images: SerializedImage[];
+  productGroupings: ProductGrouping[];
   short_description: string;
   slug: string;
   specs: Spec[];
   textBlocks: TextBlock[];
 };
+
+export type ProductGrouping = {
+  group_id: number;
+  group_name?: string;
+  id?: number;
+  product_id?: number;
+  _destroy?: boolean;
+}
 
 export type SerializedImage = {
   byteSize: number;
