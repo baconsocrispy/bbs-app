@@ -71,6 +71,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors }
   } = useForm<ProductFormData>();
 
@@ -202,6 +203,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           groups={ groups }
           productGroupings={ product?.productGroupings }
           register={ register }
+          setValue={ setValue }
         /> 
       }
 

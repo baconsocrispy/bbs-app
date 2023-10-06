@@ -168,6 +168,8 @@ export const encodeProductFormData = (
       grouping._destroy && formData.append(
         `product[product_groupings_attributes][${ index }][_destroy]`, grouping._destroy.toString()
       );
+
+      console.log(grouping._destroy)
     })
   }
 

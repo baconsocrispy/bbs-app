@@ -2,7 +2,7 @@
 
 // library
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { useForm, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 // types
 import { Group, ProductGrouping } from "@/app/api/api-types";
@@ -12,10 +12,11 @@ type GroupsGroupProps = {
   groups: Group[];
   productGroupings?: ProductGrouping[];
   register: UseFormRegister<ProductFormData>;
+  setValue: UseFormSetValue<ProductFormData>;
 };
 
 const GroupsGroup: FC<GroupsGroupProps> = ({ 
-  groups, productGroupings, register
+  groups, productGroupings, register, setValue
 }) => {
   // state
   const [ groupings, setGroupings ] = useState<ProductGrouping[]>([]);
@@ -84,8 +85,11 @@ const GroupsGroup: FC<GroupsGroupProps> = ({
     // copy groupings
     const updatedGroupings = [ ...groupings ];
 
-     // add destroy flag
+     // update _destroy attribute
      updatedGroupings[index] = { ...updatedGroupings[index], _destroy: !isChecked };
+
+     // update registry
+     setValue(`product.product_groupings_attributes.${ index }._destroy`, !isChecked);
 
      // update groupings
      setGroupings(updatedGroupings);
@@ -131,13 +135,12 @@ const GroupsGroup: FC<GroupsGroupProps> = ({
                 />
               }
 
-              { grouping._destroy &&
-                  <input 
-                    type="hidden"
-                    value={ grouping._destroy.toString() }
-                    { ...register(`product.product_groupings_attributes.${ index }._destroy`) }
-                  />
-              }
+              <input 
+                type="hidden"
+                value={ grouping._destroy?.toString() }
+                { ...register(`product.product_groupings_attributes.${ index }._destroy`) }
+              />
+              
             </li>  
           )}
         </ul>
