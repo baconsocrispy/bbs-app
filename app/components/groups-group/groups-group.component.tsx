@@ -2,7 +2,7 @@
 
 // library
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { useForm, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 // types
 import { Group, ProductGrouping } from "@/app/api/api-types";
