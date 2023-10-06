@@ -26,7 +26,10 @@ const GroupsGroup: FC<GroupsGroupProps> = ({
   useEffect(() => {
     if (!groupings.length) {
       const convertToProductGrouping = (group: Group): ProductGrouping => {
-        return { group_id: group.id, group_name: group.name };
+        return { 
+          group_id: group.id, 
+          group_name: group.name
+        };
       };
 
       groups.map((group) => {
@@ -56,10 +59,11 @@ const GroupsGroup: FC<GroupsGroupProps> = ({
 
         const newGrouping = {
           ...currentGrouping,
-          ...matchingGrouping
-        }
+          ...matchingGrouping,
+          _destroy: matchingGrouping?.id ? false : true
+        };
 
-        mergedGroupings.push(newGrouping)
+        mergedGroupings.push(newGrouping);
       }
 
       setGroupings(mergedGroupings);
