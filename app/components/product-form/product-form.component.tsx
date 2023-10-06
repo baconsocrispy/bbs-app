@@ -222,8 +222,6 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         register={ register }
       />
 
-
-
       {/* submit button */}
       <button 
         className="product-form__button"
