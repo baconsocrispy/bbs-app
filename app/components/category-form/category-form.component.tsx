@@ -29,6 +29,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
       category ? 
         await updateCategory(category.slug, formData) : 
         await createCategory(formData);
+      router.refresh();
       router.push('/');
 
     } catch (error) {

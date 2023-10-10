@@ -27,6 +27,7 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
     heroContent ?
       await updateHeroContent(heroContent.id, formData) :
       await createHeroContent(formData)
+    router.refresh();
     router.push('/');
   };
 

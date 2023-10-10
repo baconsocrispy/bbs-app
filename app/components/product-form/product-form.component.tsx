@@ -85,7 +85,9 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   }, [ groups ]);
 
   // handlers
-  const submitHandler: SubmitHandler<ProductFormData> = async (formData: ProductFormData) => {
+  const submitHandler: SubmitHandler<ProductFormData> = async (
+    formData: ProductFormData
+  ) => {
     setLoading(true);
 
     // format form data for fetch request
@@ -95,6 +97,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       product ? 
         await updateProduct(product.slug, encodedData) :
         await createProduct(encodedData)
+      router.refresh();
       router.push('/');
     } catch (error) {
       setLoading(false);
@@ -108,6 +111,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
 
     if (product) {
       await deleteProduct(product.slug);
+      router.refresh();
       router.push('/');
     }
   };

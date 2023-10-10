@@ -37,6 +37,7 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
       group ? 
         await updateGroup(group.slug, formData) :
         await createGroup(formData)
+      router.refresh();
       router.push('/');
     } catch (error) {
       console.log(error);
@@ -47,6 +48,7 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
     e.preventDefault();
     if (group) {
       await deleteGroup(group.slug);
+      router.refresh();
       router.push('/');
     }
   };
