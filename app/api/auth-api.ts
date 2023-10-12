@@ -32,32 +32,9 @@ export const revokeAccessToken = async () => {
 };
 
 // get current user from doorkeeper access token stored in cookie
-// export const getUserFromAccessToken = async () => {
-//   const response = await backendUrlEncodedRequest(
-//     'GET', `${ baseApiUrl() }/current_user`,
-//   );
-//   return response;
-// };
-
 export const getUserFromAccessToken = async () => {
-  const url = `${ baseApiUrl() }/current_user`;
-
-  // extract doorkeeper auth token from cookies
-  const cookieStore = cookies();
-  const token = cookieStore.get('access_token');
-
-  console.log('TOKEN')
-  console.log(cookieStore);
-  console.log(token);
-
-  const response = await fetch(url, {
-    credentials: 'include',
-    method: 'GET',
-    headers: {
-      'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
-    }
-  });
-
+  const response = await backendUrlEncodedRequest(
+    'GET', `${ baseApiUrl() }/current_user`,
+  );
   return response;
-}
+};
