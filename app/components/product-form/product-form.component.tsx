@@ -9,7 +9,7 @@ import {
   useState
 } from "react";
 
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 // components
@@ -37,6 +37,7 @@ import {
   TextBlock 
 } from "@/app/api/api-types";
 import GroupsGroup from "../groups-group/groups-group.component";
+import { NextResponse } from "next/server";
 
 export type ProductFormData = {
   product: {
@@ -94,10 +95,18 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
     const encodedData = encodeProductFormData(formData, defaultImage, images);
 
     try {
-      product ? 
-        await updateProduct(product.slug, encodedData) :
-        await createProduct(encodedData)
-      router.refresh();
+      if (product) { 
+        const response = await fetch(`/api/products/${ product.slug }`, {
+          method: 'PUT',
+          body: encodedData
+        });
+      } else { 
+        const response = await fetch('/api/products', {
+          method: 'POST',
+          body: encodedData
+        });
+      }
+
       router.push('/');
     } catch (error) {
       setLoading(false);
@@ -110,8 +119,9 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
     e.preventDefault();
 
     if (product) {
-      await deleteProduct(product.slug);
-      router.refresh();
+      const response = await fetch(`/api/products/${ product.slug }`, {
+        method: 'DELETE'
+      });
       router.push('/');
     }
   };
