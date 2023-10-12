@@ -54,7 +54,7 @@ export const PUT = async (
   const token = request.cookies.get('access_token');
 
   console.log('TESTING');
-  console.log(token);
+  console.log(request);
 
   // get slug from params
   const slug = params.slug;
