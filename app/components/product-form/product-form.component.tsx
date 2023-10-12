@@ -93,12 +93,14 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       if (product) { 
         const response = await fetch(`/api/products/${ product.slug }`, {
           method: 'PUT',
-          body: encodedData
+          body: encodedData,
+          credentials: 'include'
         });
       } else { 
         const response = await fetch('/api/products', {
           method: 'POST',
-          body: encodedData
+          body: encodedData,
+          credentials: 'include'
         });
       }
 
