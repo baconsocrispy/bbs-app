@@ -6,6 +6,7 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 // api
 import { 
   accessTokenFromCredentials, 
+  getUserFromAccessToken, 
   newUserFromCredentials, 
   revokeAccessToken 
 } from "../api/auth-api";
@@ -86,7 +87,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const getUser = async (): Promise<User | undefined> => {
     try {
       // api call to /current_user
-      const response = await fetch('/api/auth');
+      const response = await getUserFromAccessToken();
 
       // throw an error if response is not a success
       if (!response.ok) {
