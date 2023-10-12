@@ -52,12 +52,9 @@ export const deleteProduct = async (
 // GET /v1/products#index
 export const getAllProducts = async (): Promise<Product[]> => {
   const productsURL = `${ baseApiUrl() }/v1/products`;
-
   const response = await fetch(productsURL);
-
   const { products } = await response.json();
-
-  return products;
+  return products as Product[];
 };
 
 // GET /v1/products#show

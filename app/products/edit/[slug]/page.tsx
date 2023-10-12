@@ -13,6 +13,6 @@ const EditProductPage = async ({ params }: { params: { slug: string }}) => {
       <ProductForm product={ product }/>
     </main>
   )
-}
+};
 
 export default EditProductPage;
