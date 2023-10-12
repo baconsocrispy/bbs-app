@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { deleteProduct, getProduct, updateProduct } from "../rails-api";
 
 // types
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const DELETE = async (
   request: Request,
@@ -47,21 +47,14 @@ export const GET = async (
 };
 
 export const PUT = async (
-  request: Request,
+  request: NextRequest,
   { params }: { params: { slug: string } } 
 ) => {
   // extract doorkeeper auth token from cookies
-  const cookieStore = cookies();
-  const token = cookieStore.get('access_token');
-
-  console.log('TESTING')
-  console.log(cookieStore);
-  console.log(token);
+  const token = request.cookies.get('access_token');
 
   // get slug from params
   const slug = params.slug;
-
-  console.log(slug);
 
   // get form data from request
   const formData = await request.formData();
