@@ -1,13 +1,12 @@
 // components
 import ProductForm from "@/app/components/product-form/product-form.component";
 
-// api
-import { getProduct } from "@/app/api/products-api";
-
 const EditProductPage = async ({ params }: { params: { slug: string }}) => {
-  // state
-  const { slug } = params;
-  const product = await getProduct(slug);
+  const response = await fetch(
+    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/products/${ params.slug }`
+  );
+
+  const { product } = await response.json();
 
   return (
     <main className="edit-product-page">

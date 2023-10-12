@@ -9,22 +9,19 @@ import {
   useState
 } from "react";
 
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 // components
 import FeaturesGroup from "../features-group/features-group.component";
+import GroupsGroup from "../groups-group/groups-group.component";
 import SpecsGroup from "../specs-group/specs-group.component";
 import TextBlockGroup from "../text-block-group/text-block-group.component";
 
-// api
-import { 
-  createProduct,
-  deleteProduct,
-  encodeProductFormData, 
-  updateProduct 
-} from "../../api/products-api";
+// helpers
+import { encodeProductFormData } from "@/app/api/api-helpers";
 
+// api
 import { getAllGroups } from "@/app/api/groups-api";
 
 // types
@@ -36,8 +33,6 @@ import {
   Spec, 
   TextBlock 
 } from "@/app/api/api-types";
-import GroupsGroup from "../groups-group/groups-group.component";
-import { NextResponse } from "next/server";
 
 export type ProductFormData = {
   product: {

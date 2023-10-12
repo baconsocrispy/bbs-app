@@ -2,13 +2,11 @@
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
-// helpers
-import { baseApiUrl, doorkeeperCredentials } from "../../api-helpers";
+// api
+import { deleteProduct, getProduct, updateProduct } from "../rails-api";
 
 // types
 import { NextResponse } from "next/server";
-import { Product } from "../../api-types";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 export const DELETE = async (
   request: Request,
@@ -26,6 +24,24 @@ export const DELETE = async (
 
   // refresh data & router cache
   revalidatePath('/');
+
+  return response;
+};
+
+export const GET = async (
+  request: Request,
+  { params }: { params: { slug: string } }
+) => {
+  // get slug from params
+  const slug = params.slug;
+
+  // send request to /v1/products#show endpoint
+  const product = await getProduct(slug);
+
+  const response = NextResponse.json(
+    { product: product },
+    { status: 200 }
+  );
 
   return response;
 };
@@ -57,46 +73,4 @@ export const PUT = async (
   revalidatePath('/');
 
   return response;
-};
-
-// DELETE /v1/products#destroy
-const deleteProduct = async (
-  slug: string,
-  token?: RequestCookie
-): Promise<Response> => {
-  const url = `${ baseApiUrl() }/v1/products/${ slug }`;
-
-  const response = await fetch(url, {
-    credentials: 'include',
-    method: 'DELETE',
-    headers: {
-      'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
-    },
-  });
-
-  return response;
-};
-
-// PUT /v1/products#update
-const updateProduct = async (
-  slug: string,
-  data: FormData,
-  token?: RequestCookie
-): Promise<Product> => {
-  const url = `${ baseApiUrl() }/v1/products/${ slug }`;
-
-  const response = await fetch(url, {
-    credentials: 'include',
-    method: 'PUT',
-    headers: {
-      'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
-    },
-    body: data
-  });
-
-  const product: Product = await response.json();
-
-  return product;
 };

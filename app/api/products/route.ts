@@ -1,17 +1,19 @@
 // library
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
-// helpers
-import { 
-  baseApiUrl, 
-  doorkeeperCredentials 
-} from "../api-helpers";
+// api
+import { createProduct, getAllProducts } from './rails-api';
 
 // types
-import { Product } from "../api-types";
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
+
+
+export const GET = async () => {
+  // send request to /v1/products#index endpoint
+  const products = await getAllProducts();
+  return products;
+};
 
 export const POST = async (request: Request) => {
   // extract doorkeeper auth token from cookies
@@ -21,7 +23,7 @@ export const POST = async (request: Request) => {
   // get form data from request
   const formData = await request.formData();
 
-  // send to products#create endpoint
+  // send request to /v1/products#create endpoint
   const product = await createProduct(formData, token);
 
   // configure response
@@ -34,26 +36,4 @@ export const POST = async (request: Request) => {
   revalidatePath('/');
 
   return response;
-};
-
-// POST /v1/products#create
-const createProduct = async (
-  data: FormData,
-  token?: RequestCookie
-): Promise<Product> => {
-  const productsURL = `${ baseApiUrl() }/v1/products`;
-
-  const response = await fetch(productsURL, {
-    credentials: 'include',
-    method: 'POST',
-    headers: {
-      'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
-    },
-    body: data
-  });
-
-  const product: Product = await response.json();
-
-  return product;
 };
