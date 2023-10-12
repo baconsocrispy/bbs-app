@@ -54,8 +54,14 @@ export const PUT = async (
   const cookieStore = cookies();
   const token = cookieStore.get('access_token');
 
+  console.log('TESTING')
+  console.log(cookieStore);
+  console.log(token);
+
   // get slug from params
   const slug = params.slug;
+
+  console.log(slug);
 
   // get form data from request
   const formData = await request.formData();
