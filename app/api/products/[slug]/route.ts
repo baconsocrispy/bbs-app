@@ -7,7 +7,6 @@ import { deleteProduct, getProduct, updateProduct } from "../rails-api";
 
 // types
 import { NextRequest, NextResponse } from "next/server";
-import { getAccessToken } from "../../access_token";
 
 export const DELETE = async (
   request: Request,
@@ -15,7 +14,7 @@ export const DELETE = async (
 ) => {
   // extract doorkeeper auth token from cookies
   const cookieStore = cookies();
-  const token = cookieStore.get('access_token');
+  const token = cookieStore.get('access_token')?.value;
 
   // get slug from params
   const slug = params.slug;
@@ -52,8 +51,9 @@ export const PUT = async (
   { params }: { params: { slug: string } } 
 ) => {
   // extract doorkeeper auth token from cookies
-  const token = getAccessToken();
+  const token = request.cookies.get('access_token')?.value;
   console.log(token);
+  console.log(request.headers)
   // get slug from params
   const slug = params.slug;
 

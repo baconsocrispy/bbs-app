@@ -6,12 +6,11 @@ import {
 
 // types
 import { Category } from "../api-types";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 // POST /v1/categories#index
 export const createCategory = async (
   data: FormData,
-  token?: RequestCookie
+  token?: string
 ): Promise<Category> => {
   const categoriesURL = `${ baseApiUrl() }/v1/categories`;
 
@@ -20,7 +19,7 @@ export const createCategory = async (
     method: 'POST',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
+      'Cookie': `access_token=${ token }`
     },
     body: configureData(data)
   });
@@ -52,7 +51,7 @@ export const getCategoryWithGroups = async (
 export const updateCategory = async (
   slug: string,
   data: FormData,
-  token?: RequestCookie
+  token?: string
 ): Promise<Category> => {
   const categoryURL = `${ baseApiUrl() }/v1/categories/${ slug }`;
 
@@ -61,7 +60,7 @@ export const updateCategory = async (
     method: 'PUT',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
+      'Cookie': `access_token=${ token }`
     },
     body: configureData(data)
   });

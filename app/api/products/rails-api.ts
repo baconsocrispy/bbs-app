@@ -6,12 +6,11 @@ import {
 
 // types
 import { Product } from "../api-types";
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 // POST /v1/products#create
 export const createProduct = async (
   data: FormData,
-  token?: RequestCookie
+  token?: string
 ): Promise<Product> => {
   const productsURL = `${ baseApiUrl() }/v1/products`;
 
@@ -20,7 +19,7 @@ export const createProduct = async (
     method: 'POST',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
+      'Cookie': `access_token=${ token }`
     },
     body: data
   });
@@ -33,7 +32,7 @@ export const createProduct = async (
 // DELETE /v1/products#destroy
 export const deleteProduct = async (
   slug: string,
-  token?: RequestCookie
+  token?: string
 ): Promise<Response> => {
   const url = `${ baseApiUrl() }/v1/products/${ slug }`;
 
@@ -42,7 +41,7 @@ export const deleteProduct = async (
     method: 'DELETE',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
+      'Cookie': `access_token=${ token }`
     },
   });
 
@@ -74,7 +73,7 @@ export const getProduct = async (
 export const updateProduct = async (
   slug: string,
   data: FormData,
-  token?: RequestCookie
+  token?: string
 ): Promise<Product> => {
   const url = `${ baseApiUrl() }/v1/products/${ slug }`;
 
@@ -83,7 +82,7 @@ export const updateProduct = async (
     method: 'PUT',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
+      'Cookie': `access_token=${ token }`
     },
     body: data
   });

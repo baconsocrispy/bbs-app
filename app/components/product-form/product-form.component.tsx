@@ -11,6 +11,7 @@ import {
 
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { headers } from "next/headers";
 
 // components
 import FeaturesGroup from "../features-group/features-group.component";
@@ -94,6 +95,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         const response = await fetch(`/api/products/${ product.slug }`, {
           credentials: 'include',
           method: 'PUT',
+          headers: headers(),
           body: encodedData
         });
       } else { 
