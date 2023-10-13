@@ -140,7 +140,6 @@ const GroupsGroup: FC<GroupsGroupProps> = ({
                 value={ grouping._destroy?.toString() }
                 { ...register(`product.product_groupings_attributes.${ index }._destroy`) }
               />
-              
             </li>  
           )}
         </ul>
