@@ -52,9 +52,12 @@ export const PUT = async (
 ) => {
   // extract doorkeeper auth token from cookies
   const token = request.cookies.get('access_token');
+  const cookieStore = cookies();
 
   console.log('TESTING');
-  console.log(request);
+  console.log(cookieStore);
+  console.log(request.cookies);
+  console.log(token);
 
   // get slug from params
   const slug = params.slug;
