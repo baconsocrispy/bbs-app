@@ -42,7 +42,7 @@ https://developer.chrome.com/blog/url-bar-resizing/
 To fix, I changed the $height-main variable calculation from 100vh to 100%, and set the Grid component to position: fixed 
 
 ## 500 Internal Server Error
-I started getting a 500 Internal Server Error when refreshing the `/categories` page in production. There was an message indicating a client-side error in the console, but no message about where it could be originating from. In the functions logs in Netlify I saw th is error:
+I started getting a 500 Internal Server Error when refreshing the `/categories` page in production. There was a message indicating a client-side error in the console, but no message about where it could be originating from. In the functions logs in Netlify I saw th is error:
 
 ```
 Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './server.edge' is not defined by "exports" in /var/task/node_modules/react-dom/package.jsonSep 11, 12:50:55 PM: 9362194b ERROR      at new NodeError (node:internal/errors:405:5)Sep 11, 12:50:55 PM: 9362194b ERROR      at exportsNotFound (node:internal/modules/esm/resolve:364:10)Sep 
