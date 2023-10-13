@@ -2,9 +2,7 @@
 import { baseApiUrl, doorkeeperCredentials } from "../api-helpers";
 
 //types
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
-
-export const getUserFromAccessToken = async (token?: RequestCookie) => {
+export const getUserFromAccessToken = async (token?: string) => {
   const url = `${ baseApiUrl() }/current_user`;
 
   const response = await fetch(url, {
@@ -12,7 +10,7 @@ export const getUserFromAccessToken = async (token?: RequestCookie) => {
     method: 'GET',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token?.value }`
+      'Cookie': `access_token=${ token }`
     }
   });
 
