@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const getCookie = async (name: string) => {
   return cookies().get(name)?.value ?? '';
-}
+};
 
 export const DELETE = async (
   request: Request,
