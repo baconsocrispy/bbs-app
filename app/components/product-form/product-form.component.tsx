@@ -19,7 +19,7 @@ import SpecsGroup from "../specs-group/specs-group.component";
 import TextBlockGroup from "../text-block-group/text-block-group.component";
 
 // helpers
-import { encodeProductFormData } from "@/app/api/api-helpers";
+import { encodeProductFormData, doorkeeperCredentials } from "@/app/api/api-helpers";
 
 // api
 import { getAllGroups } from "@/app/api/groups-api";
@@ -94,6 +94,9 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         const response = await fetch(`/api/products/${ product.slug }`, {
           credentials: 'include',
           method: 'PUT',
+          headers: {
+            'Authorization': `Basic ${ doorkeeperCredentials() }`
+          },
           body: encodedData
         });
       } else { 
