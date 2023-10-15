@@ -6,6 +6,7 @@ const nextConfig = {
   images: {
     domains: [
       'localhost',
+      'api.carterbacon.com',
       'bbs-api-v1-044032d0438d.herokuapp.com'
     ],
     // remotePatterns: [
