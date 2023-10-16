@@ -2,16 +2,16 @@
 import CardGrid from "@/app/components/card-grid/card-grid.component";
 import Header from "@/app/components/header/header.component";
 
-// api
-import { getGroupWithProducts } from "@/app/api/groups-api";
-
+// types
+import { Group } from "@/app/api/api-types";
 
 const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
-  // state
-  const { slug } = params;
+  // GET /v1/groups#show
+  const response = await fetch(
+    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/groups/${ params.slug }`
+  );
+  const { group }: { group: Group } = await response.json();
 
-  // load group on server
-  const group = await getGroupWithProducts(slug);
   const { name, products, banner } = group;
 
   return (

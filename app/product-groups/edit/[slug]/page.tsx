@@ -1,13 +1,16 @@
 // components
 import GroupForm from "@/app/components/group-form/group-form.component";
 
-// api
-import { getGroupWithProducts } from "@/app/api/groups-api";
+// types
+import { Group } from "@/app/api/api-types";
 
 const GroupEditPage = async ({ params }: { params: { slug: string }}) => {
-  // state
-  const { slug } = params;
-  const group = await getGroupWithProducts(slug);
+  // GET /v1/groups#show
+  const response = await fetch(
+    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/groups/${ params.slug }`
+  );
+  
+  const { group }: { group: Group } = await response.json();
 
   return (
     <main>

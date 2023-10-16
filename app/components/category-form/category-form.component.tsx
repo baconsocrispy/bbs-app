@@ -47,8 +47,8 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
   const handleDeleteCategory: MouseEventHandler = async (e) => {
     // prevent form submit
     e.preventDefault();
-
     if (category) {
+      setLoading(true);
       const response = await fetch(`/api/categories/${ category.slug }`, {
         method: 'DELETE'
       });

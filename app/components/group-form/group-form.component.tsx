@@ -4,13 +4,6 @@
 import { FC, MouseEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-// api
-import { 
-  createGroup, 
-  deleteGroup, 
-  updateGroup 
-} from "@/app/api/groups-api";
-
 // types
 import { Category, Group } from "@/app/api/api-types";
 
@@ -20,6 +13,7 @@ type GroupFormProps = {
 
 const GroupForm: FC<GroupFormProps> = ({ group }) => {
   // state
+  const [ loading, setLoading ] = useState(false);
   const [ name, setName ] = useState(group ? group.name : '');
   const [ short_description, setShortDescription ] = useState(group ? group.short_description : '');
   const [ categories, setCategories ] = useState<Category[] | null>(null);
@@ -39,10 +33,21 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
 
   // handlers
   const submitHandler = async (formData: FormData) => {
+    setLoading(true);
     try {
-      group ? 
-        await updateGroup(group.slug, formData) :
-        await createGroup(formData)
+      if (group) {
+        const response = await fetch(`/api/groups/${ group.slug }`, {
+          credentials: 'include',
+          method: 'PUT',
+          body: formData
+        });
+      } else {
+        const response = await fetch('/api/groups', {
+          credentials: 'include',
+          method: 'POST',
+          body: formData
+        });
+      }
       router.push('/');
     } catch (error) {
       console.log(error);
@@ -52,10 +57,16 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
   const handleDeleteGroup: MouseEventHandler = async (e) => {
     e.preventDefault();
     if (group) {
-      await deleteGroup(group.slug);
+      setLoading(true);
+      const response = await fetch(`/api/groups/${ group.slug }`, {
+        credentials: 'include',
+        method: 'DELETE'
+      });
       router.push('/');
     }
   };
+
+  if (loading) return <p>Submitting form...</p>;
 
   return (
     <form
@@ -144,6 +155,13 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
           </option>
         )}
       </select>
+      
+      {/* doorkeeper grant type */}
+      <input 
+        type='hidden'
+        name='grant_type'
+        value='password'
+      />
 
       {/* submit button */}
       <button 

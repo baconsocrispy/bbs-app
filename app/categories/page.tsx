@@ -9,7 +9,7 @@ const Categories = async () => {
   const response = await fetch(
     `${ process.env.NEXT_PUBLIC_BASE_URL }/api/categories`
   );
-  const { categories } = await response.json();
+  const { categories }: { categories: Category[] } = await response.json();
 
   return (
     <main className='categories-page'>
@@ -17,7 +17,7 @@ const Categories = async () => {
         { categories && 
           <BlockMenu 
             open={ true } 
-            menuItems={ categories as Category[] } 
+            menuItems={ categories } 
           />
         }
       </section>
