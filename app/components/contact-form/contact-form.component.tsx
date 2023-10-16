@@ -2,9 +2,6 @@
 // library
 import { useState } from "react";
 
-// api
-import { submitContactForm } from "@/app/api/contact-api";
-
 const ContactForm = () => {
   // state
   const [ loading, setLoading ] = useState(false);
@@ -13,7 +10,11 @@ const ContactForm = () => {
   const handleSubmit = async (formData: FormData) => {
     setLoading(true);
     
-    const response = await submitContactForm(formData);
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      body: formData
+    });
+
     if (response.ok) {
       setLoading(false);
     } else {
