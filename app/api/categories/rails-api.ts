@@ -19,14 +19,33 @@ export const createCategory = async (
     method: 'POST',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token }`
+      'Cookie': `access_token=${ token ?? '' }`
     },
-    body: configureData(data)
+    body: data
   });
 
   const category: Category = await response.json();
 
   return category;
+};
+
+// DELETE /v1/categories#destroy
+export const deleteCategory = async (
+  slug: string,
+  token?: string
+): Promise<Response> => {
+  const url = `${ baseApiUrl() }/v1/categories/${ slug }`;
+
+  const response = await fetch(url, {
+    credentials: 'include',
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Basic ${ doorkeeperCredentials() }`,
+      'Cookie': `access_token=${ token ?? '' }`
+    },
+  });
+
+  return response;
 };
 
 // GET /v1/categories#index
@@ -60,18 +79,12 @@ export const updateCategory = async (
     method: 'PUT',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token }`
+      'Cookie': `access_token=${ token ?? '' }`
     },
-    body: configureData(data)
+    body: data
   });
 
   const category = await response.json();
 
   return category;
-};
-
-// add doorkeeper grant_type to formData
-const configureData = (data: FormData) => {
-  data.append('grant_type', 'password');
-  return data;
 };

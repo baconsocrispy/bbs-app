@@ -3,12 +3,16 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
 // api
-import { deleteProduct, getProduct, updateProduct } from "../rails-api";
+import { 
+  deleteCategory, 
+  getCategoryWithGroups, 
+  updateCategory 
+} from "../rails-api";
 
 // types
 import { NextRequest, NextResponse } from "next/server";
 
-// DELETE /v1/products#destroy
+// DELETE /v1/categories#destroy
 export const DELETE = async (
   request: Request,
   { params }: { params: { slug: string } }
@@ -20,8 +24,8 @@ export const DELETE = async (
   // get slug from params
   const slug = params.slug;
 
-  // send to /v1/products#destroy endpoint
-  const response = await deleteProduct(slug, token);
+  // send to /v1/categories#destroy endpoint
+  const response = await deleteCategory(slug, token);
 
   // refresh data & router cache
   revalidatePath('/');
@@ -29,7 +33,7 @@ export const DELETE = async (
   return response;
 };
 
-// GET /v1/products#show
+// GET /v1/categories#show
 export const GET = async (
   request: Request,
   { params }: { params: { slug: string } }
@@ -38,17 +42,17 @@ export const GET = async (
   const slug = params.slug;
 
   // send request to /v1/products#show endpoint
-  const product = await getProduct(slug);
+  const category = await getCategoryWithGroups(slug);
 
   const response = NextResponse.json(
-    { product: product },
+    { category: category },
     { status: 200 }
   );
 
   return response;
 };
 
-// PUT /v1/products#update
+// PUT /v1/categories#update
 export const PUT = async (
   request: NextRequest,
   { params }: { params: { slug: string } } 
@@ -63,12 +67,12 @@ export const PUT = async (
   // get form data from request
   const formData = await request.formData();
 
-  // send to /v1/products#update endpoint
-  const product = await updateProduct(slug, formData, token);
+  // send to /v1/categories#update endpoint
+  const category = await updateCategory(slug, formData, token);
 
   // configure response
   const response = NextResponse.json(
-    { product: product },
+    { category: category },
     { status: 200 }
   );
 

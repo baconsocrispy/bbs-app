@@ -19,7 +19,7 @@ export const createProduct = async (
     method: 'POST',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token }`
+      'Cookie': `access_token=${ token ?? '' }`
     },
     body: data
   });
@@ -41,7 +41,7 @@ export const deleteProduct = async (
     method: 'DELETE',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token }`
+      'Cookie': `access_token=${ token ?? '' }`
     },
   });
 
@@ -61,11 +61,8 @@ export const getProduct = async (
   slug: string
 ): Promise<Product> => {
   const productsURL = `${ baseApiUrl() }/v1/products/${ slug }`;
-
   const response = await fetch(productsURL);
-
   const product: Product = await response.json();
-
   return product;
 };
 
@@ -82,7 +79,7 @@ export const updateProduct = async (
     method: 'PUT',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Cookie': `access_token=${ token }`
+      'Cookie': `access_token=${ token ?? '' }`
     },
     body: data
   });

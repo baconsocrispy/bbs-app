@@ -1,41 +1,62 @@
 'use client'
 // library
-import { FC, useState } from "react";
+import { FC, MouseEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
-
-// api
-import { 
-  createCategory, 
-  updateCategory 
-} from "@/app/api/categories-api";
-
 
 // types
 import { Category } from "@/app/api/api-types";
+
 type CategoryFormProps = {
   category?: Category;
 }
 
 const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
   // state
+  const [ loading, setLoading ] = useState(false);
   const [ name, setName ] = useState(category ? category.name : '');
   const [ short_description, setShortDescription ] = useState(category ? category.short_description : '');
   const [ tagLine, setTagLine ] = useState(category ? category.tagLine : '');
+
+  // navigation
   const router = useRouter();
 
   // handlers
   const handleSubmit = async (formData: FormData) => {
+    setLoading(true);
     try {
-      category ? 
-        await updateCategory(category.slug, formData) : 
-        await createCategory(formData);
-      router.refresh();
+      if (category) {
+        const response = await fetch(`/api/categories/${ category.slug }`, {
+          credentials: 'include',
+          method: 'PUT',
+          body: formData
+        });
+      } else {
+        const response = await fetch('/api/categories', {
+          credentials: 'include',
+          method: 'POST',
+          body: formData
+        });
+      }
       router.push('/');
-
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
+
+  const handleDeleteCategory: MouseEventHandler = async (e) => {
+    // prevent form submit
+    e.preventDefault();
+
+    if (category) {
+      const response = await fetch(`/api/categories/${ category.slug }`, {
+        method: 'DELETE'
+      });
+      router.push('/');
+    }
+  };
+
+  if (loading) return <p>Submitting form...</p>;
 
   return (
     <form
@@ -132,6 +153,13 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
         name="category[pinned_image]"
       />
 
+      {/* doorkeeper grant type */}
+      <input 
+        type='hidden'
+        name="grant_type"
+        value="password"
+      />
+
       {/* submit button */}
       <button 
         className="product-form__button"
@@ -139,6 +167,16 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
       >
         Submit
       </button>
+
+      { category &&
+        <button 
+          className="product-form__button"
+          type='submit'
+          onClick={ handleDeleteCategory }
+        >
+          Delete Category
+        </button>
+      }
     </form>
   )
 };
