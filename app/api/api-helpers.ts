@@ -8,6 +8,18 @@ export const baseApiUrl = () => {
   return process.env.NEXT_PUBLIC_BASE_API_URL
 };
 
+// encode doorkeeper credentials in base64 format
+export const doorkeeperCredentials = () => {
+  // doorkeeper credentials
+  const clientId = process.env.NEXT_PUBLIC_DOORKEEPER_CLIENT_ID;
+  const clientSecret = process.env.NEXT_PUBLIC_DOORKEEPER_SECRET;
+
+  // encodes credentials in base64 format
+  const credentials = btoa(`${ clientId }:${ clientSecret }`);
+
+  return credentials;
+};
+
 // convert form data into URLSearchParams format
 export const urlEncodeFormData = (
   data: AuthFormData | undefined
@@ -41,17 +53,7 @@ export const urlEncodeFormData = (
   return params;
 };
 
-// encode doorkeeper credentials in base64 format
-export const doorkeeperCredentials = () => {
-  // doorkeeper credentials
-  const clientId = process.env.NEXT_PUBLIC_DOORKEEPER_CLIENT_ID;
-  const clientSecret = process.env.NEXT_PUBLIC_DOORKEEPER_SECRET;
 
-  // encodes credentials in base64 format
-  const credentials = btoa(`${ clientId }:${ clientSecret }`);
-
-  return credentials;
-};
 
 // format form data for api request
 export const encodeProductFormData = (

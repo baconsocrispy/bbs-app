@@ -21,9 +21,6 @@ import TextBlockGroup from "../text-block-group/text-block-group.component";
 // helpers
 import { encodeProductFormData, doorkeeperCredentials } from "@/app/api/api-helpers";
 
-// api
-import { getAllGroups } from "@/app/api/groups-api";
-
 // types
 import { 
   Feature, 
@@ -74,7 +71,8 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   // load groups
   useEffect(() => {
     const getGroups = async () => {
-      const groups = await getAllGroups();
+      const response = await fetch('/api/groups');
+      const { groups }: { groups: Group[] } = await response.json();
       setGroups(groups);
     };
     groups ? setLoading(false) : getGroups();
