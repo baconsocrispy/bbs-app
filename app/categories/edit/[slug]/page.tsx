@@ -1,13 +1,16 @@
 // components
 import CategoryForm from "@/app/components/category-form/category-form.component";
 
-// api
-import { getCategoryWithGroups } from "@/app/api/categories-api";
+//types
+import { Category } from "@/app/api/api-types";
+
 
 const CategoryEditPage = async ({ params }: { params: { slug: string }}) => {
-  // state
-  const { slug } = params;
-  const category = await getCategoryWithGroups(slug);
+  // GET /v1/categories#show
+  const response = await fetch(
+    `/api/categories/${ params.slug }`
+  );
+  const { category } = await response.json();
 
   return (
     <main>

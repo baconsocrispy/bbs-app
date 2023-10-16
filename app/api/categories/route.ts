@@ -11,7 +11,13 @@ import { NextResponse } from 'next/server';
 // GET /v1/categories#index
 export const GET = async () => {
   const categories = await getAllCategories();
-  return categories;
+
+  const response = NextResponse.json({
+    status: 200,
+    categories: categories
+  });
+  
+  return response;
 };
 
 // POST /v1/categories

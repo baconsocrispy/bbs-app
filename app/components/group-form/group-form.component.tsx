@@ -5,8 +5,11 @@ import { FC, MouseEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // api
-import { createGroup, deleteGroup, updateGroup } from "@/app/api/groups-api";
-import { getAllCategories } from "@/app/api/categories-api";
+import { 
+  createGroup, 
+  deleteGroup, 
+  updateGroup 
+} from "@/app/api/groups-api";
 
 // types
 import { Category, Group } from "@/app/api/api-types";
@@ -20,12 +23,15 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
   const [ name, setName ] = useState(group ? group.name : '');
   const [ short_description, setShortDescription ] = useState(group ? group.short_description : '');
   const [ categories, setCategories ] = useState<Category[] | null>(null);
+
+  // navigation
   const router = useRouter();
 
   // get categories
   useEffect(() => {
     const getCategories = async () => {
-      const categories = await getAllCategories();
+      const response = await fetch('/api/categories');
+      const { categories } = await response.json();
       setCategories(categories);
     };
     getCategories();

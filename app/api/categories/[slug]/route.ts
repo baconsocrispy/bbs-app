@@ -38,16 +38,13 @@ export const GET = async (
   request: Request,
   { params }: { params: { slug: string } }
 ) => {
-  // get slug from params
-  const slug = params.slug;
-
   // send request to /v1/products#show endpoint
-  const category = await getCategoryWithGroups(slug);
+  const category = await getCategoryWithGroups(params.slug);
 
-  const response = NextResponse.json(
-    { category: category },
-    { status: 200 }
-  );
+  const response = NextResponse.json({ 
+      status: 200,
+      category: category 
+  });
 
   return response;
 };
@@ -60,15 +57,12 @@ export const PUT = async (
   // extract doorkeeper auth token from cookies
   const cookieStore = cookies();
   const token = cookieStore.get('access_token')?.value;
-  
-  // get slug from params
-  const slug = params.slug;
 
   // get form data from request
   const formData = await request.formData();
 
   // send to /v1/categories#update endpoint
-  const category = await updateCategory(slug, formData, token);
+  const category = await updateCategory(params.slug, formData, token);
 
   // configure response
   const response = NextResponse.json(

@@ -1,12 +1,15 @@
 // components
 import BlockMenu from '../components/block-menu/block-menu.component';
 
-// api
-import { getAllCategories } from '../api/categories-api';
+// types
+import { Category } from '../api/api-types';
 
 const Categories = async () => {
-  // server-side api request
-  const categories = await getAllCategories();
+  // GET /v1/categories#index
+  const response = await fetch(
+    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/categories`
+  );
+  const { categories } = await response.json();
 
   return (
     <main className='categories-page'>
@@ -14,7 +17,7 @@ const Categories = async () => {
         { categories && 
           <BlockMenu 
             open={ true } 
-            menuItems={ categories } 
+            menuItems={ categories as Category[] } 
           />
         }
       </section>
