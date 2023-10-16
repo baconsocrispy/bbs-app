@@ -3,11 +3,13 @@
 // library
 import { ReactNode, createContext, useEffect, useState } from "react";
 
+// helpers
+import { urlEncodeFormData } from "../api/api-helpers";
+
 // api
 import { 
   accessTokenFromCredentials, 
   getUserFromAccessToken, 
-  newUserFromCredentials, 
   revokeAccessToken 
 } from "../api/auth-api";
 
@@ -58,7 +60,11 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   // actions
   const signUp = async (formData: AuthFormData) => {
-    const response = await newUserFromCredentials(formData);
+    const encodedData = urlEncodeFormData(formData);
+    const response = await fetch('/api/auth', {
+      method: 'POST',
+      body: encodedData
+    })
     return response;
   };
 

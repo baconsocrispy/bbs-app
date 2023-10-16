@@ -1,8 +1,5 @@
-// library
-import { cookies } from "next/headers";
-
 // helpers
-import { backendUrlEncodedRequest, baseApiUrl, doorkeeperCredentials } from "./api-helpers";
+import { backendUrlEncodedRequest, baseApiUrl } from "./api-helpers";
 
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";

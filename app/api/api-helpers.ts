@@ -27,7 +27,7 @@ export const backendUrlEncodedRequest = async (
 };
 
 // convert form data into URLSearchParams format
-const urlEncodeFormData = (
+export const urlEncodeFormData = (
   data: AuthFormData | undefined
 ): URLSearchParams | undefined => {
   if (!data) return;
