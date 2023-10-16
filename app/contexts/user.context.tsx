@@ -6,13 +6,6 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 // helpers
 import { urlEncodeFormData } from "../api/api-helpers";
 
-// api
-import { 
-  accessTokenFromCredentials, 
-  getUserFromAccessToken, 
-  revokeAccessToken 
-} from "../api/auth-api";
-
 // types
 import { AuthFormData } from "../components/auth-form/auth-form.component";
 
@@ -61,7 +54,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   // actions
   const signUp = async (formData: AuthFormData) => {
     const encodedData = urlEncodeFormData(formData);
-    const response = await fetch('/api/auth', {
+    const response = await fetch('/api/users', {
       method: 'POST',
       body: encodedData
     })
@@ -69,14 +62,18 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   };
 
   const signIn = async (formData: AuthFormData) => {
-    const response = await accessTokenFromCredentials(formData);
+    const encodedData = urlEncodeFormData(formData);
+    const response = await fetch('/api/auth/token', {
+      method: 'POST',
+      body: encodedData
+    });
     return response;
   };
 
   const signOut = async () => {
-    await revokeAccessToken();
+    await fetch('/api/auth/revoke', { method: 'POST' })
     setUser(null);
-  }
+  };
 
   const updateUser = async () => {
     const currentUser = await getUser();
@@ -92,8 +89,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   // user api call
   const getUser = async (): Promise<User | undefined> => {
     try {
-      // api call to /current_user
-      const response = await getUserFromAccessToken();
+      // GET /users/current_user#current_user
+      const response = await fetch('/api/users');
 
       // throw an error if response is not a success
       if (!response.ok) {

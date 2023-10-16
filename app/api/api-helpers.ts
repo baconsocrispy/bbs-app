@@ -8,24 +8,6 @@ export const baseApiUrl = () => {
   return process.env.NEXT_PUBLIC_BASE_API_URL
 };
 
-// send authenticated url-encoded backend request
-export const backendUrlEncodedRequest = async (
-  method: string,
-  url: string,
-  data: AuthFormData | undefined = undefined
-) => {
-  const response = await fetch(url, {
-    credentials: 'include',
-    method: method,
-    headers: {
-      'Authorization': `Basic ${ doorkeeperCredentials() }`,
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: urlEncodeFormData(data)
-  });
-  return response;
-};
-
 // convert form data into URLSearchParams format
 export const urlEncodeFormData = (
   data: AuthFormData | undefined
@@ -69,12 +51,6 @@ export const doorkeeperCredentials = () => {
   const credentials = btoa(`${ clientId }:${ clientSecret }`);
 
   return credentials;
-};
-
-// add doorkeeper grant_type to formData
-export const configureData = (data: FormData) => {
-  data.append('grant_type', 'password');
-  return data;
 };
 
 // format form data for api request
