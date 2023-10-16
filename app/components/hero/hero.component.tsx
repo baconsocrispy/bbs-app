@@ -27,7 +27,7 @@ const Hero: FC<HeroProps> = ({ heroContent }) => {
         <button className="block-menu__edit-button">
           <Link 
             className="block-menu__edit-link"
-            href="/hero-content/edit/"
+            href={ `/hero-content/edit/${ heroContent.id }`}
           >
             Edit
           </Link>

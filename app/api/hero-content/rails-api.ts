@@ -1,18 +1,16 @@
 // helpers
 import { 
-  backendUrlEncodedRequest,
   baseApiUrl,
-  configureData,
   doorkeeperCredentials
-} from "./api-helpers";
-
-import { revalidate } from "./server-actions";
+} from "../api-helpers";
 
 // types 
-import { HeroContent } from "./api-types";
+import { HeroContent } from "../api-types";
 
+// POST /v1/hero_contents#create
 export const createHeroContent = async (
-  data: FormData
+  data: FormData,
+  token?: string
 ): Promise<HeroContent> => {
   const url = `${ baseApiUrl() }/v1/hero_contents`;
 
@@ -21,20 +19,29 @@ export const createHeroContent = async (
     method: 'POST',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
+      'Cookie': `access_token=${ token ?? ''}`
     },
-    body: configureData(data)
+    body: data
   });
-
-  revalidate('/');
 
   const heroContent: HeroContent = await response.json();
 
   return heroContent;
 };
 
+// GET /v1/hero_contents#index
+export const getHeroContent = async (): Promise<HeroContent> => {
+  const heroContentURL = `${ baseApiUrl() }/v1/hero_contents`
+  const response = await fetch(heroContentURL);
+  const heroContent: HeroContent = await response.json();
+  return heroContent;
+};
+
+// PUT /v1/hero_contents#update
 export const updateHeroContent = async (
   id: number,
-  data: FormData
+  data: FormData,
+  token?: string
 ): Promise<HeroContent> => {
   const url = `${ baseApiUrl() }/v1/hero_contents/${ id }`;
 
@@ -43,21 +50,13 @@ export const updateHeroContent = async (
     method: 'PUT',
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
+      'Cookie': `access_token=${ token ?? ''}`
     },
-    body: configureData(data)
+    body: data
   });
-
-  revalidate('/');
 
   const heroContent: HeroContent = await response.json();
 
   return heroContent;
 };
 
-export const getHeroContent = async (): Promise<HeroContent> => {
-  const response = await backendUrlEncodedRequest(
-    'GET', `${ baseApiUrl() }/v1/hero_contents`
-  );
-  const heroContent = await response.json();
-  return heroContent;
-};

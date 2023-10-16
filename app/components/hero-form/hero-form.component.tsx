@@ -4,9 +4,6 @@
 import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 
-// api
-import { createHeroContent, updateHeroContent } from "@/app/api/hero-api";
-
 // types
 import { HeroContent } from "@/app/api/api-types";
 
@@ -16,20 +13,34 @@ type HeroFormProps = {
 
 const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
   // state
+  const [ loading, setLoading ] = useState(false);
   const [ buttonText, setButtonText ] = useState(heroContent ? heroContent.button_text : '');
   const [ headerText, setHeaderText ] = useState(heroContent ? heroContent.header_text : '');
   const [ href, setHref ] = useState(heroContent ? heroContent.href : '#')
 
+  // navigation
   const router = useRouter();
 
   // handler
   const submitHandler = async (formData: FormData) => {
-    heroContent ?
-      await updateHeroContent(heroContent.id, formData) :
-      await createHeroContent(formData)
-    router.refresh();
+    setLoading(true);
+    if(heroContent) {
+      const response = await fetch(`/api/hero-content/${ heroContent.id }`, {
+        credentials: 'include',
+        method: 'PUT',
+        body: formData
+      });
+    } else {
+      const response = await fetch('/api/hero-content', {
+        credentials: 'include',
+        method: 'POST',
+        body: formData
+      });
+    }
     router.push('/');
   };
+
+  if (loading) return <p>Submitting form...</p>;
 
   return (
     <form 
@@ -37,7 +48,7 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
       className="product-form"
       action={ formData => submitHandler(formData) }
     >
-      {/* product name */}
+      {/* button text */}
       <label 
         className="product-form__label"
         htmlFor="button-text"
@@ -54,7 +65,7 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
         onChange={ (e) => setButtonText(e.target.value) }
       /> 
 
-      {/* product description */}
+      {/* hero-content header text */}
       <label
         className="product-form__label" 
         htmlFor="header-text"
@@ -86,7 +97,7 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
         onChange={ (e) => setHref(e.target.value) }
       />
 
-      {/* product images */}
+      {/* hero-content images */}
       <label 
         className="product-form__label"
         htmlFor="product-images"
@@ -100,6 +111,15 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
         name="hero_content[hero_images][]"
         multiple
       />
+
+      {/* id */}
+      { heroContent && 
+        <input 
+          type='hidden'
+          name='id'
+          value={ heroContent.id }
+        />
+      }
 
       {/* submit button */}
       <button 
