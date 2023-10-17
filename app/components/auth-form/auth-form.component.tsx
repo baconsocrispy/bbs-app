@@ -9,7 +9,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { UserContext } from '@/app/contexts/user.context';
 
 // data
-import { AUTH_FORM_TYPES } from '@/app/api/api-data';
+export enum AUTH_FORM_TYPES {
+  signin = 'signin',
+  signup = 'signup'
+};
 
 // types
 export type AuthFormData = {

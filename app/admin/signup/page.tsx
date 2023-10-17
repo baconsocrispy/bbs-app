@@ -2,7 +2,7 @@
 import AuthForm from "../../components/auth-form/auth-form.component";
 
 // data
-import { AUTH_FORM_TYPES } from "@/app/api/api-data";
+import { AUTH_FORM_TYPES } from "../../components/auth-form/auth-form.component";
 
 const SignUp = () => {
   return (

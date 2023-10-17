@@ -10,9 +10,6 @@ import Link from "next/link";
 // context
 import { UserContext } from "../contexts/user.context";
 
-// api
-import { revalidate } from "../api/server-actions";
-
 const Admin = () => {
   // state
   const [ loading, setLoading ] = useState(true);
@@ -86,12 +83,6 @@ const Admin = () => {
           onClick={ signOutHandler }
         >
           Log Out
-        </button>
-
-        <button
-          onClick={ () => revalidate('/') }
-        >
-          Revalidate
         </button>
       </main>
     )

@@ -20,7 +20,7 @@ export const doorkeeperCredentials = () => {
   return credentials;
 };
 
-// convert form data into URLSearchParams format
+// convert auth form data into URLSearchParams format
 export const urlEncodeFormData = (
   data: AuthFormData | undefined
 ): URLSearchParams | undefined => {
@@ -53,9 +53,7 @@ export const urlEncodeFormData = (
   return params;
 };
 
-
-
-// format form data for api request
+// format product form data for api request
 export const encodeProductFormData = (
   data: ProductFormData,
   defaultImage?: File,
