@@ -113,8 +113,12 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
       <ul className="features-group__list">
         {/* header row */}
         <li className="features-group__item">
-          <h3 className="features-group__list-header">Highlight</h3>
-          <h3 className="features-group__list-header">Text</h3>
+          <h3 className="features-group__list-header">
+            Highlight
+          </h3>
+          <h3 className="features-group__list-header">
+            Text
+          </h3>
         </li>
 
         { features?.map((feature, index) => 

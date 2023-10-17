@@ -10,7 +10,7 @@ const SignUp = () => {
       <h1 className="sign-in-page__header">
         Admin Sign Up
       </h1>
-      <AuthForm formType={ AUTH_FORM_TYPES.signup } />
+      <AuthForm formType={ 'signup' } />
     </main>
   )
 }
