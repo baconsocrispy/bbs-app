@@ -51,7 +51,7 @@ export const deleteProduct = async (
 // GET /v1/products#index
 export const getAllProducts = async (): Promise<Product[]> => {
   const productsURL = `${ baseApiUrl() }/v1/products`;
-  const response = await fetch(productsURL);
+  const response = await fetch(productsURL, { next: { revalidate: 5 }});
   const { products } = await response.json();
   return products as Product[];
 };
@@ -61,7 +61,7 @@ export const getProduct = async (
   slug: string
 ): Promise<Product> => {
   const productsURL = `${ baseApiUrl() }/v1/products/${ slug }`;
-  const response = await fetch(productsURL);
+  const response = await fetch(productsURL, { next: { revalidate: 5 }});
   const product: Product = await response.json();
   return product;
 };

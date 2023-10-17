@@ -1,6 +1,5 @@
 // library
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
 
 // api
 import { deleteProduct, getProduct, updateProduct } from "../rails-api";
@@ -22,9 +21,6 @@ export const DELETE = async (
 
   // send to /v1/products#destroy endpoint
   const response = await deleteProduct(slug, token);
-
-  // refresh data & router cache
-  revalidatePath('/');
 
   return response;
 };
@@ -71,9 +67,6 @@ export const PUT = async (
     { product: product },
     { status: 200 }
   );
-
-  // refresh data & router cache
-  revalidatePath('/');
 
   return response;
 };

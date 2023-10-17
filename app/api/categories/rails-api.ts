@@ -61,7 +61,7 @@ export const getCategoryWithGroups = async (
   slug: string
 ): Promise<Category> => {
   const categoryURL = `${ baseApiUrl() }/v1/categories/${ slug }`;
-  const response = await fetch(categoryURL);  
+  const response = await fetch(categoryURL, { next: { revalidate: 5 }});  
   const category: Category = await response.json();
   return category;
 };

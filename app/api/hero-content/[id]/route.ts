@@ -1,5 +1,4 @@
 // library
-import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
 // api
@@ -30,9 +29,6 @@ export const PUT = async (
     { heroContent: heroContent },
     { status: 200 }
   );
-
-  // refresh data cache
-  revalidatePath('/');
 
   return response;
 };

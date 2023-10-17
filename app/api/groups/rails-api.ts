@@ -50,7 +50,7 @@ export const deleteGroup = async (
 // GET /v1/groups#index
 export const getAllGroups = async (): Promise<Group[]> => {
   const groupsURL = `${ baseApiUrl() }/v1/groups`;
-  const response = await fetch(groupsURL);
+  const response = await fetch(groupsURL, { next: { revalidate: 5 }});
   const { groups } = await response.json();
   return groups as Group[];
 };
@@ -58,7 +58,7 @@ export const getAllGroups = async (): Promise<Group[]> => {
 // GET /v1/groups#show
 export const getGroupWithProducts = async (slug: string): Promise<Group> => {
   const groupURL = `${ baseApiUrl() }/v1/groups/${ slug }`;
-  const response = await fetch(groupURL)
+  const response = await fetch(groupURL, { next: { revalidate: 5 }})
   const group: Group = await response.json();
   return group;
 };

@@ -1,5 +1,4 @@
 // library
-import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
 // api
@@ -40,9 +39,6 @@ export const POST = async (request: Request) => {
     { heroContent: heroContent },
     { status: 200 }
   );
-
-  // refresh data cache
-  revalidatePath('/');
 
   return response;
 };

@@ -1,6 +1,5 @@
 // library
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
 
 // api
 import { 
@@ -26,9 +25,6 @@ export const DELETE = async (
 
   // send to /v1/categories#destroy endpoint
   const response = await deleteCategory(slug, token);
-
-  // refresh data & router cache
-  revalidatePath('/');
 
   return response;
 };
@@ -69,9 +65,6 @@ export const PUT = async (
     { category: category },
     { status: 200 }
   );
-
-  // refresh data cache
-  revalidatePath('/');
 
   return response;
 };
