@@ -31,7 +31,7 @@ export const createHeroContent = async (
 
 // GET /v1/hero_contents#index
 export const getHeroContent = async (): Promise<HeroContent> => {
-  const heroContentURL = `${ baseApiUrl() }/v1/hero_contents`
+  const heroContentURL = `${ baseApiUrl() }/v1/hero_contents`;
   const response = await fetch(heroContentURL);
   const heroContent: HeroContent = await response.json();
   return heroContent;
