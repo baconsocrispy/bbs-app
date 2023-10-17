@@ -23,7 +23,8 @@ export type Feature = {
 
 export type Group = {
   banner: SerializedImage;
-  created_at: string;
+  categoryId: number;
+  createdAt: string;
   id: number;
   image: SerializedImage;
   name: string;

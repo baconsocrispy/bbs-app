@@ -150,6 +150,7 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
           <option 
             key={ category.id } 
             value={ category.id } 
+            selected={ category.id === group?.categoryId }
           >
             { category.name }
           </option>

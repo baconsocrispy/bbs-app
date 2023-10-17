@@ -101,7 +101,6 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           body: encodedData
         });
       }
-
       router.push('/');
     } catch (error) {
       setLoading(false);
