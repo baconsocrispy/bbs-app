@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 // types
 import { Category, Group } from "@/app/api/api-types";
+import ImageInput from "@/app/_components/image-input/image-input.component";
 
 type GroupFormProps = {
   group?: Group;
@@ -113,11 +114,10 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
       >
         Default Image
       </label>
-      <input 
+      <ImageInput 
         id="group-image"
-        className="product-form__attach-button"
-        type="file"
         name="group[group_image]"
+        image={ group?.image }
       />
 
       {/* banner image */}
@@ -127,11 +127,10 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
       >
         Banner Image
       </label>
-      <input 
+      <ImageInput 
         id="banner-image"
-        className="product-form__attach-button"
-        type="file"
         name="group[banner_image]"
+        image={ group?.banner }
       />
 
       {/* category select */}
