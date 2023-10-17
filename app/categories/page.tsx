@@ -1,15 +1,12 @@
 // components
 import BlockMenu from '../components/block-menu/block-menu.component';
 
-// types
-import { Category } from '../api/api-types';
+// api
+import { getAllCategories } from '../api/categories/rails-api';
 
 const Categories = async () => {
   // GET /v1/categories#index
-  const response = await fetch(
-    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/categories`
-  );
-  const { categories }: { categories: Category[] } = await response.json();
+  const categories = await getAllCategories();
 
   return (
     <main className='categories-page'>
