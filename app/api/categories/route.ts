@@ -38,10 +38,5 @@ export const POST = async (request: NextRequest) => {
     { status: 200 }
   );
 
-  // refresh data cache
-  const path = request.nextUrl.searchParams.get('path') ?? '/';
-  console.log(path);
-  revalidatePath(path);
-
   return response;
 };

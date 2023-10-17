@@ -4,6 +4,8 @@ import Hero from "./components/hero/hero.component";
 // api
 import { getHeroContent } from "./api/hero-content/rails-api";
 
+export const revalidate = 5;
+
 const HomePage = async () => {
   // GET /v1/hero_contents#index
   const heroContent = await getHeroContent();
