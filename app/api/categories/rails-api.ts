@@ -51,7 +51,7 @@ export const deleteCategory = async (
 // GET /v1/categories#index
 export const getAllCategories = async (): Promise<Category[]> => {
   const categoriesURL = `${ baseApiUrl() }/v1/categories`
-  const response = await fetch(categoriesURL);
+  const response = await fetch(categoriesURL, { next: { revalidate: 5 }});
   const { categories } = await response.json();
   return categories as Category[];
 };
