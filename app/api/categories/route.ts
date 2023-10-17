@@ -39,7 +39,7 @@ export const POST = async (request: Request) => {
   );
 
   // refresh data cache
-  revalidatePath('/categories');
+  revalidatePath('/');
 
   return response;
 };

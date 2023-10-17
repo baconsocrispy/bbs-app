@@ -41,7 +41,7 @@ export const POST = async (request: NextRequest) => {
   );
 
   // refresh data cache
-  revalidatePath(path ?? '/product-groups');
+  revalidatePath(path ?? '/');
 
   return response;
 };

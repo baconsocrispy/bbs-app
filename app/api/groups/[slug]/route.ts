@@ -70,7 +70,7 @@ export const PUT = async (
     { status: 200 }
   );
 
-  // refresh data & router cache
+  // refresh data cache
   revalidatePath('/');
 
   return response;
