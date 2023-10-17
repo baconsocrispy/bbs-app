@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 import { createCategory, getAllCategories } from './rails-api';
 
 // types
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // GET /v1/categories#index
 export const GET = async () => {
@@ -21,7 +21,7 @@ export const GET = async () => {
 };
 
 // POST /v1/categories#create
-export const POST = async (request: Request) => {
+export const POST = async (request: NextRequest) => {
   // extract doorkeeper auth token from cookies
   const cookieStore = cookies();
   const token = cookieStore.get('access_token')?.value;
@@ -39,7 +39,9 @@ export const POST = async (request: Request) => {
   );
 
   // refresh data cache
-  revalidatePath('/');
+  const path = request.nextUrl.searchParams.get('path') ?? '/';
+  console.log(path);
+  revalidatePath(path);
 
   return response;
 };
