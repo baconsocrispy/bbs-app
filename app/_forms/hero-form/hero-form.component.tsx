@@ -121,8 +121,6 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
               <Thumbnail 
                 key={ image.id } 
                 image={ image } 
-                selected={ false } 
-                onClick={ () => {} }
               />
             )}
           </div>

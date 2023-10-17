@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 // types
 import { Category } from "@/app/api/api-types";
+import ImageInput from "@/app/_components/image-input/image-input.component";
 
 type CategoryFormProps = {
   category?: Category;
@@ -111,18 +112,17 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
         onChange={ (e) => setTagLine(e.target.value) }
       />
 
-      {/* category image */}
+      {/* default image */}
       <label 
         className="product-form__label"
-        htmlFor="category-image"
+        htmlFor="default-image"
       >
         Default Image
       </label>
-      <input 
-        id="category-image"
-        className="product-form__attach-button"
-        type="file"
+      <ImageInput 
+        id='default-image'
         name="category[category_image]"
+        image={ category?.image }
       />
 
       {/* banner image */}
@@ -132,11 +132,10 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
       >
         Banner Image
       </label>
-      <input 
+      <ImageInput
         id="banner-image"
-        className="product-form__attach-button"
-        type="file"
         name="category[banner_image]"
+        image={ category?.banner }
       />
 
       {/* pinned image */}
@@ -146,11 +145,10 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
       >
         Pinned Image
       </label>
-      <input 
+      <ImageInput 
         id="pinned-image"
-        className="product-form__attach-button"
-        type="file"
         name="category[pinned_image]"
+        image={ category?.pinned }
       />
 
       {/* doorkeeper grant type */}

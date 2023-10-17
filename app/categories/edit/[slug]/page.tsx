@@ -10,7 +10,7 @@ const CategoryEditPage = async ({ params }: { params: { slug: string }}) => {
   const category = await getCategoryWithGroups(params.slug);
 
   return (
-    <main>
+    <main className="category-edit-page">
       <CategoryForm category={ category }/>
     </main>
   )
