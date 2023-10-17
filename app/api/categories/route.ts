@@ -20,7 +20,7 @@ export const GET = async () => {
   return response;
 };
 
-// POST /v1/categories
+// POST /v1/categories#create
 export const POST = async (request: Request) => {
   // extract doorkeeper auth token from cookies
   const cookieStore = cookies();
@@ -39,7 +39,7 @@ export const POST = async (request: Request) => {
   );
 
   // refresh data cache
-  revalidatePath('/');
+  revalidatePath('/categories');
 
   return response;
 };

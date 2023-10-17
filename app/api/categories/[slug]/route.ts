@@ -28,7 +28,7 @@ export const DELETE = async (
   const response = await deleteCategory(slug, token);
 
   // refresh data & router cache
-  revalidatePath('/');
+  revalidatePath(`/categories/[slug]/${ params.slug }`);
 
   return response;
 };
@@ -70,8 +70,8 @@ export const PUT = async (
     { status: 200 }
   );
 
-  // refresh data & router cache
-  revalidatePath('/');
+  // refresh data cache
+  revalidatePath(`/categories/[slug]/${ params.slug }`);
 
   return response;
 };

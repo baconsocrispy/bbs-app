@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 import { createGroup, getAllGroups } from './rails-api';
 
 // types
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // GET /v1/groups#index
 export const GET = async () => {
@@ -21,7 +21,9 @@ export const GET = async () => {
 };
 
 // POST /v1/groups
-export const POST = async (request: Request) => {
+export const POST = async (request: NextRequest) => {
+  const path = request.nextUrl.searchParams.get('path')
+  console.log(request.nextUrl.searchParams.get('path'))
   // extract doorkeeper auth token from cookies
   const cookieStore = cookies();
   const token = cookieStore.get('access_token')?.value;
@@ -39,7 +41,7 @@ export const POST = async (request: Request) => {
   );
 
   // refresh data cache
-  revalidatePath('/');
+  revalidatePath(path ?? '/product-groups');
 
   return response;
 };
