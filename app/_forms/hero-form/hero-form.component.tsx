@@ -1,8 +1,11 @@
 'use client'
 
 // library
-import { FC, useState } from "react";
+import { FC, MouseEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
+
+// components
+import Thumbnail from "@/app/_components/thumbnail/thumbnail.component";
 
 // types
 import { HeroContent } from "@/app/api/api-types";
@@ -14,14 +17,15 @@ type HeroFormProps = {
 const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
   // state
   const [ loading, setLoading ] = useState(false);
+  const [ changeImages, setChangeImages ] = useState(false);
   const [ buttonText, setButtonText ] = useState(heroContent ? heroContent.button_text : '');
   const [ headerText, setHeaderText ] = useState(heroContent ? heroContent.header_text : '');
-  const [ href, setHref ] = useState(heroContent ? heroContent.href : '#')
+  const [ href, setHref ] = useState(heroContent ? heroContent.href : '#');
 
   // navigation
   const router = useRouter();
 
-  // handler
+  // handlers
   const submitHandler = async (formData: FormData) => {
     setLoading(true);
     if(heroContent) {
@@ -38,6 +42,11 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
       });
     }
     router.push('/');
+  };
+
+  const handleChangeImages: MouseEventHandler = (e) => {
+    e.preventDefault();
+    setChangeImages(!changeImages);
   };
 
   if (loading) return <p>Submitting form...</p>;
@@ -104,13 +113,37 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
       >
         Images
       </label>
-      <input 
-        id="hero-content-images"
-        className="product-form__attach-button"
-        type="file"
-        name="hero_content[hero_images][]"
-        multiple
-      />
+
+      { heroContent?.images && !changeImages &&
+        <>
+          <div className="image-display__thumbnail-container">
+            { heroContent.images.map((image) => 
+              <Thumbnail 
+                key={ image.id } 
+                image={ image } 
+                selected={ false } 
+                onClick={ () => {} }
+              />
+            )}
+          </div>
+          <div>
+            <button onClick={ handleChangeImages }>
+              { changeImages ? 'Cancel' : 'Change' }
+            </button>
+          </div>
+        </>
+      }
+
+      { !heroContent || changeImages &&
+        <input 
+          id="hero-content-images"
+          className="product-form__attach-button"
+          type="file"
+          name="hero_content[hero_images][]"
+          multiple
+        />
+      }
+      
 
       {/* id */}
       { heroContent && 
