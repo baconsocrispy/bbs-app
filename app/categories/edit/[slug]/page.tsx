@@ -1,16 +1,13 @@
 // components
 import CategoryForm from "@/app/components/category-form/category-form.component";
 
-//types
-import { Category } from "@/app/api/api-types";
+// api
+import { getCategoryWithGroups } from "@/app/api/categories/rails-api";
 
 
 const CategoryEditPage = async ({ params }: { params: { slug: string }}) => {
   // GET /v1/categories#show
-  const response = await fetch(
-    `/api/categories/${ params.slug }`
-  );
-  const { category } = await response.json();
+  const category = await getCategoryWithGroups(params.slug);
 
   return (
     <main>

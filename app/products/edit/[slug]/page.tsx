@@ -1,12 +1,12 @@
 // components
 import ProductForm from "@/app/components/product-form/product-form.component";
 
-const EditProductPage = async ({ params }: { params: { slug: string }}) => {
-  const response = await fetch(
-    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/products/${ params.slug }`
-  );
+// api
+import { getProduct } from "@/app/api/products/rails-api";
 
-  const { product } = await response.json();
+const EditProductPage = async ({ params }: { params: { slug: string }}) => {
+
+  const product = await getProduct(params.slug);
 
   return (
     <main className="edit-product-page">

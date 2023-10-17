@@ -5,17 +5,9 @@ import Header from "@/app/components/header/header.component";
 // api
 import { getCategoryWithGroups } from "@/app/api/categories/rails-api";
 
-// types
-import { Category } from "@/app/api/api-types";
-
 const CategoryPage = async ({ params }: { params: { slug: string }}) => {
-  const slug = params.slug;
-
   // GET /v1/categories#show
-  const response = await fetch(
-    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/categories/${ slug }`
-  );
-  const { category } = await response.json();
+  const category  = await getCategoryWithGroups(params.slug);
 
   // destructure category elements
   const { name, groups, banner } = category;

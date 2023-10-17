@@ -2,15 +2,12 @@
 import CardGrid from "@/app/components/card-grid/card-grid.component";
 import Header from "@/app/components/header/header.component";
 
-// types
-import { Group } from "@/app/api/api-types";
+// api
+import { getGroupWithProducts } from "@/app/api/groups/rails-api";
 
 const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
   // GET /v1/groups#show
-  const response = await fetch(
-    `${ process.env.NEXT_PUBLIC_BASE_URL }/api/groups/${ params.slug }`
-  );
-  const { group }: { group: Group } = await response.json();
+  const group = await getGroupWithProducts(params.slug);
 
   const { name, products, banner } = group;
 

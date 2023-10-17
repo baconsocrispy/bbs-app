@@ -1,10 +1,12 @@
 // components
 import Product from "@/app/components/product/product.component";
 
+// api
+import { getProduct } from "@/app/api/products/rails-api";
+
 const ProductPage = async ({ params }: { params: { slug: string }}) => {
   // GET /v1/products#show
-  const response = await fetch(`/api/products/${ params.slug }`);
-  const { product } = await response.json();
+  const product = await getProduct(params.slug);
 
   return (
     <main className="product-page">
