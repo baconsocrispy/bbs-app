@@ -1,6 +1,6 @@
 // components
-import CardGrid from "@/app/components/card-grid/card-grid.component";
-import Header from "@/app/components/header/header.component";
+import CardGrid from "@/app/_components/card-grid/card-grid.component";
+import Header from "@/app/_components/header/header.component";
 
 // api
 import { getCategoryWithGroups } from "@/app/api/categories/rails-api";

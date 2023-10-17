@@ -13,13 +13,13 @@ import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 // components
-import FeaturesGroup from "../features-group/features-group.component";
-import GroupsGroup from "../groups-group/groups-group.component";
-import SpecsGroup from "../specs-group/specs-group.component";
-import TextBlockGroup from "../text-block-group/text-block-group.component";
+import FeaturesGroup from "../nested-groups/features-group/features-group.component";
+import GroupsGroup from "../nested-groups/groups-group/groups-group.component";
+import SpecsGroup from "../nested-groups/specs-group/specs-group.component";
+import TextBlockGroup from "../nested-groups/text-block-group/text-block-group.component";
 
 // helpers
-import { encodeProductFormData, doorkeeperCredentials } from "@/app/api/api-helpers";
+import { encodeProductFormData } from "../form-helpers";
 
 // types
 import { 
@@ -92,9 +92,6 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
         const response = await fetch(`/api/products/${ product.slug }`, {
           credentials: 'include',
           method: 'PUT',
-          headers: {
-            'Authorization': `Basic ${ doorkeeperCredentials() }`
-          },
           body: encodedData
         });
       } else { 

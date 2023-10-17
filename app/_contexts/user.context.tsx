@@ -4,10 +4,10 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 
 // helpers
-import { urlEncodeFormData } from "../api/api-helpers";
+import { urlEncodeFormData } from "../_forms/form-helpers";
 
 // types
-import { AuthFormData } from "../components/auth-form/auth-form.component";
+import { AuthFormData } from "../_forms/auth-form/auth-form.component";
 
 type User = {
   id: number;

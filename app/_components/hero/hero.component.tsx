@@ -9,7 +9,7 @@ import Carousel from '../carousel/carousel.component';
 import Link from 'next/link';
 
 // context
-import { UserContext } from '@/app/contexts/user.context';
+import { UserContext } from '@/app/_contexts/user.context';
 
 // types
 import { HeroContent } from '@/app/api/api-types';

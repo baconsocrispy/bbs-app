@@ -1,5 +1,5 @@
 // components
-import GroupForm from "@/app/components/group-form/group-form.component";
+import GroupForm from "@/app/_forms/group-form/group-form.component";
 
 // api
 import { getGroupWithProducts } from "@/app/api/groups/rails-api";

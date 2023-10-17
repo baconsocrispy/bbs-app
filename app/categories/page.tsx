@@ -1,5 +1,5 @@
 // components
-import BlockMenu from '../components/block-menu/block-menu.component';
+import BlockMenu from '../_components/block-menu/block-menu.component';
 
 // api
 import { getAllCategories } from '../api/categories/rails-api';

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 // context
-import { UserContext } from '@/app/contexts/user.context';
+import { UserContext } from '@/app/_contexts/user.context';
 
 // data
 export enum AUTH_FORM_TYPES {

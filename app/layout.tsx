@@ -2,10 +2,10 @@
 import type { Metadata } from 'next';
 
 // components
-import Banner from './components/banner/banner.component';
-import Grid from './components/grid/grid.component';
-import Nav from './components/nav/nav.component';
-import Footer from './components/footer/footer.component';
+import Banner from './_components/banner/banner.component';
+import Grid from './_components/grid/grid.component';
+import Nav from './_components/nav/nav.component';
+import Footer from './_components/footer/footer.component';
 
 // head
 export const metadata: Metadata = {
@@ -14,9 +14,8 @@ export const metadata: Metadata = {
 }
 
 // styles
-import '@/app/styles/main.scss'
-import { UserProvider } from './contexts/user.context';
-import Spinner from './components/spinner/spinner.component';
+import '@/app/_styles/main.scss'
+import { UserProvider } from './_contexts/user.context';
 
 export default function RootLayout({
   children,

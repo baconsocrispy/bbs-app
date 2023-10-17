@@ -17,7 +17,7 @@ import Link from "next/link";
 import Spinner from "../spinner/spinner.component";
 
 // context
-import { UserContext } from "@/app/contexts/user.context";
+import { UserContext } from "@/app/_contexts/user.context";
 
 // types
 import { Category } from "@/app/api/api-types";

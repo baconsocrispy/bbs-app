@@ -1,6 +1,6 @@
 // components
-import ContactForm from "../components/contact-form/contact-form.component";
-import Header from "../components/header/header.component";
+import ContactForm from "../_forms/contact-form/contact-form.component";
+import Header from "../_components/header/header.component";
 
 const Contact = () => {
   return (

@@ -1,5 +1,5 @@
 // components
-import CategoryForm from "@/app/components/category-form/category-form.component";
+import CategoryForm from "@/app/_forms/category-form/category-form.component";
 
 // api
 import { getCategoryWithGroups } from "@/app/api/categories/rails-api";

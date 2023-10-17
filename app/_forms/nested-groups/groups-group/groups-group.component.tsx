@@ -6,7 +6,7 @@ import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 // types
 import { Group, ProductGrouping } from "@/app/api/api-types";
-import { ProductFormData } from "../product-form/product-form.component";
+import { ProductFormData } from "../../product-form/product-form.component";
 
 type GroupsGroupProps = {
   groups: Group[];

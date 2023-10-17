@@ -1,5 +1,5 @@
 // components
-import CategoryForm from "@/app/components/category-form/category-form.component";
+import CategoryForm from "@/app/_forms/category-form/category-form.component";
 
 const NewCategoryPage = () => {
   return (

@@ -12,7 +12,7 @@ import { UseFormRegister } from "react-hook-form";
 
 // types
 import { TextBlock } from "@/app/api/api-types";
-import { ProductFormData } from "../product-form/product-form.component";
+import { ProductFormData } from "../../product-form/product-form.component";
 
 type TextBlockGroupProps = {
   productTextBlocks?: TextBlock[];

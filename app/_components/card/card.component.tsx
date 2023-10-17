@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // context
-import { UserContext } from "@/app/contexts/user.context";
+import { UserContext } from "@/app/_contexts/user.context";
 
 // types
 import { Category, Group, Product } from "@/app/api/api-types";

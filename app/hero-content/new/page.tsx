@@ -1,5 +1,5 @@
 // components
-import HeroForm from "@/app/components/hero-form/hero-form.component";
+import HeroForm from "@/app/_forms/hero-form/hero-form.component";
 
 const NewHeroContentPage = () => {
   return (

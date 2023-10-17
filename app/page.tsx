@@ -1,5 +1,5 @@
 // components
-import Hero from "./components/hero/hero.component";
+import Hero from "./_components/hero/hero.component";
 
 // api
 import { getHeroContent } from "./api/hero-content/rails-api";

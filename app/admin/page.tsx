@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 // context
-import { UserContext } from "../contexts/user.context";
+import { UserContext } from "../_contexts/user.context";
 
 const Admin = () => {
   // state

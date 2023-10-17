@@ -1,5 +1,5 @@
 // components
-import Product from "@/app/components/product/product.component";
+import Product from "@/app/_components/product/product.component";
 
 // api
 import { getProduct } from "@/app/api/products/rails-api";

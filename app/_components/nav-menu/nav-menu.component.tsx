@@ -9,7 +9,7 @@ import NavLink from "../nav-link/nav-link.component";
 import NavLinks from "../nav-links/nav-links.component";
 
 // context
-import { UserContext } from "@/app/contexts/user.context";
+import { UserContext } from "@/app/_contexts/user.context";
 
 const NavMenu = () => {
   // state
