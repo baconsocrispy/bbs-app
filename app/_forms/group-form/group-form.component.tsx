@@ -145,12 +145,13 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
         id="category-select"
         className="product-form__select"
         name='group[category_id]'
+        defaultValue={ group?.categoryId }
       >
         { categories?.map((category) => 
           <option 
             key={ category.id } 
             value={ category.id } 
-            selected={ category.id === categoryId }
+            // selected={ category.id === categoryId }
           >
             { category.name }
           </option>

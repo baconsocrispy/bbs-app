@@ -9,7 +9,7 @@ const GroupEditPage = async ({ params }: { params: { slug: string }}) => {
   const group = await getGroupWithProducts(params.slug);
 
   return (
-    <main>
+    <main className="group-edit-page">
       <GroupForm group={ group }/>
     </main>
   )

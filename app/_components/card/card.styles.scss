@@ -6,16 +6,12 @@
   padding: 2rem;
   gap: 1rem;
   background-color: $color-white;
-  
-  &:not(:first-child) {
-    border-top: 1px solid $color-white;
-  }
 
   @media (min-width: $breakpoint-md) {
     width: 100%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content 1fr max-content;
-    background-color: $color-black;
+    background-color: $color-white;
 
     &:nth-child(even) > 
     &__image-container {
@@ -52,9 +48,9 @@
   }
 
   &__image {
-    width: 75%;
     height: auto;
     border-radius: $border-radius;
+    opacity: .9;
 
     @media (min-width: $breakpoint-md) {
       width: 100%;
@@ -76,9 +72,10 @@
     text-transform: uppercase;
     font-family: $font-header;
     font-size: $font-size-header;
+    padding: $padding-default;
 
     @media (min-width: $breakpoint-md) {
-      color: $color-white;
+      color: $color-black;
       text-align: start;
     } 
   }
@@ -96,7 +93,7 @@
       padding: $padding-default;
       display: flex;
       align-items: flex-end;
-      color: $color-white;
+      color: $color-black;
     }
   }
 
