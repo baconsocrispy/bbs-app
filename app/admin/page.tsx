@@ -66,15 +66,9 @@ const Admin = () => {
           </Link>
           <Link
             className="admin-page__link"
-            href='/hero-content/edit'
-          >
-            Edit Homepage
-          </Link>
-          <Link
-            className="admin-page__link"
             href='/admin/signup'
           >
-            Add User
+            New User
           </Link>
         </div>
 

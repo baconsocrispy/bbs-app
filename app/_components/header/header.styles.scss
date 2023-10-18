@@ -22,11 +22,10 @@
     position: relative;
     z-index: 20;
     padding: $padding-default;
-    border-radius: $border-radius;
     font-family: $font-header;
     font-size: $font-size-header;
     text-transform: uppercase;
-    background-color: $color-black-transparent;
+    background-color: $color-black;
 
     &--overlay {
       color: $color-white;

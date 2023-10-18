@@ -15,7 +15,7 @@ const Button: FC<ButtonProps> = ({ text, href, className, onClick }) => {
     <button className={ `button ${ className }` } onClick={ onClick }>
       <Link 
         className="button__link"
-        href={ href ? href : '#' }>
+        href={ href ?? '#' }>
         { text }
       </Link>
     </button>
