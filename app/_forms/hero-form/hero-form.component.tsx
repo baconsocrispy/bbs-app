@@ -9,6 +9,7 @@ import Thumbnail from "@/app/_components/thumbnail/thumbnail.component";
 
 // types
 import { HeroContent } from "@/app/api/api-types";
+import ImagesInput from "@/app/_components/images-input/images-input.component";
 
 type HeroFormProps = {
   heroContent?: HeroContent;
@@ -109,39 +110,16 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
       {/* hero-content images */}
       <label 
         className="product-form__label"
-        htmlFor="product-images"
+        htmlFor="hero-content-images"
       >
         Images
       </label>
-
-      { heroContent?.images && !changeImages &&
-        <>
-          <div className="image-display__thumbnail-container">
-            { heroContent.images.map((image) => 
-              <Thumbnail 
-                key={ image.id } 
-                image={ image } 
-              />
-            )}
-          </div>
-          <div>
-            <button onClick={ handleChangeImages }>
-              { changeImages ? 'Cancel' : 'Change' }
-            </button>
-          </div>
-        </>
-      }
-
-      { !heroContent || changeImages &&
-        <input 
-          id="hero-content-images"
-          className="product-form__attach-button"
-          type="file"
-          name="hero_content[hero_images][]"
-          multiple
-        />
-      }
       
+      <ImagesInput 
+        id="hero-content-images"
+        images={ heroContent?.images } 
+        name="hero_content[hero_images][]"
+      />
 
       {/* id */}
       { heroContent && 
