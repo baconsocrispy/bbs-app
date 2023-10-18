@@ -1,11 +1,8 @@
 'use client'
 
 // library
-import { FC, MouseEventHandler, useState } from "react";
+import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
-
-// components
-import Thumbnail from "@/app/_components/thumbnail/thumbnail.component";
 
 // types
 import { HeroContent } from "@/app/api/api-types";
@@ -18,7 +15,6 @@ type HeroFormProps = {
 const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
   // state
   const [ loading, setLoading ] = useState(false);
-  const [ changeImages, setChangeImages ] = useState(false);
   const [ buttonText, setButtonText ] = useState(heroContent ? heroContent.button_text : '');
   const [ headerText, setHeaderText ] = useState(heroContent ? heroContent.header_text : '');
   const [ href, setHref ] = useState(heroContent ? heroContent.href : '#');
@@ -43,11 +39,6 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
       });
     }
     router.push('/');
-  };
-
-  const handleChangeImages: MouseEventHandler = (e) => {
-    e.preventDefault();
-    setChangeImages(!changeImages);
   };
 
   if (loading) return <p>Submitting form...</p>;
@@ -114,7 +105,6 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
       >
         Images
       </label>
-      
       <ImagesInput 
         id="hero-content-images"
         images={ heroContent?.images } 

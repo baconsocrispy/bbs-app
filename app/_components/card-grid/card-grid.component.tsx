@@ -11,7 +11,6 @@ import FeaturedCard from "../featured-card/featured-card.component";
 // types
 import { Category, Group, Product } from "@/app/api/api-types";
 
-
 type CardGridProps = {
   items: Group[] | Product[];
   pinnedItem?: Category;

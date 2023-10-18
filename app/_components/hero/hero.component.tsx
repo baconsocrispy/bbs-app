@@ -34,7 +34,7 @@ const Hero: FC<HeroProps> = ({ heroContent }) => {
         </button>
       }
 
-      <Carousel images={ heroContent.images } />
+      <Carousel images={ heroContent.images } seconds={ 6 }/>
 
       <div className='hero__content'>
         <h1 className='hero__text'>

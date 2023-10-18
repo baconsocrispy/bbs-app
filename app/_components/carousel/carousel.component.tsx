@@ -9,10 +9,11 @@ import Image from "next/image";
 import Spinner from "../spinner/spinner.component";
 
 type CarouselProps = {
-  images: SerializedImage[];  
+  images: SerializedImage[];
+  seconds?: number;  
 }
 
-const Carousel: FC<CarouselProps> = ({ images }) => {
+const Carousel: FC<CarouselProps> = ({ images, seconds = 5 }) => {
   // state
   const [ activeIndex, setActiveIndex ] = useState(0);
   const [ loading, setLoading ] = useState(true);
@@ -35,7 +36,7 @@ const Carousel: FC<CarouselProps> = ({ images }) => {
       setActiveIndex(nextIndex);
     };
 
-    const interval = setInterval(rotateNext, 5000);
+    const interval = setInterval(rotateNext, seconds * 1000);
 
     // prevent interval memory leak
     return () => clearInterval(interval);
