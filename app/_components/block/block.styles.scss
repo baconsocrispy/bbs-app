@@ -1,8 +1,10 @@
 .block {
   display: grid;
   grid-template-rows: repeat(2, max-content) 1fr max-content;
+  gap: $padding-default;
   width: 100%;
   color: $color-black;
+  font-family: $font-primary;
 
   &__image-container {
     width: 100%;
@@ -13,9 +15,15 @@
     z-index: 0;
     width: 100%;
     height: auto;
+    border-radius: $border-radius;
   }
 
   &__header {
+    font-family: $font-header;
     text-transform: uppercase;
+  }
+
+  &__link {
+    text-decoration: underline;
   }
 }

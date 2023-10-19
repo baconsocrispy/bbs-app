@@ -19,6 +19,10 @@
     border: none;
   }
 
+  &__item {
+    position: relative;
+  }
+
   &__edit-button {
     z-index: 20;
     cursor: pointer;
