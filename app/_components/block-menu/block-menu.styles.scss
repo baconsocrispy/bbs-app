@@ -1,7 +1,7 @@
 .block-menu {
   position: fixed;
   z-index: 1;
-  top: calc($height-banner + $height-nav);
+  top: $height-nav;
   bottom: $height-footer;
   left: 0;
   right: 0;

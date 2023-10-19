@@ -9,9 +9,17 @@
 
   @media (min-width: $breakpoint-md) {
     width: 100%;
-    grid-template-columns: 1fr 1fr;
+    
     grid-template-rows: max-content 1fr max-content;
     background-color: $color-white;
+
+    &:nth-child(even) {
+      grid-template-columns: 1fr 30rem;
+    }
+
+    &:nth-child(odd) {
+      grid-template-columns: 30rem 1fr;
+    }
 
     &:nth-child(even) > 
     &__image-container {
@@ -50,7 +58,7 @@
   &__image {
     height: auto;
     border-radius: $border-radius;
-    opacity: .9;
+    opacity: 1;
 
     @media (min-width: $breakpoint-md) {
       width: 100%;
@@ -61,23 +69,15 @@
     @media (min-width: $breakpoint-md) {
       width: 100%;
       height: 100%;
-      padding: 0 $padding-default;
       grid-row: 1 / 2;
-      border-radius: $border-radius;
     }
   }
 
   &__header {
-    text-align: center;
     text-transform: uppercase;
     font-family: $font-header;
     font-size: $font-size-header;
-    padding: $padding-default;
-
-    @media (min-width: $breakpoint-md) {
-      color: $color-black;
-      text-align: start;
-    } 
+    padding:  0 $padding-default;
   }
 
   &__text-container {
@@ -93,7 +93,6 @@
       padding: $padding-default;
       display: flex;
       align-items: flex-end;
-      color: $color-black;
     }
   }
 

@@ -7,7 +7,6 @@
   overflow: hidden;
   background-color: $color-black;
  
-
   &--stacked {
     flex-direction: column;
     align-items: center;
@@ -15,7 +14,7 @@
 
   &__image {
     object-fit: cover;
-    // padding: $padding-default;
+    padding: $padding-default;
   }
 
   &__text {

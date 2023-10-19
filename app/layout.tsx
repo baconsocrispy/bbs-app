@@ -25,7 +25,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Grid>
-          <Banner />
           <UserProvider>
             <Nav />
             { children }

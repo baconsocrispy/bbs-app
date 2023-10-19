@@ -6,16 +6,16 @@ $font-size-header: 2.5rem;
 $font-size-sm: 1rem;
 
 // colors
-$color-black: #292626;
+$color-black: #3e3b3b;
 $color-black-transparent: rgba(0, 0, 0, .7);
-$color-green: green;
+$color-green: #492323;
 $color-white: #FFFFFF;
 
 // sizing
 $height-banner: 2rem;
 $height-footer: 4rem;
 $height-nav: 4rem;
-$height-main: calc(100% - $height-banner - $height-nav - $height-footer);
+$height-main: calc(100% - $height-nav - $height-footer);
 $max-width-card: 80rem;
 $border-radius: .5rem;
 
