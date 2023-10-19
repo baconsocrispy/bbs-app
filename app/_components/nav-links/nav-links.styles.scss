@@ -2,7 +2,7 @@
   display: grid;
   position: fixed;
   z-index: 10;
-  top: calc($height-nav + $height-banner);
+  top: calc($height-nav);
   bottom: $height-footer;
   left: 0;
   right: 0;
