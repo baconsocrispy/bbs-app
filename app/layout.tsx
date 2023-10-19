@@ -2,7 +2,6 @@
 import type { Metadata } from 'next';
 
 // components
-import Banner from './_components/banner/banner.component';
 import Grid from './_components/grid/grid.component';
 import Nav from './_components/nav/nav.component';
 import Footer from './_components/footer/footer.component';
