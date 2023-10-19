@@ -1,13 +1,11 @@
 .block-menu {
-  position: fixed;
+  position: relative;
+  width: 100%;
   z-index: 1;
-  top: $height-nav;
-  bottom: $height-footer;
-  left: 0;
-  right: 0;
   font-family: $font-header;
   color: $color-white;
-  background-color: $color-black;
+  background-color: $color-white;
+  overflow: scroll;
 
   &__close {
     cursor: pointer;
@@ -31,53 +29,10 @@
   }
 
   &__items {
-    height: 100%;
     display: grid;
-    gap: 1rem;
-    padding: $padding-default;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $padding-lg;
+    padding: $padding-lg;
     list-style: none;
-  }
-
-  &__item {
-    cursor: pointer;  
-    position: relative;
-    display: flex;
-    align-items: center;
-    background-position: center;
-    background-size: cover;
-  }
-
-  &__link {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: $padding-default;
-    color: inherit;
-    font-size: 4rem;
-    text-decoration: none;
-    text-transform: capitalize;
-  }
-
-  &__header-container {
-    padding: $padding-default;
-    background-color: $color-black-transparent;
-    border-radius: $border-radius;
-  }
-
-  &__image {
-    z-index: -1;
-    object-fit: cover;
-    border-radius: $border-radius;
-  }
-
-  &__header {
-    text-transform: uppercase;
-  }
-    
-  &--closed {
-    display: none;
   }
 }

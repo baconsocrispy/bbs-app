@@ -1,0 +1,21 @@
+.block {
+  display: grid;
+  grid-template-rows: repeat(2, max-content) 1fr max-content;
+  width: 100%;
+  color: $color-black;
+
+  &__image-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__image {
+    z-index: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  &__header {
+    text-transform: uppercase;
+  }
+}
