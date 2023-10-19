@@ -80,6 +80,12 @@ export type Spec = {
   _destroy?: boolean;
 };
 
+export type Summary = {
+  copy: string;
+  header: string;
+  id?: number;
+};
+
 export type TextBlock = {
   created_at?: string;
   id?: number;
