@@ -14,9 +14,10 @@ type CategoryFormProps = {
 const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
   // state
   const [ loading, setLoading ] = useState(false);
-  const [ name, setName ] = useState(category ? category.name : '');
-  const [ short_description, setShortDescription ] = useState(category ? category.short_description : '');
-  const [ tagLine, setTagLine ] = useState(category ? category.tagLine : '');
+  const [ name, setName ] = useState(category?.name);
+  const [ short_description, setShortDescription ] = useState(category?.short_description);
+  const [ tagLine, setTagLine ] = useState(category?.tagLine);
+  const [ title, setTitle ] = useState(category?.title)
 
   // navigation
   const router = useRouter();
@@ -68,18 +69,35 @@ const CategoryForm: FC<CategoryFormProps> = ({ category }) => {
       {/* category name */}
       <label 
         className="product-form__label"
-        htmlFor="name"
+        htmlFor="category-name"
       >
         Name
       </label>
       <input
-        id="name" 
+        id="category-name" 
         className="product-form__input"
         type="text"
         autoComplete="false"
         name="category[name]"
         value={ name }
         onChange={ (e) => setName(e.target.value) }
+      />
+
+      {/* category title */}
+      <label 
+        className="product-form__label"
+        htmlFor="category-title"
+      >
+        Title
+      </label>
+      <input
+        id="category-title" 
+        className="product-form__input"
+        type="text"
+        autoComplete="false"
+        name="category[title]"
+        value={ title }
+        onChange={ (e) => setTitle(e.target.value) }
       />
 
       {/* category description */}

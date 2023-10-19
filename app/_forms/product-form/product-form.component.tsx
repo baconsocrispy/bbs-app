@@ -50,9 +50,10 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   // form state
   const [ defaultImage, setDefaultImage ] = useState<File | undefined>(undefined);
   const [ groups, setGroups ] = useState<Group[] | undefined>(undefined);
+  const [ highlight, setHighlight ] = useState(product?.highlight)
   const [ images, setImages ] = useState<FileList | undefined>(undefined);
-  const [ name, setName ] = useState(product ? product.name : '');
-  const [ shortDescription, setShortDescription ] = useState(product ? product.short_description : '');
+  const [ name, setName ] = useState(product?.name);
+  const [ shortDescription, setShortDescription ] = useState(product?.short_description);
   
   // loading state
   const [ loading, setLoading ] = useState(true);
@@ -157,6 +158,23 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           { ...register('product.name') }
           value={ name }
           onChange={ (e) => setName(e.target.value) }
+        />
+
+        {/* product highlight */}
+        <label 
+          className="product-form__label"
+          htmlFor="product-highlight"
+        >
+          T
+        </label>
+        <input
+          id="product-highlight" 
+          className="product-form__input"
+          type="text"
+          autoComplete="false"
+          name="product[highlight]"
+          value={ highlight }
+          onChange={ (e) => setHighlight(e.target.value) }
         />
 
         {/* product description */}

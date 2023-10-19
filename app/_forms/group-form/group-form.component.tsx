@@ -15,6 +15,7 @@ type GroupFormProps = {
 const GroupForm: FC<GroupFormProps> = ({ group }) => {
   // state
   const [ loading, setLoading ] = useState(false);
+  const [ highlight, setHighlight ] = useState(group?.highlight);
   const [ name, setName ] = useState(group?.name);
   const [ short_description, setShortDescription ] = useState(group?.short_description);
   const [ categoryId, setCategoryId ] = useState(group?.categoryId);
@@ -79,18 +80,35 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
       {/* group name */}
       <label 
         className="product-form__label"
-        htmlFor="name"
+        htmlFor="group-name"
       >
         Name
       </label>
       <input
-        id="name" 
+        id="group-name" 
         className="product-form__input"
         type="text"
         autoComplete="false"
         name="group[name]"
         value={ name }
         onChange={ (e) => setName(e.target.value) }
+      />
+
+      {/* group highlight */}
+      <label 
+        className="product-form__label"
+        htmlFor="group-highlight"
+      >
+        T
+      </label>
+      <input
+        id="group-highlight" 
+        className="product-form__input"
+        type="text"
+        autoComplete="false"
+        name="group[highlight]"
+        value={ highlight }
+        onChange={ (e) => setHighlight(e.target.value) }
       />
 
       {/* group description */}

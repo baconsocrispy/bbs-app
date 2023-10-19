@@ -25,22 +25,9 @@
     &__image-container {
       grid-column: 1 / 2;
     }
-
-    &:nth-child(even) > 
-    &__header-container > 
-    &__header {
-      text-align: end;
-    }
-
-    &:nth-child(even) > 
-    &__button {
-      grid-column: 2 / -1;
-    }
   }
 
   &__image-container {
-    width: 75%;
-    
     @media (min-width: $breakpoint-md) {
       width: 100%;
       grid-column: 2 / -1;
@@ -50,15 +37,11 @@
 
   &__link {
     cursor: pointer;
-    position: relative;
-    display: flex;
-    justify-content: center;
   }
 
   &__image {
     height: auto;
     border-radius: $border-radius;
-    opacity: 1;
 
     @media (min-width: $breakpoint-md) {
       width: 100%;
