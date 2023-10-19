@@ -3,7 +3,7 @@
   grid-template-rows: repeat(2, max-content) 1fr max-content;
   gap: $padding-default;
   width: 100%;
-  color: $color-black;
+  color: currentColor;
   font-family: $font-primary;
 
   &__image-container {

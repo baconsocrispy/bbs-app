@@ -1,0 +1,23 @@
+.summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  padding: $padding-lg;
+  gap: $padding-lg;
+  font-family: $font-primary;
+
+  &__header {
+    text-transform: uppercase;
+    font-family: $font-header;
+  }
+
+  &__copy {
+    font-size: $font-size-lg;
+
+    &::first-line {
+      line-height: 100%;
+    }
+  }
+
+
+}
