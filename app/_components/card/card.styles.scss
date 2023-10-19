@@ -10,7 +10,7 @@
   @media (min-width: $breakpoint-md) {
     width: 100%;
     
-    grid-template-rows: max-content 1fr max-content;
+    grid-template-rows: max-content max-content 1fr max-content;
     background-color: $color-white;
 
     &:nth-child(even) {
@@ -63,9 +63,21 @@
     padding:  0 $padding-default;
   }
 
-  &__text-container {
+  &__highlight {
+    text-align: start;
+    font-style: italic;
+    font-size: $font-size-lg;
+    padding: 0 $padding-default;
+    width: 100%;
+
     @media (min-width: $breakpoint-md) {
       grid-row: 2 / 3;
+    }
+  }
+
+  &__text-container {
+    @media (min-width: $breakpoint-md) {
+      grid-row: 3 / 4;
     }
   }
 

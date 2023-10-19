@@ -165,7 +165,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
           className="product-form__label"
           htmlFor="product-highlight"
         >
-          T
+          Highlight
         </label>
         <input
           id="product-highlight" 

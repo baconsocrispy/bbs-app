@@ -99,7 +99,7 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
         className="product-form__label"
         htmlFor="group-highlight"
       >
-        T
+        Highlight
       </label>
       <input
         id="group-highlight" 

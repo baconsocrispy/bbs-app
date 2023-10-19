@@ -12,13 +12,13 @@ type FeaturedCardProps = {
 
 const FeaturedCard: FC<FeaturedCardProps> = ({ category }) => {
   // state
-  const { name, pinned, short_description } = category;
+  const { name, pinned, short_description, title } = category;
 
   return (
     <section className="card">
       <div className="card__header-container">
         <h2 className="card__header">
-          { name }&nbsp;Line
+          { title }
         </h2>
       </div>
 

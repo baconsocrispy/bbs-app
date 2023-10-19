@@ -2,7 +2,6 @@
 import { FC, useContext } from "react";
 
 // components
-import Button from "../button/button.component";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +9,7 @@ import Link from "next/link";
 import { UserContext } from "@/app/_contexts/user.context";
 
 // types
-import { Category, Group, Product } from "@/app/api/api-types";
+import { Group, Product } from "@/app/api/api-types";
 
 type CardProps = {
   item: Group | Product;
@@ -20,7 +19,7 @@ type CardProps = {
 const Card: FC<CardProps> = ({ item, path }) => {
   // state
   const { user } = useContext(UserContext)
-  const { image, name, short_description, slug } = item;
+  const { highlight, image, name, short_description, slug } = item;
 
   return (
     <div className="card">
@@ -41,6 +40,9 @@ const Card: FC<CardProps> = ({ item, path }) => {
         </h2>
       </div>
 
+      <div className="card__highlight">
+        <p>{ highlight }</p>
+      </div>
 
       <div className="card__image-container">
         <Link 
@@ -56,7 +58,6 @@ const Card: FC<CardProps> = ({ item, path }) => {
           />
         </Link>
       </div>
-
 
       <div className="card__text-container">
         <p className="card__text">
