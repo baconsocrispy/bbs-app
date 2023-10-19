@@ -7,10 +7,10 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    font-family: $font-header;
+    font-family: $font-primary;
   }
 
   @media (min-width: $breakpoint-md) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }

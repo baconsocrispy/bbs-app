@@ -64,11 +64,12 @@ const Card: FC<CardProps> = ({ item, path }) => {
         </p>
       </div>
 
-      <Button 
-        className="card__button"
+      <Link 
+        className="card__cta"
         href={ path + slug }
-        text={ 'View ' + name }
-      />
+      >
+        { 'View ' + name }
+      </Link>
     </div>
   )
 };

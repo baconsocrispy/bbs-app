@@ -32,7 +32,7 @@ const Header: FC<HeaderProps> = ({
       <section className={ `header header--${ variant }` }>
 
         <h1 className={ `header__text header__text--${ variant }` }>
-          { text }
+          { text + ' line' }
         </h1>
         <Image
           className={ `header__image header__image--${ variant }` }

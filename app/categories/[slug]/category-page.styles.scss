@@ -1,5 +1,6 @@
 .category-page {
   position: relative;
-  display: grid;
-  grid-template-rows: 25% 1fr;
+  // display: grid;
+  // grid-template-rows: 25% 1fr;
+  overflow: scroll;
 }

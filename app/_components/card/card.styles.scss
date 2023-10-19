@@ -107,4 +107,9 @@
       grid-row: 3 / 4; 
     }
   }
+
+  &__cta {
+    text-transform: capitalize;
+    text-decoration: underline;
+  }
 }
