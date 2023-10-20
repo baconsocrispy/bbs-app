@@ -45,12 +45,13 @@ const Product: FC<ProductProps> = ({ product }) => {
         <p className="product__short-description">
           { short_description }
         </p>
-        <Button href="/contact" className="product__cta" text="Inquire" />
       </section>
 
       { specs.length > 0 && <Specs specs={ specs } /> }
       { textBlocks.length > 0 && <TextBlocks textBlocks={ textBlocks } /> }
       { features.length > 0 && <Features features={ features } header={ featuresHeader }/> }
+
+      <Button href="/contact" className="product__cta" text="Inquire" />
     </div>
   )
 }
