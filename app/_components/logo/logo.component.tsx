@@ -5,9 +5,16 @@ import Link from 'next/link';
 // assets
 import LogoImage from '@/public/logo_100x23.png';
 
-const Logo = () => {
+// types
+type LogoProps = {
+  theme?: string; // light or dark
+};
+
+const Logo = ({ theme }: LogoProps) => {
+  const initialStyle = `${ theme }`
+
   return (
-    <div className="logo">
+    <div className={ `logo ${ initialStyle }` }>
       <Link href='/'>
         <Image 
           src={ LogoImage }
@@ -17,6 +24,6 @@ const Logo = () => {
       </Link>
     </div>
   )
-}
+};
 
 export default Logo;

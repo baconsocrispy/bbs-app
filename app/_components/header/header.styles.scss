@@ -7,7 +7,6 @@
   
   color: $color-black;
   overflow: hidden;
-  background-color: $color-black;
  
   &--stacked {
     flex-direction: column;
@@ -16,17 +15,16 @@
 
   &__image {
     object-fit: cover;
-    padding: $padding-default;
   }
 
   &__text {
     position: relative;
     z-index: 20;
-    padding: $padding-default;
+    padding: $padding-sm $padding-default;
     font-family: $font-header;
     font-size: $font-size-header;
     text-transform: uppercase;
-    background-color: $color-black;
+    background-color: $color-black-transparent;
 
     &--overlay {
       color: $color-white;

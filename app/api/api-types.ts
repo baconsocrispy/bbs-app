@@ -84,6 +84,8 @@ export type Spec = {
 };
 
 export type Summary = {
+  banner: SerializedImage;
+  bannerText?: string;
   copy: string;
   header: string;
   id?: number;

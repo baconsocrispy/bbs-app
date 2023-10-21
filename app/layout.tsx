@@ -9,11 +9,11 @@ import Footer from './_components/footer/footer.component';
 // head
 export const metadata: Metadata = {
   title: 'BB&S America',
-  description: 'BB&S: Lighting People',
-}
+  description: 'BB&S: Lighting People'
+};
 
 // styles
-import '@/app/_styles/main.scss'
+import '@/app/_styles/main.scss';
 import { UserProvider } from './_contexts/user.context';
 
 export default function RootLayout({
@@ -23,13 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Grid>
-          <UserProvider>
-            <Nav />
-            { children }
-          </UserProvider>
-          <Footer />
-        </Grid>
+        <UserProvider>
+          { children }
+        </UserProvider>
       </body>
     </html>
   )

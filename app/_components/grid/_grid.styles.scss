@@ -5,6 +5,12 @@
   display: grid;
   grid-template-rows: 
     $height-nav 
-    $height-main 
+    calc(100% - $height-nav - $height-footer)
     $height-footer;
+
+  &--no-navbar {
+    grid-template-rows: 
+      calc(100% - $height-footer)
+      $height-footer;
+  }
 }

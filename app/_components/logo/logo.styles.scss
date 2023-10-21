@@ -1,4 +1,8 @@
 .logo {
-  filter: invert(100%);
   cursor: pointer;
+  filter: invert(100%);
+
+  &--dark {
+    filter: invert(0%);
+  }
 }

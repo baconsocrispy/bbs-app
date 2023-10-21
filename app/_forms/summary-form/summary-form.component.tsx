@@ -4,6 +4,9 @@
 import { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 
+// components
+import ImageInput from "@/app/_components/image-input/image-input.component";
+
 // types
 import { Summary } from "@/app/api/api-types";
 
@@ -14,6 +17,7 @@ type SummaryFormProps = {
 const SummaryForm: FC<SummaryFormProps> = ({ summary }) => {
   // state
   const [ loading, setLoading ] = useState(false);
+  const [ bannerText, setBannerText ] = useState(summary?.bannerText);
   const [ copy, setCopy ] = useState(summary?.copy);
   const [ header, setHeader ] = useState(summary?.header);
 
@@ -69,7 +73,7 @@ const SummaryForm: FC<SummaryFormProps> = ({ summary }) => {
         className="product-form__label" 
         htmlFor="copy-text"
       >
-        Header Text
+        Copy Text
       </label>
       <textarea
         id="copy-text"
@@ -79,6 +83,33 @@ const SummaryForm: FC<SummaryFormProps> = ({ summary }) => {
         onChange={ (e) => setCopy(e.target.value) }
       />
 
+      {/* banner text */}
+      <label
+        className="product-form__label" 
+        htmlFor="banner-text"
+      >
+        Banner Text
+      </label>
+      <textarea
+        id="banner-text"
+        className="product-form__input" 
+        name="summary[banner_text]"
+        value={ bannerText }
+        onChange={ (e) => setBannerText(e.target.value) }
+      />
+
+      {/* banner image */}
+      <label 
+        className="product-form__label"
+        htmlFor="banner-image"
+      >
+        Banner Image
+      </label>
+      <ImageInput 
+        id="banner-image"
+        name="summary[banner_image]"
+        image={ summary?.banner }
+      />
 
       {/* id */}
       { summary && 

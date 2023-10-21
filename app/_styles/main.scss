@@ -46,14 +46,16 @@
 @import '@/app/_forms/nested-groups/text-block-group/text-block-group.styles';
 
 // pages
-@import '@/app/admin/admin-page.styles';
-@import '@/app/categories/categories-page.styles';
-@import '@/app/categories/[slug]/category-page.styles';
-@import '@/app/categories/edit/[slug]/category-edit-page.styles';
-@import '@/app/contact/contact-page.styles';
-@import '@/app/product-groups/edit/[slug]/group-edit-page.styles';
-@import '@/app/products/[slug]/product-page.styles';
-@import '@/app/products/edit/[slug]/edit-product-page.styles';
-@import '@/app/products/new/new-product-page.styles';
-@import '@/app/admin/signin/signin-page.styles';
+@import '@/app/(admin)/admin/admin-page.styles';
+@import '@/app/(admin)/admin/signin/signin-page.styles';
+
+@import '@/app/(pages)/categories/categories-page.styles';
+@import '@/app/(pages)/categories/[slug]/category-page.styles';
+@import '@/app/(pages)/categories/edit/[slug]/category-edit-page.styles';
+@import '@/app/(pages)/contact/contact-page.styles';
+@import '@/app/(pages)/product-groups/edit/[slug]/group-edit-page.styles';
+@import '@/app/(pages)/products/[slug]/product-page.styles';
+@import '@/app/(pages)/products/edit/[slug]/edit-product-page.styles';
+@import '@/app/(pages)/products/new/new-product-page.styles';
+
 
