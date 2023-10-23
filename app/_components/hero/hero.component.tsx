@@ -15,15 +15,13 @@ import { HeroContent } from '@/app/api/api-types';
 
 type HeroProps = {
   heroContent: HeroContent;
-}
+};
 
 const Hero: FC<HeroProps> = ({ heroContent }) => {
   const { user } = useContext(UserContext);
 
   return (
     <section className='hero'>
-
-
       <Carousel images={ heroContent.images } seconds={ 6 }/>
 
       <div className='hero__content'>

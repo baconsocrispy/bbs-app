@@ -11,12 +11,13 @@ type LogoProps = {
 };
 
 const Logo = ({ theme }: LogoProps) => {
-  const initialStyle = `${ theme }`
+  const initialStyle = `${ theme }`;
 
   return (
     <div className={ `logo ${ initialStyle }` }>
       <Link href='/'>
         <Image 
+          className='logo__image'
           src={ LogoImage }
           alt='BB&S Logo'
           priority

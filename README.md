@@ -85,8 +85,6 @@ prebuildScripts();
 * handle auth form error situations
 * Logo taking too long to load
 * Loading states for all pages
-* Sign up for admin
-* Mobile cookie handling (not setting cross origin cookies) Try setting cookie-samesite=lax
 * protect update/new/delete routes with authentication on frontend
 
 ## Image Size Recommendations
