@@ -48,6 +48,7 @@ export const updateHeroContent = async (
   const response = await fetch(url, {
     credentials: 'include',
     method: 'PUT',
+    next: { revalidate: 0 },
     headers: {
       'Authorization': `Basic ${ doorkeeperCredentials() }`,
       'Cookie': `access_token=${ token ?? ''}`
