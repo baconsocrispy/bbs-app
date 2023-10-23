@@ -2,6 +2,7 @@
 import { FC, useContext } from "react";
 
 // components
+import Button from "../button/button.component";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,6 +11,7 @@ import { UserContext } from "@/app/_contexts/user.context";
 
 // types
 import { Group, Product } from "@/app/api/api-types";
+
 
 type CardProps = {
   item: Group | Product;
@@ -24,14 +26,11 @@ const Card: FC<CardProps> = ({ item, path }) => {
   return (
     <div className="card">
       { user && 
-        <button className="block-menu__edit-button">
-          <Link 
-            className="block-menu__edit-link"
-            href={ `${ path }edit/${ item.slug }` }
-          >
-            Edit
-          </Link>
-        </button>
+        <Button 
+          text='Edit'
+          href={ `${ path }edit/${ item.slug }` }
+          className="button--edit"
+        />
       }
 
       <div className="card__header-container">

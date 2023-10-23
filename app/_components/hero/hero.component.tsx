@@ -6,7 +6,6 @@ import { FC, useContext } from 'react';
 // components
 import Button from '../button/button.component';
 import Carousel from '../carousel/carousel.component';
-import Link from 'next/link';
 
 // context
 import { UserContext } from '@/app/_contexts/user.context';
@@ -23,20 +22,19 @@ const Hero: FC<HeroProps> = ({ heroContent }) => {
 
   return (
     <section className='hero'>
-      { user && 
-        <button className="block-menu__edit-button">
-          <Link 
-            className="block-menu__edit-link"
-            href={ `/hero-content/edit/${ heroContent.id }`}
-          >
-            Edit
-          </Link>
-        </button>
-      }
+
 
       <Carousel images={ heroContent.images } seconds={ 6 }/>
 
       <div className='hero__content'>
+        { user && 
+          <Button 
+            text='Edit' 
+            href={ `/hero-content/edit/${ heroContent.id }` } 
+            className='button--edit'
+          />
+        }
+
         <h1 className='hero__text'>
           { heroContent.header_text }
         </h1>
@@ -44,7 +42,7 @@ const Hero: FC<HeroProps> = ({ heroContent }) => {
         <Button
           text={ heroContent.button_text }
           href={ heroContent.href }
-          className='hero__button'
+          className='button--cta'
         />
       </div>
     </section>

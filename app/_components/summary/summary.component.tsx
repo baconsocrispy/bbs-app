@@ -7,7 +7,7 @@ import { FC, useContext } from "react";
 import { UserContext } from "@/app/_contexts/user.context";
 
 // components
-import Link from "next/link";
+import Button from "../button/button.component";
 
 // types
 import { Summary } from "@/app/api/api-types";
@@ -23,14 +23,19 @@ const Summary: FC<SummaryProps> = ({ summary }) => {
   return (
     <div className="summary">
         { user && 
-          <button className="block-menu__edit-button">
-            <Link 
-              className="block-menu__edit-link"
-              href={ `/summary/edit/${ summary.id }` }
-            >
-              Edit
-            </Link>
-          </button>
+          // <button className="block-menu__edit-button">
+          //   <Link 
+          //     className="block-menu__edit-link"
+          //     href={ `/summary/edit/${ summary.id }` }
+          //   >
+          //     Edit
+          //   </Link>
+          // </button>
+          <Button 
+            text='Edit'
+            href={ `/summary/edit/${ summary.id }` }
+            className='button--edit'
+          />
         }
       <h4 className="summary__header">{ summary.header }</h4>
       <p className="summary__copy">{ summary.copy }</p>

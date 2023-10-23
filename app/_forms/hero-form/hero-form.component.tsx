@@ -15,9 +15,9 @@ type HeroFormProps = {
 const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
   // state
   const [ loading, setLoading ] = useState(false);
-  const [ buttonText, setButtonText ] = useState(heroContent ? heroContent.button_text : '');
-  const [ headerText, setHeaderText ] = useState(heroContent ? heroContent.header_text : '');
-  const [ href, setHref ] = useState(heroContent ? heroContent.href : '#');
+  const [ buttonText, setButtonText ] = useState(heroContent?.button_text);
+  const [ headerText, setHeaderText ] = useState(heroContent?.header_text);
+  const [ href, setHref ] = useState(heroContent?.href);
 
   // navigation
   const router = useRouter();

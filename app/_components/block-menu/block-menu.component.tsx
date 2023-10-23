@@ -8,7 +8,7 @@ import {
 
 // components
 import Block from "../block/block.component";
-import Link from "next/link";
+import Button from "../button/button.component";
 
 // context
 import { UserContext } from "@/app/_contexts/user.context";
@@ -34,14 +34,11 @@ const BlockMenu: FC<BlockMenuProps> = ({ items }) => {
               className="block-menu__item" 
             >
               { user && 
-                <button className="block-menu__edit-button">
-                  <Link 
-                    className="block-menu__edit-link"
-                    href={ `/categories/edit/${ item.slug }` }
-                  >
-                    Edit
-                  </Link>
-                </button>
+                <Button 
+                  text='Edit'
+                  href={ `/categories/edit/${ item.slug }` }
+                  className="button--edit"
+                />
               }
 
               <Block item={ item } />

@@ -7,29 +7,8 @@
   color: $color-black;
   overflow: scroll;
 
-  &__close {
-    cursor: pointer;
-    position: absolute;
-    z-index: 5;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    color: inherit;
-    font-size: 2rem;
-    border: none;
-  }
-
   &__item {
     position: relative;
-  }
-
-  &__edit-button {
-    z-index: 20;
-    cursor: pointer;
-    position: absolute;
-    top: $padding-default;
-    right: $padding-default;
-    padding: 0 $padding-default;
   }
 
   &__items {

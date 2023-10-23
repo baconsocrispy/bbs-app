@@ -8,7 +8,7 @@ type ButtonProps = {
   href?: string;
   className?: string;
   onClick?: MouseEventHandler;
-}
+};
 
 const Button: FC<ButtonProps> = ({ text, href, className, onClick }) => {
   return (
@@ -20,6 +20,6 @@ const Button: FC<ButtonProps> = ({ text, href, className, onClick }) => {
       </Link>
     </button>
   )
-}
+};
 
 export default Button;
