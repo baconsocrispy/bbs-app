@@ -23,14 +23,6 @@ const Summary: FC<SummaryProps> = ({ summary }) => {
   return (
     <div className="summary">
         { user && 
-          // <button className="block-menu__edit-button">
-          //   <Link 
-          //     className="block-menu__edit-link"
-          //     href={ `/summary/edit/${ summary.id }` }
-          //   >
-          //     Edit
-          //   </Link>
-          // </button>
           <Button 
             text='Edit'
             href={ `/summary/edit/${ summary.id }` }

@@ -1,4 +1,5 @@
 .block {
+  position: relative;
   display: grid;
   grid-template-rows: repeat(2, max-content) 1fr max-content;
   gap: $padding-default;
@@ -8,6 +9,7 @@
 
   &__image-container {
     width: 100%;
+    height: auto;
     overflow: hidden;
   }
 
@@ -19,8 +21,26 @@
   }
 
   &__header {
-    font-family: $font-header;
+    position: absolute;
+    font-family: $font-primary;
     text-transform: uppercase;
+    // background-color: $color-black-transparent;
+    padding: 0 $padding-default;
+    color: $color-white;
+    top: $padding-default;
+    left: $padding-default;
+    font-size: $font-size-md;
+
+    @media (min-width: $breakpoint-md) {
+      position: relative;
+      background-color: transparent;
+      color: $color-black;
+      font-size: $font-size-default;
+      font-family: $font-header;
+      top: 0;
+      left: 0;
+      padding: 0;
+    }
   }
 
   &__link {

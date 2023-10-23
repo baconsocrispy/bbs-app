@@ -4,6 +4,7 @@ $font-header: 'Montserrat', sans-serif;
 $font-size-default: 1.3rem;
 $font-size-header: 2.5rem;
 $font-size-sm: 1rem;
+$font-size-md: 2rem;
 $font-size-lg: 2.5rem;
 
 // colors
@@ -27,6 +28,7 @@ $padding-sm: 0.5rem;
 $padding-lg: 2rem;
 
 // breakpoints
+$breakpoint-xs: 310px;
 $breakpoint-sm: 500px;
 $breakpoint-md: 700px;
 $breakpoint-lg: 1100px;

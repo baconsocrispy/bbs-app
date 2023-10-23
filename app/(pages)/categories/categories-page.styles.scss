@@ -1,7 +1,8 @@
 .categories-page {
   position: relative;
   display: grid;
-  grid-template-rows: max-content 1fr;
+  grid-template-rows: repeat(3, max-content);
+  width: 100%;
   overflow: scroll;
 }
 

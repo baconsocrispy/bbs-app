@@ -9,7 +9,7 @@ import {
 // types
 import { NextResponse } from 'next/server';
 
-// POST /v1/hero_contents#update
+// PUT /v1/hero_contents#update
 export const PUT = async (
   request: Request,
   { params }: { params: { id: number } }

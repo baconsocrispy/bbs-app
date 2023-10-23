@@ -10,7 +10,7 @@ import ImagesInput from "@/app/_components/images-input/images-input.component";
 
 type HeroFormProps = {
   heroContent?: HeroContent;
-}
+};
 
 const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
   // state
