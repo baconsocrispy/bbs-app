@@ -14,6 +14,7 @@ export const PUT = async (
   request: Request,
   { params }: { params: { id: number } }
 ) => {
+  console.log('Route Handler');
   // extract doorkeeper auth token from cookies
   const cookieStore = cookies();
   const token = cookieStore.get('access_token')?.value;

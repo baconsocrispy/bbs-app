@@ -43,6 +43,7 @@ export const updateHeroContent = async (
   data: FormData,
   token?: string
 ): Promise<HeroContent> => {
+  console.log('Rails handler');
   const url = `${ baseApiUrl() }/v1/hero_contents/${ id }`;
 
   const response = await fetch(url, {
