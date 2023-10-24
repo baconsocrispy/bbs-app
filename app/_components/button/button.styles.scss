@@ -29,6 +29,23 @@
     padding: 0 $padding-default;
   }
 
+  &--contact {
+    position: fixed;
+    bottom: $height-footer;
+    right: 0;
+    color: $color-black;
+    background-color: $color-white;
+    border: 1px solid $color-black;
+    font-size: $font-size-lg;
+    padding: 0 $padding-default;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-black;
+      border: 1px solid $color-black;
+    }
+  }
+
   &--cta {
     padding: $padding-default;
   }

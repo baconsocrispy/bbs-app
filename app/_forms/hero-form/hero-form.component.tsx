@@ -25,7 +25,6 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
   // handlers
   const submitHandler = async (formData: FormData) => {
     setLoading(true);
-    console.log('Submitting form')
     if(heroContent) {
       const response = await fetch(`/api/hero-content/${ heroContent.id }`, {
         credentials: 'include',
@@ -39,8 +38,7 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
         body: formData
       });
     }
-    router.refresh();
-    router.push('/admin');
+    router.push('/');
   };
 
   if (loading) return <p>Submitting form...</p>;

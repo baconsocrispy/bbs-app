@@ -46,19 +46,4 @@
     text-transform: uppercase;
     font-family: $font-header;
   }
-
-  &__cta {
-    position: fixed;
-    bottom: $height-footer;
-    right: 0;
-    color: $color-black;
-    background-color: $color-white;
-    border: 1px solid $color-black;
-
-    &:hover {
-      color: $color-white;
-      background-color: $color-black;
-      border: 1px solid $color-black;
-    }
-  }
 }

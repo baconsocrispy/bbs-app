@@ -51,7 +51,7 @@ const Product: FC<ProductProps> = ({ product }) => {
       { textBlocks.length > 0 && <TextBlocks textBlocks={ textBlocks } /> }
       { features.length > 0 && <Features features={ features } header={ featuresHeader }/> }
 
-      <Button href="/contact" className="product__cta" text="Inquire" />
+      <Button href="/contact" className="button--contact" text="Inquire" />
     </div>
   )
 }
