@@ -28,7 +28,7 @@ const ProductGroupPage = async ({ params }: { params: { slug: string }}) => {
           imageUrl={ banner.url }
           text={ name } 
         />
-        <CardGrid items={ products } />
+        <CardGrid imageStyle='card__image--product' items={ products } />
       </main>
     </Grid>
   )

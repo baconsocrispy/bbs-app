@@ -14,11 +14,12 @@ import { Group, Product } from "@/app/api/api-types";
 
 
 type CardProps = {
+  imageStyle?: string;
   item: Group | Product;
   path?: string | null;
 };
 
-const Card: FC<CardProps> = ({ item, path }) => {
+const Card: FC<CardProps> = ({ imageStyle, item, path }) => {
   // state
   const { user } = useContext(UserContext)
   const { highlight, image, name, short_description, slug } = item;
@@ -49,11 +50,11 @@ const Card: FC<CardProps> = ({ item, path }) => {
           href={  path + slug }
         >
           <Image 
-            className="card__image"
+            className={ `card__image ${ imageStyle }`}
             src={ image?.url } 
             alt={ name }
-            width={ 570 * .721 }
-            height={ 570 }
+            width={ 1516 }
+            height={ 1516 / 1.91 }
           />
         </Link>
       </div>

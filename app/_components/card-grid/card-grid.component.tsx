@@ -12,11 +12,12 @@ import FeaturedCard from "../featured-card/featured-card.component";
 import { Category, Group, Product } from "@/app/api/api-types";
 
 type CardGridProps = {
+  imageStyle?: string;
   items: Group[] | Product[];
   pinnedItem?: Category;
 };
 
-const CardGrid: FC<CardGridProps> = ({ items, pinnedItem }) => {
+const CardGrid: FC<CardGridProps> = ({ imageStyle, items, pinnedItem }) => {
   // state
   const pathname = usePathname();
   const [ segment, setSegment ] = useState<string | null>(null);
@@ -36,7 +37,12 @@ const CardGrid: FC<CardGridProps> = ({ items, pinnedItem }) => {
       }
    
       { items?.map((item) =>
-        <Card key={ item.id } item={ item } path={ segment }/>
+        <Card 
+          key={ item.id } 
+          imageStyle={ imageStyle }
+          item={ item } 
+          path={ segment }
+        />
       )}
     </section>
   )

@@ -25,8 +25,10 @@ const Nav = ({ background, overlay, theme}: NavProps) => {
     ${ overlay && NAV_TYPES.overlay }
     ${ theme }
   `
+  const initialLogoStyle = overlay ? LOGO_TYPES.light : LOGO_TYPES.dark;
+
   const [ navStyle, setNavStyle ] = useState(initialStyle);
-  const [ logoTheme, setlogoTheme ] = useState(LOGO_TYPES.light)
+  const [ logoStyle, setLogoStyle ] = useState(initialLogoStyle);
 
   // add scroll handler
   useEffect(() => {
@@ -35,9 +37,9 @@ const Nav = ({ background, overlay, theme}: NavProps) => {
       if (mainElement && mainElement.scrollTop > 50) {
         // revert to default background/theme styles on scroll        
         setNavStyle(`${ overlay && NAV_TYPES.overlay }`);
-        setlogoTheme(LOGO_TYPES.dark);
+        setLogoStyle(LOGO_TYPES.dark);
       } else {
-        setlogoTheme(LOGO_TYPES.light);
+        setLogoStyle(initialLogoStyle);
         setNavStyle(initialStyle);
       }
     };
@@ -55,7 +57,7 @@ const Nav = ({ background, overlay, theme}: NavProps) => {
     <header className={ 
       `nav ${ navStyle }`
     }>
-      <Logo theme={ logoTheme }/>
+      <Logo theme={ logoStyle }/>
       <NavMenu />
     </header>
   )
