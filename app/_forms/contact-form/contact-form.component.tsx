@@ -78,8 +78,6 @@ const ContactForm = () => {
       >
         Phone
       </label>
-
-
       <input 
         id="contact-form-phone"
         className="contact-form__input"

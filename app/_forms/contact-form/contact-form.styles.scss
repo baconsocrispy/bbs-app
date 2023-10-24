@@ -30,13 +30,13 @@
     padding: $padding-default;
     grid-column: 2 / -1;
     justify-self: flex-end;
-    border: 1px solid $color-white;
+    border: 1px solid $color-black;
     color: inherit;
     background-color: transparent;
 
     &:hover {
-      background-color: $color-white;
-      color: $color-black;
+      background-color: $color-black;
+      color: $color-white;
     }
   }
 }
