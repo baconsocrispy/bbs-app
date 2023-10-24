@@ -39,6 +39,7 @@ const HeroForm: FC<HeroFormProps> = ({ heroContent }) => {
         body: formData
       });
     }
+    router.refresh();
     router.push('/admin');
   };
 

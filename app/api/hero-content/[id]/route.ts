@@ -23,13 +23,17 @@ export const PUT = async (
   const formData = await request.formData();
 
   // send request to /v1/hero_contents#update endpoint
-  const heroContent = await updateHeroContent(params.id, formData, token);
+  try {
+    const heroContent = await updateHeroContent(params.id, formData, token);
 
-  // configure response
-  const response = NextResponse.json(
-    { heroContent: heroContent },
-    { status: 200 }
-  );
+    // configure response
+    const response = NextResponse.json(
+      { heroContent: heroContent },
+      { status: 200 }
+    );
 
-  return response;
+    return response;
+  } catch (e) {
+    console.log(e);
+  };
 };

@@ -23,7 +23,6 @@ const Carousel: FC<CarouselProps> = ({ images, seconds = 5 }) => {
 
   // show spinner while images load
   useEffect(() => {
-    console.log('image load')
     if (imagesLoaded === images.length) {  
       setLoading(false);
     }
