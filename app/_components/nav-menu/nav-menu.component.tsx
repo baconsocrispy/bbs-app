@@ -22,7 +22,7 @@ const NavMenu = () => {
 
   return (
     <nav className="nav-menu">
-      <Hamburger onClick={ handleHamburgerClick } />
+      <Hamburger onClick={ handleHamburgerClick } className={ open ? 'hamburger--dark' : ''}/>
 
       <NavLinks open={ open }>
         <NavLink 

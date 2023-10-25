@@ -1,16 +1,23 @@
 .hamburger {
+  z-index: 101;
   cursor: pointer;
   display: flex;
   align-items: center;
   overflow: visible;
   width: 3rem;
   height: 2rem;
+  color: $color-white;
+
+  &--dark {
+    color: $color-black;
+  }
 
   @media (min-width: $breakpoint-md) {
     display: none;
   }
 
   &__lines {
+    z-index: 101;
     position: relative;
     width: 3rem;
     height: 2px;
