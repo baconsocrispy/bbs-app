@@ -7,6 +7,7 @@ const nextConfig = {
     domains: [
       'localhost',
       'api.carterbacon.com',
+      'www.carterbacon.com',
       'bbs-api-v1-044032d0438d.herokuapp.com'
     ],
   }
