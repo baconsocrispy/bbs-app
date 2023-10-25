@@ -15,6 +15,8 @@ const Logo = ({ theme }: LogoProps) => {
           className='logo__image'
           src={ '/logo_100x23.png' }
           alt='BB&S Logo'
+          width={ 100 }
+          height={ 23 }
           priority
         />
       </Link>
