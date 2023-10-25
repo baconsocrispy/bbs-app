@@ -6,6 +6,10 @@
   background-color: $color-white;
   color: $color-black;
 
+  &__item {
+    position: relative;
+  }
+
   &__items {
     position: relative;
     width: 100%;
