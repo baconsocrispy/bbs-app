@@ -5,14 +5,19 @@ import {
   FC, 
   MouseEvent,
   MouseEventHandler, 
+  useContext,
   useState 
 } from "react";
 
 import { UseFormRegister } from "react-hook-form";
 
+// context
+import { ProductFormContext } from "@/app/_contexts/product-form.context";
+
 // types
 import { Feature } from "@/app/api/api-types";
 import { ProductFormData } from "../../product-form/product-form.component";
+
 
 type FeaturesGroupProps = {
   productFeatures?: Feature[];
@@ -23,12 +28,19 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
   productFeatures, register 
 }) => {
   // state
-  const [ features, setFeatures ] = useState(productFeatures ? productFeatures : []);
   const [ highlight, setHighlight ] = useState('');
   const [ text, setText ] = useState('');
   const [ errorMessage, setErrorMessage ] = useState('');
+  const [ editIndex, setEditIndex ] = useState<number | undefined>(undefined);
+  const { addFeature, removeFeature, updateFeature } = useContext(ProductFormContext);
 
   // handlers
+  const resetForm = () => {
+    setHighlight('');
+    setText('');
+    setErrorMessage('');
+  };
+
   const handleAddFeature: MouseEventHandler = (e) => {
     // prevent form submit
     e.preventDefault();
@@ -40,31 +52,33 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
     }
 
     const feature: Feature = { highlight: highlight, text: text };
-    const newFeatureArray = [
-      ...features,
-      feature
-    ];
-
-    setFeatures(newFeatureArray);
-    setHighlight('');
-    setText('');
-    setErrorMessage('');
+    
+    addFeature(feature);
+    resetForm();
   };
 
   const handleDeleteFeature = (
-    event: MouseEvent<HTMLButtonElement>,
+    e: MouseEvent<HTMLButtonElement>,
     index: number,
   ) => {
-    // prevent form submit
-    event.preventDefault();
+    e.preventDefault();
+    removeFeature(index);
+  };
 
-    // copy features array
-    const updatedFeatures = [ ...features ];
+  const handleUpdateFeature = (
+    e: MouseEvent<HTMLButtonElement>, 
+    index: number
+  ) => {
+    e.preventDefault();
+    editIndex !== index ? setEditIndex(index) : setEditIndex(undefined);
+  };
 
-    // add destroy flag to deleted spec
-    updatedFeatures[index] = { ...updatedFeatures[index], _destroy: true };
+  const handleHighlightChange = (index: number, value: string) => {
+    updateFeature({ highlight: value }, index);
+  }; 
 
-    setFeatures(updatedFeatures);
+  const handleTextChange = (index: number, value: string) => {
+    updateFeature({ text: value }, index);
   };
 
   return (
@@ -121,7 +135,7 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
           </h3>
         </li>
 
-        { features?.map((feature, index) => 
+        { productFeatures?.map((feature, index) => 
           <li 
             key={ index }
             className={ feature._destroy ? 
@@ -133,7 +147,8 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
               type="text"
               { ...register(`product.features_attributes.${ index }.highlight`) }
               value={ feature.highlight }
-              readOnly
+              onChange={ (e) => handleHighlightChange(index, e.target.value) }
+              readOnly={ editIndex !== index }
             />
 
             <input
@@ -141,7 +156,8 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
               type="text"
               { ...register(`product.features_attributes.${ index }.text`) }
               value={ feature.text }
-              readOnly
+              onChange={ (e) => handleTextChange(index, e.target.value) }
+              readOnly={ editIndex !== index }
             />
 
             { feature.id &&
@@ -164,7 +180,13 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
               onClick={ (e) => handleDeleteFeature(e, index) }
             >
               Delete
-            </button>            
+            </button>
+
+            <button 
+              onClick={ (e) => handleUpdateFeature(e, index) }
+            >
+              { editIndex === index ? 'Submit' : 'Edit' }
+            </button>                 
           </li>
         )}
       </ul>

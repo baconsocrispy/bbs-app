@@ -1,3 +1,5 @@
+'use client'
+
 // library
 import { createContext, ReactNode, useState } from "react";
 
@@ -12,6 +14,9 @@ type ProductFormOptions = {
 
 type ProductFormContextProps = {
   formOptions: ProductFormOptions;
+  addFeature: Function;
+  removeFeature: Function;
+  updateFeature: Function
 };
 
 type ProductFormProviderProps = {
@@ -24,7 +29,10 @@ export const ProductFormContext = createContext<ProductFormContextProps>({
     features: [],
     specs: [],
     textBlocks: []
-  }
+  },
+  addFeature: () => {},
+  removeFeature: () => {},
+  updateFeature: () => {}
 });
 
 // provider
@@ -51,7 +59,9 @@ export const ProductFormProvider = ({ children }: ProductFormProviderProps) => {
 
   const removeFeature = (index: number) => {
     const updatedFormOptions = { ...formOptions };
-    updatedFormOptions.features.splice(index, 1);
+    updatedFormOptions.features[index] = { 
+      ...updatedFormOptions.features[index], _destroy: true 
+    };
     setFormOptions(updatedFormOptions);
   };
 
@@ -66,6 +76,9 @@ export const ProductFormProvider = ({ children }: ProductFormProviderProps) => {
   // export data
   const value = {
     formOptions,
+    addFeature,
+    removeFeature,
+    updateFeature,
     resetForm
   };
 

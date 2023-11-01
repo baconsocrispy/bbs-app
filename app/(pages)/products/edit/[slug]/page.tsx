@@ -1,3 +1,6 @@
+// context
+import { ProductFormProvider } from "@/app/_contexts/product-form.context";
+
 // components
 import Grid from "@/app/_components/grid/grid.component";
 import ProductForm from "@/app/_forms/product-form/product-form.component";
@@ -12,7 +15,9 @@ const EditProductPage = async ({ params }: { params: { slug: string }}) => {
   return (
     <Grid>
       <main className="edit-product-page">
-        <ProductForm product={ product }/>
+        <ProductFormProvider>
+          <ProductForm product={ product }/>
+        </ProductFormProvider>
       </main>
     </Grid>
   )

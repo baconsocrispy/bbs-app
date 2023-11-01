@@ -5,12 +5,16 @@ import {
   ChangeEventHandler, 
   FC, 
   MouseEventHandler,
+  useContext,
   useEffect, 
   useState
 } from "react";
 
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+// context
+import { ProductFormContext } from "@/app/_contexts/product-form.context";
 
 // components
 import FeaturesGroup from "../nested-groups/features-group/features-group.component";
@@ -54,6 +58,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   const [ images, setImages ] = useState<FileList | undefined>(undefined);
   const [ name, setName ] = useState(product?.name);
   const [ shortDescription, setShortDescription ] = useState(product?.short_description);
+  const { formOptions, addFeature } = useContext(ProductFormContext);
   
   // loading state
   const [ loading, setLoading ] = useState(true);
@@ -78,6 +83,12 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
     };
     groups ? setLoading(false) : getGroups();
   }, [ groups ]);
+
+  // set form options
+  useEffect(() => {
+    if (!product) return;
+    product.features.map((feature) => addFeature(feature));
+  }, [])
 
   // handlers
   const submitHandler: SubmitHandler<ProductFormData> = async (
@@ -239,7 +250,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       />
       
       <FeaturesGroup 
-        productFeatures={ product?.features }
+        productFeatures={ formOptions.features }
         register={ register }
       />
 
