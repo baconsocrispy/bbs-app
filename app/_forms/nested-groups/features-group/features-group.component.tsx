@@ -28,11 +28,12 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
   productFeatures, register 
 }) => {
   // state
+  const { addFeature, removeFeature, updateFeature } = useContext(ProductFormContext);
   const [ highlight, setHighlight ] = useState('');
   const [ text, setText ] = useState('');
   const [ errorMessage, setErrorMessage ] = useState('');
   const [ editIndex, setEditIndex ] = useState<number | undefined>(undefined);
-  const { addFeature, removeFeature, updateFeature } = useContext(ProductFormContext);
+  
 
   // handlers
   const resetForm = () => {
@@ -65,7 +66,7 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
     removeFeature(index);
   };
 
-  const handleUpdateFeature = (
+  const handleAllowEdit = (
     e: MouseEvent<HTMLButtonElement>, 
     index: number
   ) => {
@@ -183,9 +184,9 @@ const FeaturesGroup: FC<FeaturesGroupProps> = ({
             </button>
 
             <button 
-              onClick={ (e) => handleUpdateFeature(e, index) }
+              onClick={ (e) => handleAllowEdit(e, index) }
             >
-              { editIndex === index ? 'Submit' : 'Edit' }
+              { editIndex === index ? 'Confirm' : 'Edit' }
             </button>                 
           </li>
         )}

@@ -58,7 +58,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   const [ images, setImages ] = useState<FileList | undefined>(undefined);
   const [ name, setName ] = useState(product?.name);
   const [ shortDescription, setShortDescription ] = useState(product?.short_description);
-  const { formOptions, addFeature } = useContext(ProductFormContext);
+  const { formOptions, addFeature, addSpec } = useContext(ProductFormContext);
   
   // loading state
   const [ loading, setLoading ] = useState(true);
@@ -88,6 +88,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
   useEffect(() => {
     if (!product) return;
     product.features.map((feature) => addFeature(feature));
+    product.specs.map((spec) => addSpec(spec));
   }, [])
 
   // handlers
@@ -245,7 +246,7 @@ const ProductForm: FC<ProductFormProps> = ({ product }) => {
       }
 
       <SpecsGroup 
-        productSpecs={ product?.specs }
+        productSpecs={ formOptions.specs }
         register={ register }
       />
       

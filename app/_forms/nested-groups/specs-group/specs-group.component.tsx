@@ -4,11 +4,15 @@
 import { 
   FC, 
   MouseEvent,
-  MouseEventHandler, 
+  MouseEventHandler,
+  useContext,
   useState 
 } from "react";
 
 import { UseFormRegister } from "react-hook-form";
+
+// context
+import { ProductFormContext } from "@/app/_contexts/product-form.context";
 
 // types
 import { Spec } from "@/app/api/api-types";
@@ -23,12 +27,19 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
   productSpecs, register 
 }) => {
   // state
-  const [ specs, setSpecs ] = useState(productSpecs ||= []);
+  const { addSpec, removeSpec, updateSpec } = useContext(ProductFormContext);
   const [ category, setCategory ] = useState('');
   const [ text, setText ] = useState('');
   const [ errorMessage, setErrorMessage ] = useState('');
+  const [ editIndex, setEditIndex ] = useState<number | undefined>(undefined);
 
   // handlers
+  const resetForm = () => {
+    setCategory('');
+    setText('');
+    setErrorMessage('');
+  };
+
   const handleAddSpec: MouseEventHandler = (e) => {
     // prevent form submit
     e.preventDefault();
@@ -40,31 +51,34 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
     }
 
     const spec: Spec = { category: category, text: text };
-    const newSpecArray = [
-      ...specs,
-      spec
-    ];
 
-    setSpecs(newSpecArray);
-    setCategory('');
-    setText('');
-    setErrorMessage('');
+    addSpec(spec);
+    resetForm();
   };
 
   const handleDeleteSpec = (
-    event: MouseEvent<HTMLButtonElement>,
+    e: MouseEvent<HTMLButtonElement>,
     index: number,
   ) => {
     // prevent form submit
-    event.preventDefault();
+    e.preventDefault();
+    removeSpec(index);
+  };
 
-    // copy specs array
-    const updatedSpecs = [ ...specs ];
+  const handleAllowEdit = (
+    e: MouseEvent<HTMLButtonElement>, 
+    index: number
+  ) => {
+    e.preventDefault();
+    editIndex !== index ? setEditIndex(index) : setEditIndex(undefined);
+  };
 
-    // add destroy flag to deleted spec
-    updatedSpecs[index] = { ...updatedSpecs[index], _destroy: true };
+  const handleCategoryChange = (index: number, value: string) => {
+    updateSpec({ category: value }, index);
+  }; 
 
-    setSpecs(updatedSpecs);
+  const handleTextChange = (index: number, value: string) => {
+    updateSpec({ text: value }, index);
   };
 
   return (
@@ -117,7 +131,7 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
           <h3 className="specs-group__list-header">Text</h3>
         </li>
 
-        { specs?.map((spec, index) => 
+        { productSpecs?.map((spec, index) => 
           <li 
             key={ index }
             className={ spec._destroy ? 
@@ -129,14 +143,16 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
               type="text"
               { ...register(`product.specs_attributes.${ index }.category`) }
               value={ spec.category }
-              readOnly
+              onChange={ (e) => handleCategoryChange(index, e.target.value)}
+              readOnly={ editIndex !== index }
             />
             <input
               className="specs-group__text"
               type="text"
               { ...register(`product.specs_attributes.${ index }.text`) }
               value={ spec.text }
-              readOnly
+              onChange={ (e) => handleTextChange(index, e.target.value)}
+              readOnly={ editIndex !== index }
             />
 
             { spec.id &&
@@ -160,6 +176,12 @@ const SpecsGroup: FC<SpecsGroupProps> = ({
             >
               Delete
             </button>
+
+            <button 
+              onClick={ (e) => handleAllowEdit(e, index) }
+            >
+              { editIndex === index ? 'Confirm' : 'Edit' }
+            </button>       
           </li>
         )}
       </ul>

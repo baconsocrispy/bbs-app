@@ -16,7 +16,10 @@ type ProductFormContextProps = {
   formOptions: ProductFormOptions;
   addFeature: Function;
   removeFeature: Function;
-  updateFeature: Function
+  updateFeature: Function;
+  addSpec: Function;
+  removeSpec: Function;
+  updateSpec: Function;
 };
 
 type ProductFormProviderProps = {
@@ -32,7 +35,10 @@ export const ProductFormContext = createContext<ProductFormContextProps>({
   },
   addFeature: () => {},
   removeFeature: () => {},
-  updateFeature: () => {}
+  updateFeature: () => {},
+  addSpec: () => {},
+  removeSpec: () => {},
+  updateSpec: () => {}
 });
 
 // provider
@@ -73,12 +79,37 @@ export const ProductFormProvider = ({ children }: ProductFormProviderProps) => {
     setFormOptions(updatedFormOptions);
   };
 
+  const addSpec = (spec: Spec) => {
+    const updatedFormOptions = { ...formOptions };
+    updatedFormOptions.specs.push(spec);
+    setFormOptions(updatedFormOptions);
+  };
+
+  const removeSpec = (index: number) => {
+    const updatedFormOptions = { ...formOptions };
+    updatedFormOptions.specs[index] = { 
+      ...updatedFormOptions.specs[index], _destroy: true 
+    };
+    setFormOptions(updatedFormOptions);
+  };
+
+  const updateSpec = (spec: Spec, index: number) => {
+    const updatedFormOptions = { ...formOptions };
+    updatedFormOptions.specs[index] = {
+      ...spec
+    };
+    setFormOptions(updatedFormOptions);
+  };
+
   // export data
   const value = {
     formOptions,
     addFeature,
     removeFeature,
     updateFeature,
+    addSpec,
+    removeSpec,
+    updateSpec,
     resetForm
   };
 
