@@ -4,11 +4,15 @@
 import { 
   FC, 
   MouseEvent, 
-  MouseEventHandler, 
+  MouseEventHandler,
+  useContext,
   useState 
 } from "react";
 
 import { UseFormRegister } from "react-hook-form";
+
+// context
+import { ProductFormContext } from "@/app/_contexts/product-form.context";
 
 // types
 import { TextBlock } from "@/app/api/api-types";
@@ -23,12 +27,19 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
   productTextBlocks, register 
 }) => {
   // state
-  const [ textBlocks, setTextBlocks ] = useState(productTextBlocks ? productTextBlocks : []);
+  const { addTextBlock, removeTextBlock, updateTextBlock } = useContext(ProductFormContext);
   const [ title, setTitle ] = useState('');
   const [ text, setText ] = useState('');
   const [ errorMessage, setErrorMessage ] = useState('');
+  const [ editIndex, setEditIndex ] = useState<number | undefined>(undefined)
 
   // handlers
+  const resetForm = () => {
+    setTitle('');
+    setText('');
+    setErrorMessage('');
+  };
+
   const handleAddTextBlock: MouseEventHandler = (e) => {
     // prevent form submit
     e.preventDefault();
@@ -40,31 +51,33 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
     }
 
     const textBlock: TextBlock = { title: title, text: text };
-    const newTextBlockArray = [
-      ...textBlocks,
-      textBlock
-    ];
-
-    setTextBlocks(newTextBlockArray);
-    setTitle('');
-    setText('');
-    setErrorMessage('');
+    
+    addTextBlock(textBlock);
+    resetForm();
   };
 
   const handleDeleteTextBlock = (
-    event: MouseEvent<HTMLButtonElement>,
+    e: MouseEvent<HTMLButtonElement>,
     index: number,
   ) => {
-    // prevent form submit
-    event.preventDefault();
+    e.preventDefault();
+    removeTextBlock(index);
+  };
 
-    // copy specs array
-    const updatedTextBlocks = [ ...textBlocks ];
+  const handleAllowEdit = (
+    e: MouseEvent<HTMLButtonElement>, 
+    index: number
+  ) => {
+    e.preventDefault();
+    editIndex !== index ? setEditIndex(index) : setEditIndex(undefined);
+  };
 
-    // add destroy flag to deleted spec
-    updatedTextBlocks[index] = { ...updatedTextBlocks[index], _destroy: true };
+  const handleTitleChange = (index: number, value: string) => {
+    updateTextBlock({ title: value }, index);
+  }; 
 
-    setTextBlocks(updatedTextBlocks);
+  const handleTextChange = (index: number, value: string) => {
+    updateTextBlock({ text: value }, index);
   };
 
   return (
@@ -116,7 +129,8 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
           <h3 className="text-block-group__list-header">Title</h3>
           <h3 className="text-block-group__list-header">Text</h3>
         </li>
-        { textBlocks?.map((textBlock, index) => 
+        
+        { productTextBlocks?.map((textBlock, index) => 
           <li 
             key={ index }
             className={ textBlock._destroy ? 
@@ -128,6 +142,8 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
               type="text"
               { ...register(`product.text_blocks_attributes.${ index }.title`) }
               value={ textBlock.title }
+              onChange={ (e) => handleTitleChange(index, e.target.value) }
+              readOnly={ editIndex !== index }
             />
 
             <input
@@ -135,6 +151,8 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
               type="text"
               { ...register(`product.text_blocks_attributes.${ index }.text`) }
               value={ textBlock.text }
+              onChange={ (e) => handleTextChange(index, e.target.value) }
+              readOnly={ editIndex !== index }
             />
 
             { textBlock.id &&
@@ -158,6 +176,12 @@ const TextBlockGroup: FC<TextBlockGroupProps> = ({
             >
               Delete
             </button>
+
+            <button 
+              onClick={ (e) => handleAllowEdit(e, index) }
+            >
+              { editIndex === index ? 'Confirm' : 'Edit' }
+            </button>       
           </li>
         )}
       </ul>

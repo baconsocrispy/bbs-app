@@ -20,6 +20,9 @@ type ProductFormContextProps = {
   addSpec: Function;
   removeSpec: Function;
   updateSpec: Function;
+  addTextBlock: Function;
+  removeTextBlock: Function;
+  updateTextBlock: Function;
 };
 
 type ProductFormProviderProps = {
@@ -38,7 +41,10 @@ export const ProductFormContext = createContext<ProductFormContextProps>({
   updateFeature: () => {},
   addSpec: () => {},
   removeSpec: () => {},
-  updateSpec: () => {}
+  updateSpec: () => {},
+  addTextBlock: () => {},
+  removeTextBlock: () => {},
+  updateTextBlock: () => {}
 });
 
 // provider
@@ -101,6 +107,28 @@ export const ProductFormProvider = ({ children }: ProductFormProviderProps) => {
     setFormOptions(updatedFormOptions);
   };
 
+  const addTextBlock = (textBlock: TextBlock) => {
+    const updatedFormOptions = { ...formOptions };
+    updatedFormOptions.textBlocks.push(textBlock);
+    setFormOptions(updatedFormOptions);
+  };
+
+  const removeTextBlock = (index: number) => {
+    const updatedFormOptions = { ...formOptions };
+    updatedFormOptions.textBlocks[index] = { 
+      ...updatedFormOptions.textBlocks[index], _destroy: true 
+    };
+    setFormOptions(updatedFormOptions);
+  };
+
+  const updateTextBlock = (textBlock: TextBlock, index: number) => {
+    const updatedFormOptions = { ...formOptions };
+    updatedFormOptions.textBlocks[index] = {
+      ...textBlock
+    };
+    setFormOptions(updatedFormOptions);
+  };
+
   // export data
   const value = {
     formOptions,
@@ -110,6 +138,9 @@ export const ProductFormProvider = ({ children }: ProductFormProviderProps) => {
     addSpec,
     removeSpec,
     updateSpec,
+    addTextBlock,
+    removeTextBlock,
+    updateTextBlock,
     resetForm
   };
 
