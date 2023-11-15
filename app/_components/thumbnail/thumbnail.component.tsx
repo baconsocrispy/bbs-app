@@ -7,13 +7,12 @@ import Image from "next/image";
 
 type ThumbnailProps = {
   image: SerializedImage;
-  selected?: boolean;
   className?: string;
   onClick?: MouseEventHandler;
 };
 
 const Thumbnail: FC<ThumbnailProps> = ({ 
-  image, selected, className, onClick 
+  image, className, onClick 
 }) => {
   return (
     <div 

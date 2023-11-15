@@ -40,7 +40,8 @@ const NavMenu = () => {
         <NavLink 
           text='Downloads' 
           href='https://brothers-sons.odoo.com/download' 
-          onClick={ handleLinkClick } 
+          onClick={ handleLinkClick }
+          newTab={ true }
         />
 
         <NavLink 

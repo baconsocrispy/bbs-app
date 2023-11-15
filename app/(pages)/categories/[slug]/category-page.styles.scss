@@ -1,5 +1,6 @@
 .category-page {
   position: relative;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  scrollbar-gutter: initial;
 }

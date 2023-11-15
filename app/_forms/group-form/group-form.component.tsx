@@ -18,7 +18,7 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
   const [ highlight, setHighlight ] = useState(group?.highlight);
   const [ name, setName ] = useState(group?.name);
   const [ short_description, setShortDescription ] = useState(group?.short_description);
-  const [ categoryId, setCategoryId ] = useState(group?.categoryId);
+  const [ categoryId, setCategoryId ] = useState(group?.categoryId.toString());
   const [ categories, setCategories ] = useState<Category[] | null>(null);
 
   // navigation
@@ -163,13 +163,13 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
         id="category-select"
         className="product-form__select"
         name='group[category_id]'
-        defaultValue={ group?.categoryId }
+        value={ categoryId }
+        onChange={ (e) => setCategoryId(e.target.value) }
       >
         { categories?.map((category) => 
           <option 
             key={ category.id } 
             value={ category.id } 
-            // selected={ category.id === categoryId }
           >
             { category.name }
           </option>

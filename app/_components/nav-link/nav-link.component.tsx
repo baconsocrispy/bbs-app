@@ -9,12 +9,16 @@ type NavLinkProps = {
   text: string;
   href: string;
   onClick?: MouseEventHandler;
+  newTab?: boolean;
 };
 
-const NavLink: FC<NavLinkProps> = ({ text, href, onClick }) => {
+const NavLink: FC<NavLinkProps> = ({ text, href, onClick, newTab }) => {
   return (
     <li onClick={ onClick } className='nav-link'>
-      <Link href={ href }>
+      <Link 
+        href={ href } 
+        target={ newTab ? '_blank' : undefined }
+      >
         { text }
       </Link>
     </li>
