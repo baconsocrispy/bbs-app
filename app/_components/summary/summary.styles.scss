@@ -14,13 +14,10 @@
   &__header {
     text-transform: uppercase;
     font-family: $font-header;
+    padding-top: $padding-default;
   }
 
   &__copy {
     font-size: $font-size-lg;
-
-    &::first-line {
-      line-height: 100%;
-    }
   }
 }

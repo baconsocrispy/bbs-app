@@ -35,7 +35,6 @@ const ImageDisplay: FC<ImageDisplayProps> = ({ defaultImage, images }) => {
       <div className="image-display__thumbnail-container">
         <Thumbnail 
           image={ defaultImage } 
-          selected={ false } 
           onClick={ () => setCurrentImage(defaultImage) }
         />
 
@@ -43,7 +42,6 @@ const ImageDisplay: FC<ImageDisplayProps> = ({ defaultImage, images }) => {
           <Thumbnail 
             key={ image.id } 
             image={ image } 
-            selected={ false } 
             onClick={ () => setCurrentImage(image) }
           />
         )}
