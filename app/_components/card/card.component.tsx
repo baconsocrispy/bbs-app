@@ -64,7 +64,7 @@ const Card: FC<CardProps> = ({ imageStyle, item, path }) => {
           { short_description }
         </p>
       </div>
-      { noLink &&
+      { !noLink &&
         <Link 
           className="card__cta"
           href={ path + slug }
