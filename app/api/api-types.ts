@@ -33,6 +33,7 @@ export type Group = {
   products: Product[];
   short_description: string;
   slug: string;
+  noLink?: boolean;
 };
 
 export type HeroContent = {
@@ -57,6 +58,7 @@ export type Product = {
   slug: string;
   specs: Spec[];
   textBlocks: TextBlock[];
+  noLink?: boolean;
 };
 
 export type ProductGrouping = {

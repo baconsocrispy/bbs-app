@@ -18,6 +18,7 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
   const [ highlight, setHighlight ] = useState(group?.highlight);
   const [ name, setName ] = useState(group?.name);
   const [ short_description, setShortDescription ] = useState(group?.short_description);
+  const [ noLink, setNoLink ] = useState(group?.noLink);
   const [ categoryId, setCategoryId ] = useState(group?.categoryId.toString());
   const [ categories, setCategories ] = useState<Category[] | null>(null);
 
@@ -175,6 +176,22 @@ const GroupForm: FC<GroupFormProps> = ({ group }) => {
           </option>
         )}
       </select>
+
+      {/* group is static? (no link) */}
+      <label
+        className="product-form__label" 
+        htmlFor="static"
+      >
+        No Link
+      </label>
+      <input
+        id="static"
+        type="checkbox"
+        className="product-form__checkbox" 
+        name="group[no_link]"
+        checked={ noLink }
+        onChange={ (e) => setNoLink(!noLink) }
+      />
       
       {/* doorkeeper grant type */}
       <input 

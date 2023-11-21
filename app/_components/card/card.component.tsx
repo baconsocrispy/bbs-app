@@ -22,7 +22,7 @@ type CardProps = {
 const Card: FC<CardProps> = ({ imageStyle, item, path }) => {
   // state
   const { user } = useContext(UserContext)
-  const { highlight, image, name, short_description, slug } = item;
+  const { highlight, image, name, short_description, slug, noLink } = item;
 
   return (
     <div className="card">
@@ -47,7 +47,7 @@ const Card: FC<CardProps> = ({ imageStyle, item, path }) => {
       <div className="card__image-container">
         <Link 
           className="card__link"
-          href={  path + slug }
+          href={  noLink ? '#' : path + slug }
         >
           <Image 
             className={ `card__image ${ imageStyle }`}
@@ -64,13 +64,14 @@ const Card: FC<CardProps> = ({ imageStyle, item, path }) => {
           { short_description }
         </p>
       </div>
-
-      <Link 
-        className="card__cta"
-        href={ path + slug }
-      >
-        { 'View ' + name }
-      </Link>
+      { noLink &&
+        <Link 
+          className="card__cta"
+          href={ path + slug }
+        >
+          { 'View ' + name }
+        </Link>
+      }
     </div>
   )
 };
