@@ -11,6 +11,7 @@ import Button from "../button/button.component";
 
 // types
 import { Summary } from "@/app/api/api-types";
+import Image from "next/image";
 
 type SummaryProps = {
   summary: Summary
@@ -31,6 +32,16 @@ const Summary: FC<SummaryProps> = ({ summary }) => {
         }
       <h4 className="summary__header">{ summary.header }</h4>
       <p className="summary__copy">{ summary.copy }</p>
+
+      <div className="summary__image-container">
+        <Image 
+          src={ summary.image?.url }
+          height={ 2456 }
+          width={ 3680 }
+          alt={ summary.header }
+          className="summary__image"
+        />
+      </div>
     </div>
   )
 };
