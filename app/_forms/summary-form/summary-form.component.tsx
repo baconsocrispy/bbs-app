@@ -111,6 +111,19 @@ const SummaryForm: FC<SummaryFormProps> = ({ summary }) => {
         image={ summary?.banner }
       />
 
+      {/* default image */}
+      <label 
+        className="product-form__label"
+        htmlFor="default-image"
+      >
+        Default Image
+      </label>
+      <ImageInput 
+        id="default-image"
+        name="summary[default_image]"
+        image={ summary?.image }
+      />
+
       {/* id */}
       { summary && 
         <input 

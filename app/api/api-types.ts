@@ -91,6 +91,7 @@ export type Summary = {
   copy: string;
   header: string;
   id?: number;
+  image: SerializedImage;
 };
 
 export type TextBlock = {
