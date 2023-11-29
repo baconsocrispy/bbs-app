@@ -5,7 +5,7 @@ import { useState } from "react";
 const ContactForm = () => {
   // state
   const [ loading, setLoading ] = useState(false);
-  const salesForceURL = "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHp000001tGYa";
+  const salesForceURL = "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHs000001RXNu";
 
   // handler
   const handleSubmit = async (formData: FormData) => {
@@ -32,8 +32,8 @@ const ContactForm = () => {
       action={ formData => handleSubmit(formData) }
       className="contact-form"
     >
-      <input type='hidden' name='oid' value="00DHp000001tGYa" />
-      <input type='hidden' name="retURL" value="" />
+      <input type='hidden' name='oid' value="00DHs000001RXNu" />
+      <input type='hidden' name="retURL" value="https://www.brothers-sonsamerica.com/" />
 
       <label htmlFor="first_name" className="contact-form__label">First Name</label>
       <input id="first_name" className="contact-form__input" type="text" maxLength={ 40 } name='first_name' size={ 20 } />
@@ -51,7 +51,7 @@ const ContactForm = () => {
       <input id="email" className="contact-form__input" type="text" maxLength={ 80 } name='email' size={ 20 } />
 
       <label htmlFor="company" className="contact-form__label">Sector</label>
-      <select id="00NHp00000bSGQo" title="Sector" name="00NHp00000bSGQo">
+      <select id="00NHs00000VIcCl" title="Sector" name="00NHs00000VIcCl">
         <option value="">--None--</option>
         <option value="Architecture">Architecture</option>
         <option value="Production">Production</option>
