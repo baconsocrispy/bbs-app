@@ -1,5 +1,5 @@
 // components
-import ContactForm from "@/app/_forms/contact-form-sf/contact-form-sf.component";
+import ContactForm from "@/app/_forms/contact-form/contact-form.component";
 import Grid from "@/app/_components/grid/grid.component";
 import Header from "../../_components/header/header.component";
 import { NAV_TYPES } from "@/app/_components/nav/nav.types";
