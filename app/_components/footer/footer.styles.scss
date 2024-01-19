@@ -1,7 +1,14 @@
 .footer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   color: $color-white;
   background: linear-gradient(270deg, rgba(243, 238, 238, .5) 0%, rgba(15,15,15,.5) 100%);
   padding: $padding-default;
+
+  font-size: 1rem;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: $font-size-default;
+  }
 }
